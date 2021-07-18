@@ -141,9 +141,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="BaseITtechnics.cpp" />
-    <ClCompile Include="main.cpp">
-      <FileType>CppClass</FileType>
-    </ClCompile>
+    <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BaseITtechnics.hpp" />

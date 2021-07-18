@@ -16,7 +16,7 @@ struct Info {
 
 class BaseComponent {
 public:
-	virtual void showInfo = 0;
+	virtual void showInfo() = 0;
 private:
 	int quntity;
 	bool exist;
