@@ -1,20 +1,20 @@
 #include "Components.hpp"
 
-BaseComponent::BaseComponent(const std::string& description)
-	: description(description) {}
-std::string BaseComponent::getDescription() const noexcept
+BaseComponent::BaseComponent(const std::string& name_)
+	: name(name_) {}
+std::string BaseComponent::getName() const noexcept
 {
-	return description;
+	return name;
 }
 
-void BaseComponent::setDescription(const std::string& description) noexcept
+void BaseComponent::setName(const std::string& name) noexcept
 {
-	this->description = description;
+	this->name = name;
 }
 
 //CPU
-CPU::CPU(float frequency_, std::string description_) :
-	BaseComponent(description_),
+CPU::CPU(float frequency_, std::string name_) :
+	BaseComponent(name_),
 	frequency(frequency_)
 {};
 
@@ -29,12 +29,12 @@ void CPU::setFrequency(const float& frequency) noexcept
 
 //Motherboard
 
-Motherboard::Motherboard(std::string descripton) :
-	BaseComponent(descripton) {}
+Motherboard::Motherboard(std::string name_) :
+	BaseComponent(name_) {}
 
 // GrahiphicCard
-GrahiphicCard::GrahiphicCard(float videoRam_, std::string description_) :
-	BaseComponent(description_),
+GrahiphicCard::GrahiphicCard(float videoRam_, std::string name_) :
+	BaseComponent(name_),
 	videoRam(videoRam_)
 {};
 
@@ -50,8 +50,8 @@ void  GrahiphicCard::setVideoRam(const float& videoRam) noexcept
 //RAM
 
 
-RAM::RAM(float valueRam_, std::string description_) :
-	BaseComponent(description_),
+RAM::RAM(float valueRam_, std::string name_) :
+	BaseComponent(name_),
 	valueRam(valueRam_)
 {};
 
@@ -66,8 +66,8 @@ void RAM::setValueRam(const float& valueRam) noexcept
 
 //StorageDevice
 
-StorageDevice::StorageDevice(float valueVolume_, std::string description_) :
-	BaseComponent(description_),
+StorageDevice::StorageDevice(float valueVolume_, std::string name_) :
+	BaseComponent(name_),
 	valueVolume(valueVolume_)
 {};
 
@@ -78,4 +78,27 @@ float StorageDevice::getFrequency()const noexcept
 void StorageDevice::setFrequency(const float& valueRam) noexcept
 {
 	this->valueVolume = valueRam;
+}
+
+Cartridge::Cartridge(int countRefilling_, int id_,std::string name_) :
+BaseComponent(name_), countRefilling(countRefilling_), id(id_) {}
+
+int Cartridge::getCountRefilling() const noexcept
+{
+	return countRefilling;
+}
+
+int Cartridge::getIdCartridge() const noexcept
+{
+	return id;
+}
+
+void Cartridge::setContRefilling(int countRefilling) noexcept
+{
+	this->countRefilling = countRefilling;
+}
+
+void Cartridge::setIdCartridge(int id) noexcept
+{
+	this->id = id;
 }

@@ -6,18 +6,18 @@
 class BaseComponent {
 public:
 	BaseComponent() = delete;
-	BaseComponent(const std::string& description = "") ;
+	BaseComponent(const std::string& name = "");
 
-	virtual std::string getDescription()const noexcept;
-	void setDescription(const std::string& description) noexcept;
+	virtual std::string getName()const noexcept;
+	void setName(const std::string& name) noexcept;
 private:
-	std::string description;
+	std::string name;
 };
 
-class CPU: public BaseComponent{
+class CPU : public BaseComponent {
 public:
 	CPU() = delete;
-	CPU(float frequency_, std::string description_ = "");
+	CPU(float frequency_, std::string name_ = "");
 
 	float getFrequency()const noexcept;
 	void setFrequency(const float& frequency) noexcept;
@@ -25,16 +25,16 @@ protected:
 	float frequency; //частота GHz
 };
 
-class Motherboard: public BaseComponent {
+class Motherboard : public BaseComponent {
 public:
 	Motherboard() = delete;
 	Motherboard(std::string descripton = "");
 };
 
-class GrahiphicCard: public BaseComponent {
+class GrahiphicCard : public BaseComponent {
 public:
 	GrahiphicCard() = delete;
-	GrahiphicCard(float videoRam_, std::string description_ = "");
+	GrahiphicCard(float videoRam_, std::string name_ = "");
 
 	float getVideoRam()const noexcept;
 	void setVideoRam(const float& videoRam) noexcept;
@@ -42,10 +42,10 @@ private:
 	float videoRam;
 };
 
-class RAM: public BaseComponent {
+class RAM : public BaseComponent {
 public:
 	RAM() = delete;
-	RAM(float valueRam_, std::string description_ = "");
+	RAM(float valueRam_, std::string name_ = "");
 
 	float getValueRam()const noexcept;
 	void setValueRam(const float& valueRam) noexcept;
@@ -53,15 +53,29 @@ private:
 	float valueRam;
 };
 
-class StorageDevice: BaseComponent {
+class StorageDevice : BaseComponent {
 public:
 	StorageDevice() = delete;
-	StorageDevice(float valueVolume_, std::string description_ = "");
+	StorageDevice(float valueVolume_, std::string name_ = "");
 
-		float getFrequency()const noexcept;
-		void setFrequency(const float& valueRam) noexcept;
+	float getFrequency()const noexcept;
+	void setFrequency(const float& valueRam) noexcept;
 private:
 	float valueVolume;
 };
 
+class Cartridge : public BaseComponent {
+public:
+	Cartridge() = delete;
+	Cartridge(int countRefilling_, int id_ = -1, std::string name_ = "");
+
+	int getCountRefilling() const noexcept;
+	int getIdCartridge()const noexcept;
+	void setContRefilling(int countRefilling) noexcept;
+	void setIdCartridge(int id) noexcept;
+
+private:
+	int countRefilling; //количество заправок
+	int id;
+};
 #endif
