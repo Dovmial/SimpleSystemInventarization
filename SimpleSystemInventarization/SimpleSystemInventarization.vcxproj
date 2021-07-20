@@ -144,8 +144,11 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Build.hpp" />
     <ClInclude Include="Components.hpp" />
     <ClInclude Include="ITequipment.hpp" />
+    <ClInclude Include="ManagerApp.hpp" />
+    <ClInclude Include="Room.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

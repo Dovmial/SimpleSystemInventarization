@@ -13,6 +13,7 @@ public:
 	ITequipment(int64_t inventarNumber_);
 	int64_t getInventarNumber() const noexcept;
 	void setInventarNumber() noexcept;
+	virtual void show() const noexcept = 0;
 protected:
 	int64_t inventarNumber;
 };
@@ -37,7 +38,7 @@ class Laptop : virtual public PC, virtual public Monitor {
 public:
 	Laptop() = delete;
 	Laptop(Components components_, float screenDiagonal_, int64_t inventarNumber_ = -1);
-	void show() noexcept;
+	void show()const noexcept;
 };
 
 class Printer : public ITequipment {
@@ -47,6 +48,7 @@ public:
 		
 	Cartridge* getCartridge() const;
 	void setCartridge(Cartridge* cartridge);
+	void show() const noexcept;
 protected:
 	Cartridge* cartridge;
 };

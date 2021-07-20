@@ -22,10 +22,6 @@ int main() {
 
 	Cartridge cartridge(10, 308, "TK-1140");
 	Printer printer(&cartridge, 4101345892);
-	std::cout << "\n\nPrinter\n"
-		<< "\tcartridge: " << printer.getCartridge()->getName()<<'\n'
-		<< "\tid: " << printer.getCartridge()->getIdCartridge() << '\n'
-		<< "\tcount refilling: " << printer.getCartridge()->getCountRefilling() << '\n'
-		<<"\tinvertar number: "<< printer.getInventarNumber()<< '\n';
+	printer.show();
 	return 0;
 }

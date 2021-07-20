@@ -27,7 +27,7 @@ Laptop::Laptop(Components components_,
 	Monitor(screenDiagonal_)
 {}
 
-void Laptop::show() noexcept {
+void Laptop::show()const noexcept {
 	std::cout << "\n\nLaptop\n";
 	for (const auto& comp : components) {
 		std::cout << comp->getName() << std::endl;
@@ -48,4 +48,13 @@ Cartridge* Printer::getCartridge() const {
 
 void Printer::setCartridge(Cartridge* cartridge) {
 	this->cartridge = cartridge;
+}
+
+
+void Printer::show() const noexcept{
+	std::cout << "\n\nPrinter\n"
+		<< "\tcartridge: " << getCartridge()->getName() << '\n'
+		<< "\tid: " << getCartridge()->getIdCartridge() << '\n'
+		<< "\tcount refilling: " << getCartridge()->getCountRefilling() << '\n'
+		<< "\tinvertar number: " << getInventarNumber() << '\n';
 }
