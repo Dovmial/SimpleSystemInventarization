@@ -2,16 +2,18 @@
 #define _BUILD_HPP_
 
 #include "Room.hpp"
-#include <vector>
-class Build {
+#include "BaseObject.hpp"
+#include <map>
+
+class Build: public BaseObject {
 public:
-	void addRoom();
-	void deleteRoom();
-	void renameRoom();
-	void displayAllRooms();
-	void displayRoom();
+	Build() = delete;
+	Build(std::string name_);
+	Build(std::string name_, std::map<std::string, Room*> rooms_);
+	void addRoom(Room* room);
+	void deleteRoom(const std::string& nameOfdelElem);
 private:
-	std::vector<Room*> rooms;
+	std::map<std::string, Room*> rooms;
 };
 #endif // !_BUILD_HPP_
 

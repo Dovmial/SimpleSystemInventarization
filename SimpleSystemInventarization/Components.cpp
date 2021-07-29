@@ -34,8 +34,8 @@ Motherboard::Motherboard(std::string name_) :
 
 // GrahiphicCard
 GrahiphicCard::GrahiphicCard(float videoRam_, std::string name_) :
-	BaseComponent(name_),
-	videoRam(videoRam_)
+	videoRam(videoRam_),
+	BaseComponent(name_)
 {};
 
 float  GrahiphicCard::getVideoRam()const noexcept
@@ -48,8 +48,6 @@ void  GrahiphicCard::setVideoRam(const float& videoRam) noexcept
 }
 
 //RAM
-
-
 RAM::RAM(float valueRam_, std::string name_) :
 	BaseComponent(name_),
 	valueRam(valueRam_)
@@ -71,13 +69,13 @@ StorageDevice::StorageDevice(float valueVolume_, std::string name_) :
 	valueVolume(valueVolume_)
 {};
 
-float StorageDevice::getFrequency()const noexcept
+float StorageDevice::getVolume()const noexcept
 {
 	return valueVolume;
 }
-void StorageDevice::setFrequency(const float& valueRam) noexcept
+void StorageDevice::setVolume(const float& volume) noexcept
 {
-	this->valueVolume = valueRam;
+	this->valueVolume = volume;
 }
 
 Cartridge::Cartridge(int countRefilling_, int id_,std::string name_) :

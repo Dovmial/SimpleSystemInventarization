@@ -8,7 +8,7 @@ public:
 	BaseComponent() = delete;
 	BaseComponent(const std::string& name = "");
 
-	virtual std::string getName()const noexcept;
+	std::string getName()const noexcept;
 	void setName(const std::string& name) noexcept;
 private:
 	std::string name;
@@ -35,9 +35,9 @@ class GrahiphicCard : public BaseComponent {
 public:
 	GrahiphicCard() = delete;
 	GrahiphicCard(float videoRam_, std::string name_ = "");
-
 	float getVideoRam()const noexcept;
 	void setVideoRam(const float& videoRam) noexcept;
+	bool isExist();
 private:
 	float videoRam;
 };
@@ -58,8 +58,8 @@ public:
 	StorageDevice() = delete;
 	StorageDevice(float valueVolume_, std::string name_ = "");
 
-	float getFrequency()const noexcept;
-	void setFrequency(const float& valueRam) noexcept;
+	float getVolume()const noexcept;
+	void setVolume(const float& volume) noexcept;
 private:
 	float valueVolume;
 };

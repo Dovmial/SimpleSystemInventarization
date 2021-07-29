@@ -2,25 +2,24 @@
 #define _ROOM_HPP_
 
 #include <vector>
+#include <utility>
 #include "ITequipment.hpp"
+#include "BaseObject.hpp"
 
-class Room {
+class Room : public BaseObject{
 public:
-	Room(){}
-	Room(std::string name_) : name(name_) {}
+	Room() = delete;
+	Room(std::string name_) : BaseObject(name_) {}
 
 	void addEquipment(ITequipment* object, int count) {
-		auto item = std::make_pair(object, count);
+		std::pair item(object, count);
 		equipments.push_back(item);
 	}
-
 	void move(ITequipment* object, Room* room);
+	void rename();
 	ITequipment* find();
-	void displayEquipments();
 	void deleteEqipment();
-
 private:
 	std::vector<std::pair<ITequipment*, int>> equipments;
-	std::string name;
 };
 #endif

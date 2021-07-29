@@ -1,18 +1,17 @@
 #ifndef _MANAGERAPP_HPP_
 #define _MANAGERAPP_HPP_
 
-class ManagerApp {
+#include "Interfaces.hpp"
+#include "Build.hpp"
+#include <map>
+class ManagerApp : public BaseInterface{
 public:
 	int showMainMenu();
-	bool synñhronization();
+	//bool synñhronization();
 	bool load();
 	bool save();
-	bool edit();
-	bool addItem();
-	bool deleteItem();
-	void showLocation();
-
+	
 private:
-
+	std::map < std::string, Build*> builds;
 };
 #endif

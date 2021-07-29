@@ -10,7 +10,7 @@ void ITequipment::setInventarNumber() noexcept {
 	this->inventarNumber = inventarNumber;
 }
 
-PC::PC(Components components_, int64_t inentarNumber) :
+PC::PC(Components* components_, int64_t inentarNumber) :
 	components(components_), ITequipment(inentarNumber)
 {}
 
@@ -19,23 +19,13 @@ Monitor::Monitor(float screenDiagonal_, int64_t inventarNumber_) :
 	ITequipment(inventarNumber_)
 {}
 
-Laptop::Laptop(Components components_,
+Laptop::Laptop(Components* components_,
 	float screenDiagonal_,
 	int64_t inventarNumber_) :
 
 	PC(components_, inventarNumber_),
 	Monitor(screenDiagonal_)
 {}
-
-void Laptop::show()const noexcept {
-	std::cout << "\n\nLaptop\n";
-	for (const auto& comp : components) {
-		std::cout << comp->getName() << std::endl;
-	}
-	
-	std::cout << "Screen diagonal: " << screenDiagonal << "\"\n";
-	std::cout << "Inventar number: " << PC::getInventarNumber() << '\n';
-}
 
 Printer::Printer(Cartridge* cartridge_, int64_t inventarNumber) :
 	cartridge(cartridge_),
