@@ -1,7 +1,7 @@
 #ifndef _INTERFACES_HPP_
 #define _INTERFACES_HPP_
 
-class BaseInterface {
+struct BaseInterface {
 	virtual bool edit() = 0;
 	virtual bool add() = 0;
 	virtual bool remove() = 0;

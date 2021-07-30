@@ -27,7 +27,7 @@ protected:
 class PC : public ITequipment {
 public:
 	PC() = delete;
-	PC(Components* components_, int64_t inentarNumber = -1);
+	PC(Components* components_, int64_t inventarNumber = -1);
 protected:
 	Components* components;
 };

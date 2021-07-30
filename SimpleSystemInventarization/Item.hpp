@@ -2,13 +2,16 @@
 #define _ITEMHPP_
 
 #include <string>
+#include "BaseObject.hpp" 
+#include "ITequipment.hpp"
 //adapter
 
-class Item {
+class Item: public BaseObject {
 public:
-
+	Item() = delete;
+	Item(ITequipment* item_);
 private:
-	std::string name;
+	
 	int64_t invetoryNumber;
 	Info* info;
 };

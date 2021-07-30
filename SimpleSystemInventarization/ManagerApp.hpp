@@ -3,10 +3,11 @@
 
 #include "Interfaces.hpp"
 #include "Build.hpp"
+#include "Menu.hpp"
 #include <map>
-class ManagerApp : public BaseInterface{
+class ManagerApp {//: public BaseInterface{
 public:
-	int showMainMenu();
+
 	//bool synñhronization();
 	bool load();
 	bool save();
