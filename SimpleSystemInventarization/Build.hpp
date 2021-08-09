@@ -2,10 +2,10 @@
 #define _BUILD_HPP_
 
 #include "Room.hpp"
-#include "BaseObject.hpp"
+
 #include <map>
 
-class Build: public BaseObject {
+class Build{
 public:
 	Build() = delete;
 	Build(std::string name_);

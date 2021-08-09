@@ -3,69 +3,44 @@
 
 #include <vector>
 #include <iostream>
-#include "Components.hpp"
 #include <string>
-//using Components = std::vector<BaseComponent*>;
-struct Components {
-	CPU cpu;
-	Motherboard motherboard;
-	StorageDevice storageDevice;
-	RAM ram;
-	GrahiphicCard graphCard;
-	std::string os;
-};
+#include "Information.hpp"
+
 class ITequipment {
 public:
-	ITequipment() = delete;
-	ITequipment(int64_t inventarNumber_);
-	int64_t getInventarNumber() const noexcept;
-	void setInventarNumber() noexcept;
+	virtual void showInfo() = 0;
+	void setName(const std::string& name);
+	virtual void setInfo(Info* info) = 0;
 protected:
-	int64_t inventarNumber;
+	std::string name;
 };
 
 class PC : public ITequipment {
 public:
-	PC() = delete;
-	PC(Components* components_, int64_t inventarNumber = -1);
-protected:
-	Components* components;
+	virtual void setInfo(InfoPC* info) {
+		this->info = info;
+	}
+private:
+	InfoPC* info;
 };
 
 class Monitor : public ITequipment {
 public:
-	Monitor() = delete;
-	Monitor(float screenDiagonal_, int64_t inventarNumber_ = -1);
-protected:
-	float screenDiagonal;
-};
 
-class Laptop : virtual public PC, virtual public Monitor {
-public:
-	Laptop() = delete;
-	Laptop(Components* components_, float screenDiagonal_, int64_t inventarNumber_ = -1);
+private:
+	InfoMonitor* infoMonitor;
 };
 
 class Printer : public ITequipment {
 public:
-	Printer() = delete;
-	Printer(Cartridge* cartridge_, int64_t inventarNumber = -1);
-		
-	Cartridge* getCartridge() const;
-	void setCartridge(Cartridge* cartridge);
-	void show() const noexcept;
-protected:
-	Cartridge* cartridge;
-};
-class Scanner : public ITequipment {
 
-};
-
-class MFU : virtual public Printer, virtual public Scanner {
-
+private:
+	InfoPrinter* infoPrinter;
 };
 
 class OtherDevice : public ITequipment {
-
+public:
+private:
+	InfoOtherDevice* infoOtherDevice;
 };
 #endif // !_ITEQUIPMENT_HPP_
