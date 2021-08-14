@@ -20,10 +20,14 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ITequipment.cpp" />
+    <ClCompile Include="Item.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="ServiceInfo.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ITequipment.hpp" />
+    <ClInclude Include="Item.hpp" />
+    <ClInclude Include="ServiceInfo.hpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
