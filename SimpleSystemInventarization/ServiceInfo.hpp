@@ -25,7 +25,7 @@ public:
 	ProblemSolutionInfo(const std::string& description,
 		const std::string& date, const std::string& solution = "");
 
-	void setSolution(const std::string& solution);
+	void setSolution(const std::string& solution_);
 	std::string getSolution() const;
 private:
 	std::string solution;

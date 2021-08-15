@@ -14,6 +14,7 @@ using SIiteratorConst = ServiceInfoContainer::const_iterator;
 using PSiterator = ProblemSolutionContainer::iterator;
 using PSiteratorConst = ProblemSolutionContainer::const_iterator;
 
+/*Item - эквивалент реального оборудования*/
 class Item {
 //maybe add ID
 public:
@@ -33,7 +34,7 @@ public:
 	void setIventoryNumber(int64_t);
 	int64_t getInventoryNumber() const;
 
-	std::pair<SIiterator, SIiterator> getServiceInfoBegin();
+	std::pair<SIiterator, SIiterator> getServiceInfo();
 	std::pair<PSiterator, PSiterator> getProblemsSolutions();
 	std::pair<SIiteratorConst, SIiteratorConst> getServiceInfoView() const;
 	std::pair<PSiteratorConst, PSiteratorConst> 

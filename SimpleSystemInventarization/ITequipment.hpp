@@ -5,12 +5,14 @@
 #include <string>
 #include <utility>
 #include <tuple>
+
 class ITequipment {
 public:
 	ITequipment() = delete;
 	ITequipment(const std::string& name_);
 	void setName(const std::string& name_);
 	std::string getName() const;
+	virtual std::string getInfo()const = 0;
 protected:
 	std::string name;
 };
@@ -20,7 +22,8 @@ using PCinfo = std::tuple<
 	std::pair<std::string, float>,
 	float, float,
 	std::pair<std::string, float>,
-	std::string>;
+	std::string
+>;
 
 class PC : public ITequipment {
 public:
@@ -28,8 +31,8 @@ public:
 	PC() = delete;
 	PC(const std::string& name_);
 
-	PCinfo getPCinfo() const;
-
+	PCinfo getPCinfo() const; //todo delete
+	virtual std::string getInfo()const override;
 	void setMotherboard(const std::string& mb);
 	void setCPU(const std::string& nameCPU, float frequencyGHz);
 	void setRAM(float ramGB);
@@ -50,14 +53,19 @@ class Monitor :public ITequipment {
 public:
 	void setDiagonal(float diagonal);
 	float getDiagonal() const;
+	virtual std::string getInfo()const override;
 private:
 	float diagonal;
 };
 
 class Printer :public ITequipment {
 public:
+	Printer() = delete;
+	Printer(const std::string& name_, std::string cartridge = "");
+
 	void setCartridge(const std::string& cartridge);
 	std::string getCartridge() const;
+	virtual std::string getInfo()const override;
 private:
 	std::string cartridge;
 };
@@ -66,6 +74,7 @@ class OtherEquipment : public ITequipment {
 public:
 	void setSomeInfo(const std::string& someInfo_);
 	std::string getSomeInfo() const;
+	virtual std::string getInfo()const override;
 private:
 	std::string someInfo;
 };

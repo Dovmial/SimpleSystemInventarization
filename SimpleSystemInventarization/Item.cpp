@@ -25,7 +25,7 @@ void Item::addSignProblemsSolutions(
 	std::string solution)
 {
 	problemsSolutions.push_back(
-		new ProblemSolutionInfo(problem, date, solution));
+		new ProblemSolutionInfo(problem, date, solution)); //todo smartPointer
 }
 
 ITequipment* Item::getITequipment() const
@@ -43,26 +43,26 @@ int64_t Item::getInventoryNumber() const
 	return inventoryNumber;
 }
 
-std::pair<SIiterator, SIiterator> Item::getServiceInfoBegin()
+std::pair<SIiterator, SIiterator> Item::getServiceInfo()
 {
-	return std::make_pair(begin(services), end(services));
+	return std::pair(begin(services), end(services));
 }
 
 std::pair<PSiterator, PSiterator> Item::getProblemsSolutions()
 {
-	return std::make_pair(begin(problemsSolutions), end(problemsSolutions));
+	return std::pair(begin(problemsSolutions), end(problemsSolutions));
 }
 
 std::pair<SIiteratorConst, SIiteratorConst> 
 Item::getServiceInfoView() const
 {
-	return std::make_pair(cbegin(services), cend(services));
+	return std::pair(cbegin(services), cend(services));
 }
 
 std::pair<PSiteratorConst, PSiteratorConst> 
 Item::getProblemsSolutionsView() const
 {
-	return std::make_pair(cbegin(problemsSolutions), cend(problemsSolutions));
+	return std::pair(cbegin(problemsSolutions), cend(problemsSolutions));
 }
 
 

@@ -43,9 +43,10 @@ ProblemSolutionInfo::ProblemSolutionInfo(
 
 void ProblemSolutionInfo::setSolution(const std::string& solution)
 {
+	this->solution = solution;
 }
 
 std::string ProblemSolutionInfo::getSolution() const
 {
-	return std::string();
+	return solution;
 }
