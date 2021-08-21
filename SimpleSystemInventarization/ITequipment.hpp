@@ -5,25 +5,23 @@
 #include <string>
 #include <utility>
 #include <tuple>
+#include "BaseObject.hpp"
 
-class ITequipment {
+class ITequipment: public BaseObject {
 public:
 	ITequipment() = delete;
 	ITequipment(const std::string& name_);
-	void setName(const std::string& name_);
-	std::string getName() const;
 	virtual std::string getInfo()const = 0;
-protected:
-	std::string name;
 };
 
+/*
 using PCinfo = std::tuple<
 	std::string,
 	std::pair<std::string, float>,
 	float, float,
 	std::pair<std::string, float>,
 	std::string
->;
+>;*/
 
 class PC : public ITequipment {
 public:
@@ -31,7 +29,7 @@ public:
 	PC() = delete;
 	PC(const std::string& name_);
 
-	PCinfo getPCinfo() const; //todo delete
+	//PCinfo getPCinfo() const; //todo delete
 	virtual std::string getInfo()const override;
 	void setMotherboard(const std::string& mb);
 	void setCPU(const std::string& nameCPU, float frequencyGHz);

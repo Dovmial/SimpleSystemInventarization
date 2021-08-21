@@ -2,20 +2,26 @@
 #include <sstream>
 #include <iomanip>
 
+
+
+ITequipment::ITequipment(const std::string& name_): BaseObject(name_)
+{
+}
+
 PC::PC(const std::string& name_): ITequipment(name_),
 motherboard(""), _cpu("", 0.f), ram(0.f), 
 storageDeviceVolume(0.f), graphicCard("", 0.f),
 operationSystem("")
 {
 }
-
+/*
 PCinfo PC::getPCinfo() const
 {
 	return std::tuple(
 		motherboard, _cpu, ram,
 		storageDeviceVolume, graphicCard, operationSystem);
 }
-
+*/
 std::string PC::getInfo() const
 {
 	std::stringstream ssInfo;
@@ -61,19 +67,7 @@ void PC::setOperationSystem(const std::string& opSys)
 	operationSystem = opSys;
 }
 
-ITequipment::ITequipment(const std::string& name_): name(name_)
-{
-}
 
-void ITequipment::setName(const std::string& name_)
-{
-	name = name_;
-}
-
-std::string ITequipment::getName() const
-{
-	return name;
-}
 
 void Monitor::setDiagonal(float diagonal)
 {
