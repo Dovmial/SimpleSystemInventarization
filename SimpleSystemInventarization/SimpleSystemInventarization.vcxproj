@@ -20,17 +20,24 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BaseObject.cpp" />
+    <ClCompile Include="DataManager.cpp" />
     <ClCompile Include="ITequipment.cpp" />
     <ClCompile Include="Item.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Menu.cpp" />
     <ClCompile Include="Room.cpp" />
     <ClCompile Include="ServiceInfo.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BaseObject.hpp" />
     <ClInclude Include="Build.hpp" />
+    <ClInclude Include="Components.hpp" />
+    <ClInclude Include="DataManager.hpp" />
+    <ClInclude Include="GetDatas.hpp" />
+    <ClInclude Include="Menu.hpp" />
     <ClInclude Include="ITequipment.hpp" />
     <ClInclude Include="Item.hpp" />
+    <ClInclude Include="ITequipmentFabric.hpp" />
     <ClInclude Include="Room.hpp" />
     <ClInclude Include="ServiceInfo.hpp" />
   </ItemGroup>
@@ -136,7 +143,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard>stdcpp20</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
     </ClCompile>
     <Link>

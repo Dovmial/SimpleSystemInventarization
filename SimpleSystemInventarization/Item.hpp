@@ -3,12 +3,13 @@
 
 #include <vector>
 #include <string>
+#include <memory>
 #include "ITequipment.hpp"
 #include "ServiceInfo.hpp"
 
 
-using ServiceInfoContainer = std::vector<ServiceInfo*>;
-using ProblemSolutionContainer = std::vector<ProblemSolutionInfo*>;
+using ServiceInfoContainer = std::vector<std::shared_ptr<ServiceInfo>>;
+using ProblemSolutionContainer = std::vector<std::shared_ptr<ProblemSolutionInfo>>;
 using SIiterator = ServiceInfoContainer::iterator;
 using SIiteratorConst = ServiceInfoContainer::const_iterator;
 using PSiterator = ProblemSolutionContainer::iterator;
@@ -19,8 +20,8 @@ class Item {
 //maybe add ID
 public:
 	Item() = delete;
-	Item(ITequipment* equipment_, int64_t inventoryNumber_ = -1);
-	~Item();
+	Item(std::shared_ptr<ITequipment> equipment_, int64_t inventoryNumber_);
+	//~Item();
 
 	void addSignService(std::string description, std::string date);
 	void addSignProblemsSolutions(
@@ -29,7 +30,7 @@ public:
 		std::string solution = "");
 
 	//void setITequipment(ITequipment* eq);
-	ITequipment* getITequipment()const;
+	std::shared_ptr <ITequipment> getITequipment()const;
 
 	void setIventoryNumber(int64_t);
 	int64_t getInventoryNumber() const;
@@ -39,9 +40,9 @@ public:
 	std::pair<SIiteratorConst, SIiteratorConst> getServiceInfoView() const;
 	std::pair<PSiteratorConst, PSiteratorConst> 
 		getProblemsSolutionsView() const;
-
+	void getPrintInfoItem() const;
 private:
-	ITequipment* equipment;
+	std::shared_ptr<ITequipment> equipment;
 	int64_t inventoryNumber;
 	
 	//profilactic/service - date

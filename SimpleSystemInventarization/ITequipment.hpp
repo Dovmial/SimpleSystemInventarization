@@ -4,7 +4,7 @@
 
 #include <string>
 #include <utility>
-#include <tuple>
+//#include <tuple>
 #include "BaseObject.hpp"
 
 class ITequipment: public BaseObject {
@@ -49,6 +49,8 @@ private:
 
 class Monitor :public ITequipment {
 public:
+	Monitor() = delete;
+	Monitor(const std::string& name_, float diagonal_ = -1.f);
 	void setDiagonal(float diagonal);
 	float getDiagonal() const;
 	virtual std::string getInfo()const override;
@@ -59,17 +61,24 @@ private:
 class Printer :public ITequipment {
 public:
 	Printer() = delete;
-	Printer(const std::string& name_, std::string cartridge = "");
-
+	Printer(const std::string& name_,
+		const std::string& cartridge = "",
+		bool isMFU_ = false
+	);
 	void setCartridge(const std::string& cartridge);
 	std::string getCartridge() const;
 	virtual std::string getInfo()const override;
+	void setIsMFU(bool isMFU_);
+	bool getIsMFU() const;
 private:
 	std::string cartridge;
+	bool isMFU;
 };
 
 class OtherEquipment : public ITequipment {
 public:
+	OtherEquipment() = delete;
+	OtherEquipment(const std::string& name_);
 	void setSomeInfo(const std::string& someInfo_);
 	std::string getSomeInfo() const;
 	virtual std::string getInfo()const override;

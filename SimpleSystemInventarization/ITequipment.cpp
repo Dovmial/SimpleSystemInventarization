@@ -14,14 +14,7 @@ storageDeviceVolume(0.f), graphicCard("", 0.f),
 operationSystem("")
 {
 }
-/*
-PCinfo PC::getPCinfo() const
-{
-	return std::tuple(
-		motherboard, _cpu, ram,
-		storageDeviceVolume, graphicCard, operationSystem);
-}
-*/
+
 std::string PC::getInfo() const
 {
 	std::stringstream ssInfo;
@@ -69,6 +62,11 @@ void PC::setOperationSystem(const std::string& opSys)
 
 
 
+Monitor::Monitor(const std::string& name_, float diagonal_):
+	diagonal(diagonal_), ITequipment(name_)
+{
+}
+
 void Monitor::setDiagonal(float diagonal)
 {
 	this->diagonal = diagonal;
@@ -86,8 +84,12 @@ std::string Monitor::getInfo() const
 	return ssInfo.str();
 }
 
-Printer::Printer(const std::string& name_, std::string cartridge_):
-	cartridge(cartridge_), ITequipment(name_)
+Printer::Printer
+(
+	const std::string& name_,
+	const std::string& cartridge_,
+	bool isMFU_
+): cartridge(cartridge_), isMFU(isMFU_), ITequipment(name_)
 {
 }
 
@@ -104,8 +106,23 @@ std::string Printer::getCartridge() const
 std::string Printer::getInfo() const
 {
 	std::stringstream ssInfo;
-	ssInfo << std::setw(15) << "Cartridge: " << getCartridge() << '\n';
+	ssInfo << std::setw(15) << "Type: " << (isMFU ? "MFU\n" : "Printer\n")
+		<< std::setw(15) << "Cartridge: " << getCartridge() << '\n';
 	return ssInfo.str();
+}
+
+void Printer::setIsMFU(bool isMFU_)
+{
+	isMFU = isMFU_;
+}
+
+bool Printer::getIsMFU() const
+{
+	return false;
+}
+
+OtherEquipment::OtherEquipment(const std::string& name_): ITequipment(name_)
+{
 }
 
 void OtherEquipment::setSomeInfo(const std::string& someInfo)

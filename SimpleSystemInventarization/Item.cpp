@@ -1,10 +1,12 @@
 #include "Item.hpp"
+#include <tuple>
+#include <sstream>
 
-Item::Item(ITequipment* equipment_, int64_t inventoryNumber_) :
+Item::Item(std::shared_ptr<ITequipment> equipment_, int64_t inventoryNumber_) :
 	equipment(equipment_),
 	inventoryNumber(inventoryNumber_)
 {}
-
+/*
 Item::~Item()
 {
 	for (const auto& serv : services) {
@@ -14,10 +16,10 @@ Item::~Item()
 		delete probSol;
 	}
 }
-
+*/
 void Item::addSignService(std::string description, std::string date)
 {
-	services.push_back(new ServiceInfo(description, date));
+	services.push_back(std::make_shared<ServiceInfo>(description, date));
 }
 void Item::addSignProblemsSolutions(
 	std::string problem,
@@ -25,10 +27,10 @@ void Item::addSignProblemsSolutions(
 	std::string solution)
 {
 	problemsSolutions.push_back(
-		new ProblemSolutionInfo(problem, date, solution)); //todo smartPointer
+		std::make_shared<ProblemSolutionInfo>(problem, date, solution)); 
 }
 
-ITequipment* Item::getITequipment() const
+std::shared_ptr<ITequipment> Item::getITequipment() const
 {
 	return equipment;
 }
@@ -65,4 +67,30 @@ Item::getProblemsSolutionsView() const
 	return std::pair(cbegin(problemsSolutions), cend(problemsSolutions));
 }
 
+void Item::getPrintInfoItem() const
+{
+	/*
+	std::cout << "------" << item->getITequipment()->getName() << " --- #"
+		<< getInventoryNumber() << "--------- \n";
+
+	std::cout << getITequipment()->getInfo() //polymorph function
+		<< "--------------------------------" << "\n\n";
+		
+	auto [servInfoBegin, servInfoEnd] = getServiceInfoView();
+	auto [probSolutionBegin, probSolutionEnd] = getProblemsSolutionsView();
+
+	while (servInfoBegin != servInfoEnd) {
+		std::cout << "--Service: " << (*servInfoBegin)->getDescription()
+			<< "  ----  " << (*servInfoBegin)->getDate() << " --\n\n";
+		++servInfoBegin;
+	}
+
+	while (probSolutionBegin != probSolutionEnd) {
+		std::cout << "--Problem: " << (*probSolutionBegin)->getDescription()
+			<< "\n--Solution: " << (*probSolutionBegin)->getSolution()
+			<< "\n----  " << (*probSolutionBegin)->getDate() << " --\n\n";
+		++probSolutionBegin;
+	}
+	*/
+}
 
