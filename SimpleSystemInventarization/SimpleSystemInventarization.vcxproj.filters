@@ -57,6 +57,12 @@
     <ClCompile Include="Menu.cpp">
       <Filter>GetDatas\Исходные файлы</Filter>
     </ClCompile>
+    <ClCompile Include="Components.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="IITequipmentFabric.cpp">
+      <Filter>Builders\Исходные файлы</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ITequipment.hpp">
@@ -80,9 +86,6 @@
     <ClInclude Include="DataManager.hpp">
       <Filter>Builders\Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="ITequipmentFabric.hpp">
-      <Filter>Builders\Файлы заголовков</Filter>
-    </ClInclude>
     <ClInclude Include="GetDatas.hpp">
       <Filter>GetDatas\Файлы заголовков</Filter>
     </ClInclude>
@@ -91,6 +94,12 @@
     </ClInclude>
     <ClInclude Include="Components.hpp">
       <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Iinfo.hpp">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="IITequipmentFabric.hpp">
+      <Filter>Builders\Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

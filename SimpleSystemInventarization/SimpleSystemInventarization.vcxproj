@@ -20,7 +20,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BaseObject.cpp" />
+    <ClCompile Include="Components.cpp" />
     <ClCompile Include="DataManager.cpp" />
+    <ClCompile Include="IITequipmentFabric.cpp" />
     <ClCompile Include="ITequipment.cpp" />
     <ClCompile Include="Item.cpp" />
     <ClCompile Include="main.cpp" />
@@ -34,10 +36,11 @@
     <ClInclude Include="Components.hpp" />
     <ClInclude Include="DataManager.hpp" />
     <ClInclude Include="GetDatas.hpp" />
+    <ClInclude Include="Iinfo.hpp" />
+    <ClInclude Include="IITequipmentFabric.hpp" />
     <ClInclude Include="Menu.hpp" />
     <ClInclude Include="ITequipment.hpp" />
     <ClInclude Include="Item.hpp" />
-    <ClInclude Include="ITequipmentFabric.hpp" />
     <ClInclude Include="Room.hpp" />
     <ClInclude Include="ServiceInfo.hpp" />
   </ItemGroup>

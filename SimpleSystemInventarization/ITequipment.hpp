@@ -4,14 +4,15 @@
 
 #include <string>
 #include <utility>
-//#include <tuple>
+#include <tuple>
 #include "BaseObject.hpp"
+#include "Components.hpp"
+#include "Iinfo.hpp"
 
-class ITequipment: public BaseObject {
+class ITequipment: public BaseObject, public Iinfo{
 public:
 	ITequipment() = delete;
 	ITequipment(const std::string& name_);
-	virtual std::string getInfo()const = 0;
 };
 
 /*
@@ -23,27 +24,42 @@ using PCinfo = std::tuple<
 	std::string
 >;*/
 
+using TypeStorDev = StorageDevice::typeStorageDevice;
 class PC : public ITequipment {
 public:
+	enum TypePC {
+		SystemBlock = 1,
+		Laptop,
+		Monoblock
+	};
 
 	PC() = delete;
-	PC(const std::string& name_);
-
+	PC(const std::string &name_, TypePC typePC_);
+	PC(std::tuple<std::string, TypePC> baseInfo);
 	//PCinfo getPCinfo() const; //todo delete
+
 	virtual std::string getInfo()const override;
-	void setMotherboard(const std::string& mb);
-	void setCPU(const std::string& nameCPU, float frequencyGHz);
-	void setRAM(float ramGB);
-	void setStorageDevVol(float vol);
-	void setGraphicCard(const std::string& nameGCard, float volGCard);
+	TypePC getTypePC() const;
+
+public:
+	void setMotherboard(const MotherBoard& mb);
+	void setCPU(const CPU& _cpu);
+	void setRAM(const RAM& ram);
+	void setStorageDevice(const StorageDevice& sd);
+	void setGraphicCard(const GraphicCard& GraphicCard);
 	void setOperationSystem(const std::string& opSys);
+public:
+	void setTypePC(TypePC typePC_);
+	TypePC getTypePC() const;
+	std::string typePCtoStr() const;
 
 private:
-	std::string motherboard;
-	std::pair<std::string, float> _cpu;
-	float ram;
-	float storageDeviceVolume;
-	std::pair<std::string, float> graphicCard;
+	TypePC typePC;
+	MotherBoard motherboard;
+	CPU _cpu;
+	RAM ram;
+	StorageDevice storageDevice;
+	GraphicCard graphicCard;
 	std::string operationSystem;
 };
 
@@ -51,6 +67,7 @@ class Monitor :public ITequipment {
 public:
 	Monitor() = delete;
 	Monitor(const std::string& name_, float diagonal_ = -1.f);
+	Monitor(std::pair<std::string, float>&& info);
 	void setDiagonal(float diagonal);
 	float getDiagonal() const;
 	virtual std::string getInfo()const override;
@@ -62,23 +79,27 @@ class Printer :public ITequipment {
 public:
 	Printer() = delete;
 	Printer(const std::string& name_,
-		const std::string& cartridge = "",
+		Cartridge&& cartridge,
 		bool isMFU_ = false
 	);
-	void setCartridge(const std::string& cartridge);
-	std::string getCartridge() const;
+	Printer(std::tuple<std::string, Cartridge, bool>&& info);
+public:
+	void setCartridge(Cartridge&& cartridge_);
+	Cartridge getCartridge() const;
 	virtual std::string getInfo()const override;
 	void setIsMFU(bool isMFU_);
 	bool getIsMFU() const;
 private:
-	std::string cartridge;
-	bool isMFU;
+	Cartridge cartridge;
+	bool isMFU; //add 3d printer
 };
 
 class OtherEquipment : public ITequipment {
 public:
 	OtherEquipment() = delete;
-	OtherEquipment(const std::string& name_);
+	OtherEquipment(const std::string& name_, const std::string& someInfo_ = "");
+	OtherEquipment(std::pair<std::string, std::string>&& info_);
+
 	void setSomeInfo(const std::string& someInfo_);
 	std::string getSomeInfo() const;
 	virtual std::string getInfo()const override;
