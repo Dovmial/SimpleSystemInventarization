@@ -9,7 +9,7 @@ class View : public QMainWindow
 
 public:
     View(QWidget *parent = Q_NULLPTR);
-
+    ~View();
 private:
-    Ui::ViewClass ui;
+    Ui::ViewClass* ui;
 };
