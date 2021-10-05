@@ -64,6 +64,15 @@ StorageDevice::StorageDevice(
 {
 }
 
+StorageDevice::StorageDevice(
+	std::tuple<float, const std::string, size_t> data):
+	volume(std::get<0>(data)),
+	sdType(static_cast<StorageDevice::typeStorageDevice>(std::get<2>(data))),
+	Components(std::get<1>(data))
+{
+	
+}
+
 std::string StorageDevice::getInfo() const
 {
 	return std::string("Storage device: " + (!name.empty() ? (name + " ") : "")

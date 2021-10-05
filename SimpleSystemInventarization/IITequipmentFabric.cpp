@@ -1,14 +1,14 @@
 #include "IITequipmentFabric.hpp"
 
 PCfabric::PCfabric(): 
-	complect(nullptr), info(std::tuple("", PC::TypePC::SystemBlock))
+	complect(nullptr), info(std::pair("", PC::TypePC::SystemBlock))
 {
 }
 
 PCfabric::PCfabric(
-	std::tuple<std::string, PC::TypePC>&& info_,
-	std::shared_ptr<ComplectComponents>&& complect_):
-	info(std::move(info_)), complect(std::move(complect_))
+	const std::pair<std::string, PC::TypePC>& info_,
+	std::shared_ptr<ComplectComponents>&& complect_) :
+	info(info_), complect(move(complect_))
 {
 }
 
@@ -19,22 +19,14 @@ void PCfabric::setComponents(std::shared_ptr<ComplectComponents>&& complect_)
 
 void PCfabric::setInfo(const std::string& name, const PC::TypePC& typePC)
 {
-	info = std::make_tuple(name, typePC);
+	info.first = name;
+	info.second = typePC;
 }
 
 std::shared_ptr<ITequipment> PCfabric::create()
 {
-	auto pc{ std::make_shared<PC>(info) };
-	auto& [type, motherBoard, _cpu, graphCard, ram, storDevice, operSystem] = *complect;
-	pc->setTypePC(type);
-	pc->setMotherboard(motherBoard);
-	pc->setCPU(_cpu);
-	pc->setGraphicCard(graphCard);
-	pc->setRAM(ram);
-	pc->setStorageDevice(storDevice);
-	pc->setOperationSystem(operSystem);
-
-	return std::move(pc);
+	auto pc{ std::make_shared<PC>(info, complect) };
+	return pc;
 }
 
 MonitorFabric::MonitorFabric(std::pair<std::string, float> &&info_): 
@@ -42,9 +34,9 @@ MonitorFabric::MonitorFabric(std::pair<std::string, float> &&info_):
 {
 }
 
-void MonitorFabric::setInfo(const std::string &name, float diagonal)
+void MonitorFabric::setInfo(std::pair<std::string, float>&& info_)
 {
-	info = std::make_pair(name, diagonal);
+	info = std::move(info_);
 }
 
 std::shared_ptr<ITequipment> MonitorFabric::create()
@@ -66,7 +58,7 @@ PrinterFabric::PrinterFabric(std::tuple<std::string, Cartridge, bool>&& info_):
 std::shared_ptr<ITequipment> PrinterFabric::create()
 {
 	auto printer{ std::make_shared<Printer>(info) };
-	return std::move(printer);
+	return printer;
 }
 
 void PrinterFabric::setInfo(std::tuple<std::string, Cartridge, bool>&& info_)
@@ -89,8 +81,7 @@ std::shared_ptr<ITequipment> OtherFabric::create()
 	return std::move(itEquip);
 }
 
-void OtherFabric::setInfo(
-	const std::string& name, const std::string& someInfo)
+void OtherFabric::setInfo(std::pair< std::string, std::string>&& info_)
 {
-	info = make_pair(name, someInfo);
+	info = move(info_);
 }

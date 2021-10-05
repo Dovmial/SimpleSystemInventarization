@@ -49,6 +49,10 @@ public:
 		float  volume_,
 		const std::string& name = "",
 		typeStorageDevice tSD = HDD);
+	StorageDevice(std::tuple <
+		float,
+		const std::string,
+		size_t> data);
 	virtual std::string getInfo() const override;
 	
 public:

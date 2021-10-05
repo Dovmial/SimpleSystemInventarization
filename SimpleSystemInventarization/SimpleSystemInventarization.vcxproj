@@ -22,6 +22,7 @@
     <ClCompile Include="BaseObject.cpp" />
     <ClCompile Include="Components.cpp" />
     <ClCompile Include="DataManager.cpp" />
+    <ClCompile Include="GetDatas.cpp" />
     <ClCompile Include="IITequipmentFabric.cpp" />
     <ClCompile Include="ITequipment.cpp" />
     <ClCompile Include="Item.cpp" />

@@ -8,6 +8,8 @@
 #include "BaseObject.hpp"
 #include "Components.hpp"
 #include "Iinfo.hpp"
+#include <memory>
+
 
 class ITequipment: public BaseObject, public Iinfo{
 public:
@@ -24,7 +26,6 @@ using PCinfo = std::tuple<
 	std::string
 >;*/
 
-using TypeStorDev = StorageDevice::typeStorageDevice;
 class PC : public ITequipment {
 public:
 	enum TypePC {
@@ -33,15 +34,17 @@ public:
 		Monoblock
 	};
 
+using ComplectComponents = std::tuple
+<PC::TypePC, MotherBoard, CPU, GraphicCard, RAM, StorageDevice, std::string>;
+
 	PC() = delete;
 	PC(const std::string &name_, TypePC typePC_);
-	PC(std::tuple<std::string, TypePC> baseInfo);
-	//PCinfo getPCinfo() const; //todo delete
+	PC(const std::tuple<std::string, TypePC>& baseInfo,
+		std::shared_ptr<ComplectComponents> complect);
 
 	virtual std::string getInfo()const override;
-	TypePC getTypePC() const;
-
 public:
+	void setComplectComponents(std::shared_ptr<ComplectComponents> complect);
 	void setMotherboard(const MotherBoard& mb);
 	void setCPU(const CPU& _cpu);
 	void setRAM(const RAM& ram);
@@ -67,7 +70,7 @@ class Monitor :public ITequipment {
 public:
 	Monitor() = delete;
 	Monitor(const std::string& name_, float diagonal_ = -1.f);
-	Monitor(std::pair<std::string, float>&& info);
+	Monitor(std::pair<const std::string, float>&& info);
 	void setDiagonal(float diagonal);
 	float getDiagonal() const;
 	virtual std::string getInfo()const override;
@@ -82,7 +85,7 @@ public:
 		Cartridge&& cartridge,
 		bool isMFU_ = false
 	);
-	Printer(std::tuple<std::string, Cartridge, bool>&& info);
+	Printer(const std::tuple<const std::string, Cartridge, bool>& info);
 public:
 	void setCartridge(Cartridge&& cartridge_);
 	Cartridge getCartridge() const;
@@ -98,7 +101,7 @@ class OtherEquipment : public ITequipment {
 public:
 	OtherEquipment() = delete;
 	OtherEquipment(const std::string& name_, const std::string& someInfo_ = "");
-	OtherEquipment(std::pair<std::string, std::string>&& info_);
+	OtherEquipment(const std::pair<const std::string, std::string>& info_);
 
 	void setSomeInfo(const std::string& someInfo_);
 	std::string getSomeInfo() const;

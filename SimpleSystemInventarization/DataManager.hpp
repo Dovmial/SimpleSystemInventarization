@@ -2,7 +2,7 @@
 #include "Item.hpp"
 #include <vector>
 #include <memory>
-#include <string_view>
+#include "IITequipmentFabric.hpp"
 
 class DataManager {
 public:
@@ -15,11 +15,7 @@ public:
 	DataManager();
 	~DataManager();
 	
-	std::unique_ptr<Item> createItem(std::shared_ptr<ITequipment> equipment_,
-		int64_t inventoryNumber_ = -1);
-
-	std::unique_ptr<Item> createNewItem(
-		std::string_view name_,
+	std::unique_ptr<Item> createItem(
 		typeITEquipment type,
 		int64_t inventoryNumber_ = -1
 	);

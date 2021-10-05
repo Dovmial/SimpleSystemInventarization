@@ -63,6 +63,9 @@
     <ClCompile Include="IITequipmentFabric.cpp">
       <Filter>Builders\Исходные файлы</Filter>
     </ClCompile>
+    <ClCompile Include="GetDatas.cpp">
+      <Filter>GetDatas\Исходные файлы</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ITequipment.hpp">

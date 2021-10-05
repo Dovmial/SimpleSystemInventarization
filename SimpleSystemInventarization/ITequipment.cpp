@@ -16,9 +16,11 @@ operationSystem("")
 {
 }
 
-PC::PC(std::tuple<std::string, TypePC> baseInfo): 
+PC::PC(const std::tuple<std::string, TypePC>& baseInfo,
+	std::shared_ptr<ComplectComponents> complect):  
 	PC(std::get<0>(baseInfo), std::get<1>(baseInfo))
 {
+	setComplectComponents(complect);
 }
 
 
@@ -39,6 +41,18 @@ std::string PC::getInfo() const
 void PC::setTypePC(TypePC typePC_)
 {
 	typePC = typePC_;
+}
+
+void PC::setComplectComponents(std::shared_ptr<ComplectComponents> complect)
+{
+	auto& [type, motherBoard, _cpu, graphCard, ram, storDevice, operSystem] = *complect;
+	setTypePC(type);
+	setMotherboard(motherBoard);
+	setCPU(_cpu);
+	setGraphicCard(graphCard);
+	setRAM(ram);
+	setStorageDevice(storDevice);
+	setOperationSystem(operSystem);
 }
 
 void PC::setMotherboard(const MotherBoard& mb)
@@ -89,7 +103,7 @@ PC::TypePC PC::getTypePC() const
 	return typePC;
 }
 
-Monitor::Monitor(std::pair<std::string, float>&& info):
+Monitor::Monitor(std::pair<const std::string, float>&& info):
 	diagonal(info.second), ITequipment(info.first)
 {
 }
@@ -123,7 +137,7 @@ Printer::Printer
 {
 }
 
-Printer::Printer(std::tuple<std::string, Cartridge, bool>&& info):
+Printer::Printer(const std::tuple<const std::string, Cartridge, bool>& info):
 	cartridge(std::get<1>(info)),
 	isMFU(std::get<2>(info)),
 	ITequipment(std::get<0>(info))
@@ -163,7 +177,7 @@ OtherEquipment::OtherEquipment(const std::string& name_, const std::string& some
 {
 }
 
-OtherEquipment::OtherEquipment(std::pair<std::string, std::string>&& info) :
+OtherEquipment::OtherEquipment(const std::pair<const std::string, std::string>& info) :
 	someInfo(info.second), ITequipment(info.first)
 {
 }
