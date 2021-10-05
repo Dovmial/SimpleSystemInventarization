@@ -69,3 +69,8 @@ std::unique_ptr<Item> DataManager::createNewItem(
 	createITequipment(name_, type);
 	return std::unique_ptr<Item>();
 }
+
+std::shared_ptr<ITequipment> DataManager::createITequipment(typeITEquipment typeITE)
+{
+	return std::shared_ptr<ITequipment>();
+}
