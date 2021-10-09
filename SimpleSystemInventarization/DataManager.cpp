@@ -49,7 +49,7 @@ DataManager::createITequipment(typeITEquipment typeITE)
 			nameOfMotherBoard,
 			_cpuPair, GraphicCardPair,
 			ramVolume, storageDeviceTuple,
-			operSystem] = PCgetDatas().getDataPC();
+			operSystem] = PCgetDatas().getData();
 
 		auto info{ std::make_pair(infoOfPCPair.first,  //name pc
 		static_cast<PC::TypePC>(infoOfPCPair.second)) };

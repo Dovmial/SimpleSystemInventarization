@@ -16,7 +16,7 @@ using DataPC = std::tuple<
 class PCgetDatas {
 public:
 	PCgetDatas(DataPC&& dataPC_);
-	DataPC getDataPC() const;
+	DataPC getData() const;
 private:
 	DataPC dataPC;
 };

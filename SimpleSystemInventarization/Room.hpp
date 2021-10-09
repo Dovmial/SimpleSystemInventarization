@@ -5,15 +5,19 @@
 #include <string>
 #include "Item.hpp"
 #include "BaseObject.hpp"
+#include "DataManager.hpp"
+#include <memory>
 
 class Room: public BaseObject{
 private:
-	std::vector<Item*> items;
+	std::vector<std::unique_ptr<Item>> items;
+	std::shared_ptr<DataManager> dataManager;
+
 public:
 	Room() = delete;
-	Room(const std::string& name_);
+	Room(const std::string& name_, std::shared_ptr<DataManager> dm);
 
-	void addItem(Item* item);
+	void addItem(DataManager::typeITEquipment type, int64_t inventoryNumber);
 	void eraseItem(Item* item);
 };
 

@@ -13,7 +13,7 @@ std::tuple<
 	float, //4-ram
 	std::tuple <float, std::string, size_t>, //5-storageDevice
 	std::string> //6-operationSystem
-	PCgetDatas::getDataPC() const
+	PCgetDatas::getData() const
 {
 	return dataPC;
 }

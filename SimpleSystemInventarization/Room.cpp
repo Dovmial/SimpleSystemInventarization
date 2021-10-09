@@ -1,13 +1,16 @@
 
 #include "Room.hpp" 
 
-Room::Room(const std::string& name_) : BaseObject(name_)
+Room::Room(const std::string& name_, std::shared_ptr<DataManager> dm) :
+	dataManager(dm),
+	BaseObject(name_)
 {
 }
 
-void Room::addItem(Item* item)
+void Room::addItem(DataManager::typeITEquipment type, int64_t inventoryNumber)
 {
-	items.push_back(item);
+	auto item = dataManager->createItem(type, inventoryNumber);
+	items.push_back(move(item));
 }
 
 void Room::eraseItem(Item* item)
