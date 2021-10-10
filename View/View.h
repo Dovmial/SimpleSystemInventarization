@@ -2,6 +2,7 @@
 
 #include <QtWidgets/QMainWindow>
 #include "ui_View.h"
+#include "RoomViewer.hpp"
 
 class View : public QMainWindow
 {
@@ -10,6 +11,9 @@ class View : public QMainWindow
 public:
     View(QWidget *parent = Q_NULLPTR);
     ~View();
+private slots:
+    void on_pushButtonStart_clicked();
 private:
     Ui::ViewClass* ui;
+    RoomViewer* roomViewer;
 };

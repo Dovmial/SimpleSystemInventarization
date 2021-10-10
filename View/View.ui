@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>623</width>
-    <height>600</height>
+    <width>236</width>
+    <height>95</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,33 +16,10 @@
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout">
     <item row="0" column="0">
-     <widget class="QSplitter" name="splitter_3">
-      <property name="orientation">
-       <enum>Qt::Vertical</enum>
+     <widget class="QPushButton" name="pushButtonStart">
+      <property name="text">
+       <string>start</string>
       </property>
-      <property name="childrenCollapsible">
-       <bool>false</bool>
-      </property>
-      <widget class="QSplitter" name="splitter">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="childrenCollapsible">
-        <bool>false</bool>
-       </property>
-       <widget class="QTableView" name="tvItems"/>
-       <widget class="QPlainTextEdit" name="pteInfoItems"/>
-      </widget>
-      <widget class="QSplitter" name="splitter_2">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="childrenCollapsible">
-        <bool>false</bool>
-       </property>
-       <widget class="QTableView" name="tvServiceItems"/>
-       <widget class="QTableView" name="tvProblemSolutionItems"/>
-      </widget>
      </widget>
     </item>
    </layout>
@@ -52,12 +29,32 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>623</width>
+     <width>236</width>
      <height>22</height>
     </rect>
    </property>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionAddBuild">
+   <property name="text">
+    <string>здание</string>
+   </property>
+  </action>
+  <action name="actionAddRoom">
+   <property name="text">
+    <string>комнату</string>
+   </property>
+  </action>
+  <action name="actionAddItem">
+   <property name="text">
+    <string>оборудование</string>
+   </property>
+  </action>
+  <action name="action_4">
+   <property name="text">
+    <string>О  прорамме</string>
+   </property>
+  </action>
  </widget>
  <resources/>
  <connections/>

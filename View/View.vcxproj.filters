@@ -37,10 +37,42 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="CreateItemDialog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="RoomViewer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="View.ui">
       <Filter>Form Files</Filter>
     </QtUic>
+    <QtUic Include="CreateItemDialog.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="PCcharacteristicDialog.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="MonitorCharcteristicDialog.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="PrinterCharacteristicDialog.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="OtherСharacteristicDialog.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="RoomViewer.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="CreateItemDialog.hpp">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="RoomViewer.hpp">
+      <Filter>Header Files</Filter>
+    </QtMoc>
   </ItemGroup>
 </Project>

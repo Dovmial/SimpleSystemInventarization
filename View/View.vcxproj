@@ -99,11 +99,25 @@
   <ItemGroup>
     <QtRcc Include="View.qrc" />
     <QtMoc Include="View.h" />
+    <ClCompile Include="CreateItemDialog.cpp" />
+    <ClCompile Include="RoomViewer.cpp" />
     <ClCompile Include="View.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <QtUic Include="CreateItemDialog.ui" />
+    <QtUic Include="MonitorCharcteristicDialog.ui" />
+    <QtUic Include="OtherСharacteristicDialog.ui" />
+    <QtUic Include="PCcharacteristicDialog.ui" />
+    <QtUic Include="PrinterCharacteristicDialog.ui" />
+    <QtUic Include="RoomViewer.ui" />
     <QtUic Include="View.ui" />
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="CreateItemDialog.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="RoomViewer.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">

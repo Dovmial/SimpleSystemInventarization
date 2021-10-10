@@ -6,7 +6,7 @@ PCgetDatas::PCgetDatas(DataPC&& dataPC_):
 }
 
 std::tuple<
-	std::pair<std::string, size_t>, //0-info
+	std::pair<std::string, size_t>, //0-info (name/type)
 	std::string, //1-motherboard
 	std::pair<std::string, float>, //2-cpu
 	std::pair<std::string, float>, //3-graphicCard
