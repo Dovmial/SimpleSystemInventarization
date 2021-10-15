@@ -1,20 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Исходные файлы">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="Файлы заголовков">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
-    </Filter>
     <Filter Include="Файлы ресурсов">
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
-    <Filter Include="Builders">
-      <UniqueIdentifier>{cf7a9e0a-9b5d-4a36-8371-2fc93da85ca2}</UniqueIdentifier>
     </Filter>
     <Filter Include="GetDatas">
       <UniqueIdentifier>{5fdd7c97-dcbb-4633-b51e-4a8cc2b99887}</UniqueIdentifier>
@@ -22,87 +11,113 @@
     <Filter Include="GetDatas\Исходные файлы">
       <UniqueIdentifier>{450562c2-9818-471d-b1ab-2aeb52585277}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Builders\Исходные файлы">
-      <UniqueIdentifier>{c71c0e0c-2f03-4433-9a16-ca32a9e06a35}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Builders\Файлы заголовков">
-      <UniqueIdentifier>{75221204-03af-496a-9b96-7401bd4c7903}</UniqueIdentifier>
-    </Filter>
     <Filter Include="GetDatas\Файлы заголовков">
       <UniqueIdentifier>{20cc9be9-349b-4851-a9d2-6aa3bb9531b4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Creators">
+      <UniqueIdentifier>{cf7a9e0a-9b5d-4a36-8371-2fc93da85ca2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Creators\Исходные файлы">
+      <UniqueIdentifier>{c71c0e0c-2f03-4433-9a16-ca32a9e06a35}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Creators\Файлы заголовков">
+      <UniqueIdentifier>{75221204-03af-496a-9b96-7401bd4c7903}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Equipment">
+      <UniqueIdentifier>{7001b2ed-d926-44db-b854-ee01e4270216}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Equipment\Исходные файлы">
+      <UniqueIdentifier>{fe81be08-18dc-4122-a531-2c56def92fcf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Equipment\Файлы заголовков">
+      <UniqueIdentifier>{c71a754a-bee7-44ff-b0f7-9e2ed5a05542}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Building">
+      <UniqueIdentifier>{4993a135-6a47-4604-872e-9a8e150766ac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Building\Исходные файлы">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Building\Файлы заголовков">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="BaseObject">
+      <UniqueIdentifier>{15c87489-98a2-4457-8a7f-9f6a87c6646d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="BaseObject\Исходные файлы">
+      <UniqueIdentifier>{2595363d-2bb2-4614-9847-9b943ed40ed6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="BaseObject\Файлы заголовков">
+      <UniqueIdentifier>{296c70ca-fddf-48f0-a5c3-c3fd82081972}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
-    <ClCompile Include="ITequipment.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
-    <ClCompile Include="ServiceInfo.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
-    <ClCompile Include="Item.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
-    <ClCompile Include="BaseObject.cpp">
-      <Filter>Исходные файлы</Filter>
+      <Filter>Building\Исходные файлы</Filter>
     </ClCompile>
     <ClCompile Include="Room.cpp">
-      <Filter>Исходные файлы</Filter>
+      <Filter>Building\Исходные файлы</Filter>
     </ClCompile>
     <ClCompile Include="DataManager.cpp">
-      <Filter>Builders\Исходные файлы</Filter>
-    </ClCompile>
-    <ClCompile Include="Menu.cpp">
-      <Filter>GetDatas\Исходные файлы</Filter>
-    </ClCompile>
-    <ClCompile Include="Components.cpp">
-      <Filter>Исходные файлы</Filter>
+      <Filter>Creators\Исходные файлы</Filter>
     </ClCompile>
     <ClCompile Include="IITequipmentFabric.cpp">
-      <Filter>Builders\Исходные файлы</Filter>
+      <Filter>Creators\Исходные файлы</Filter>
     </ClCompile>
     <ClCompile Include="GetDatas.cpp">
       <Filter>GetDatas\Исходные файлы</Filter>
     </ClCompile>
+    <ClCompile Include="Components.cpp">
+      <Filter>Equipment\Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="Item.cpp">
+      <Filter>Equipment\Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="ITequipment.cpp">
+      <Filter>Equipment\Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="ServiceInfo.cpp">
+      <Filter>Equipment\Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="BaseObject.cpp">
+      <Filter>BaseObject\Исходные файлы</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ITequipment.hpp">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
-    <ClInclude Include="Item.hpp">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
-    <ClInclude Include="ServiceInfo.hpp">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
     <ClInclude Include="Room.hpp">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
-    <ClInclude Include="BaseObject.hpp">
-      <Filter>Файлы заголовков</Filter>
+      <Filter>Building\Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="Build.hpp">
-      <Filter>Файлы заголовков</Filter>
+      <Filter>Building\Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="DataManager.hpp">
-      <Filter>Builders\Файлы заголовков</Filter>
+      <Filter>Creators\Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="GetDatas.hpp">
       <Filter>GetDatas\Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="Menu.hpp">
-      <Filter>GetDatas\Файлы заголовков</Filter>
+    <ClInclude Include="IITequipmentFabric.hpp">
+      <Filter>Creators\Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="Components.hpp">
-      <Filter>Файлы заголовков</Filter>
+      <Filter>Equipment\Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="Iinfo.hpp">
-      <Filter>Файлы заголовков</Filter>
+      <Filter>Equipment\Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="IITequipmentFabric.hpp">
-      <Filter>Builders\Файлы заголовков</Filter>
+    <ClInclude Include="Item.hpp">
+      <Filter>Equipment\Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="ITequipment.hpp">
+      <Filter>Equipment\Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="ServiceInfo.hpp">
+      <Filter>Equipment\Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="BaseObject.hpp">
+      <Filter>BaseObject\Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -2,6 +2,7 @@
 
 #include <QtWidgets/QMainWindow>
 #include "ui_RoomViewer.h"
+#include "../SimpleSystemInventarization/GetDatas.hpp"
 
 class RoomViewer : public QMainWindow
 {
@@ -13,5 +14,6 @@ public:
 private slots:
     void on_mnuAddItem_triggered();
 private:
+   // GetDatas getDatas;
     Ui::RoomViewer* ui;
 };

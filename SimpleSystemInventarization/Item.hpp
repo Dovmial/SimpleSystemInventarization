@@ -38,8 +38,7 @@ public:
 	std::pair<SIiterator, SIiterator> getServiceInfo();
 	std::pair<PSiterator, PSiterator> getProblemsSolutions();
 	std::pair<SIiteratorConst, SIiteratorConst> getServiceInfoView() const;
-	std::pair<PSiteratorConst, PSiteratorConst> 
-		getProblemsSolutionsView() const;
+	std::pair<PSiteratorConst, PSiteratorConst> getProblemsSolutionsView() const;
 	void getPrintInfoItem() const;
 private:
 	std::shared_ptr<ITequipment> equipment;

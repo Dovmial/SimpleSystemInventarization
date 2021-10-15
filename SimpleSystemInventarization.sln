@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31205.134
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SimpleSystemInventarization", "SimpleSystemInventarization.vcxproj", "{0D0ABC55-1E64-4405-9E3D-3EBA557894E5}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SimpleSystemInventarization", "SimpleSystemInventarization\SimpleSystemInventarization.vcxproj", "{0D0ABC55-1E64-4405-9E3D-3EBA557894E5}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "View", "..\View\View.vcxproj", "{625A5ACB-2372-4522-9D71-221EFD6BEBCC}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "View", "View\View.vcxproj", "{625A5ACB-2372-4522-9D71-221EFD6BEBCC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

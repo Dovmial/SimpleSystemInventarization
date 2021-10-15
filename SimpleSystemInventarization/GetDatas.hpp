@@ -4,6 +4,13 @@
 #include <string>
 #include <utility>
 
+class Fetcher {
+public:
+
+private:
+
+};
+
 using DataPC = std::tuple<
 	std::pair<std::string, size_t>, //info(name, type)
 	std::string, //motheboard

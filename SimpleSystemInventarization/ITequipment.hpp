@@ -28,6 +28,7 @@ using PCinfo = std::tuple<
 
 class PC : public ITequipment {
 public:
+	//TODO: class laptop, monoblock with diagonal
 	enum TypePC {
 		SystemBlock = 1,
 		Laptop,

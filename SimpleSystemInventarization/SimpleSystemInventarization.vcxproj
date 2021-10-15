@@ -27,7 +27,6 @@
     <ClCompile Include="ITequipment.cpp" />
     <ClCompile Include="Item.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Menu.cpp" />
     <ClCompile Include="Room.cpp" />
     <ClCompile Include="ServiceInfo.cpp" />
   </ItemGroup>
@@ -39,7 +38,6 @@
     <ClInclude Include="GetDatas.hpp" />
     <ClInclude Include="Iinfo.hpp" />
     <ClInclude Include="IITequipmentFabric.hpp" />
-    <ClInclude Include="Menu.hpp" />
     <ClInclude Include="ITequipment.hpp" />
     <ClInclude Include="Item.hpp" />
     <ClInclude Include="Room.hpp" />

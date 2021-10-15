@@ -4,8 +4,7 @@
 #include "ITequipment.hpp"
 #include <memory>
 
-class IITequipmentFabric { 
-public:
+struct IITequipmentFabric { 
 	virtual std::shared_ptr<ITequipment> create() = 0; //fabric method
 };
 
