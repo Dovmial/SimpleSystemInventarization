@@ -2,12 +2,13 @@
 
 #include <QtWidgets/QMainWindow>
 #include "ui_RoomViewer.h"
-#include "../SimpleSystemInventarization/GetDatas.hpp"
+#include "../SimpleSystemInventarization/DataManager.hpp"
+#include "../SimpleSystemInventarization/Room.hpp"
+#include <memory>
 
 class RoomViewer : public QMainWindow
 {
     Q_OBJECT
-
 public:
     RoomViewer(QWidget* parent = Q_NULLPTR);
     ~RoomViewer();
@@ -16,4 +17,7 @@ private slots:
 private:
    // GetDatas getDatas;
     Ui::RoomViewer* ui;
+    std::shared_ptr<DataManager> dataManager;
+    Room* room;
+    //std::set<unique_ptr<Room>> rooms
 };

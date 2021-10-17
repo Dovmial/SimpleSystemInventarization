@@ -1,16 +1,19 @@
 #include "DataManager.hpp"
 #include "IITequipmentFabric.hpp"
-#include "GetDatas.hpp"
+#include "GetDataEquipment.hpp"
 #include <memory>
 
-using ComplectComponents = std::tuple
-<MotherBoard, CPU, GraphicCard, RAM, StorageDevice, std::string>;
+
 
 DataManager::DataManager() :
-	pcFabric{ std::make_unique<PCfabric>() },
-	monitorFabric{ std::make_unique<MonitorFabric>() },
-	printerFabric{ std::make_unique<PrinterFabric>() },
-	otherFabric{ std::make_unique<OtherFabric>() }
+	pcFabric		{ std::make_unique<PCfabric>		()},
+	monitorFabric	{ std::make_unique<MonitorFabric>	()},
+	printerFabric	{ std::make_unique<PrinterFabric>	()},
+	otherFabric		{ std::make_unique<OtherFabric>		()},
+	pcGetData		{ std::make_unique<PCgetData>		()},
+	monitorGetData	{ std::make_unique<MonitorGetData>	()},
+	printerGetData	{ std::make_unique<PrinterGetData>	()},
+	otherGetData	{ std::make_unique<OtherGetData>	()}
 {}
 
 DataManager::~DataManager()
@@ -37,6 +40,8 @@ DataManager::~DataManager()
 	printer307.addSignProblemsSolutions(
 		"Broken cartridge", "23.02.2020", "new cartridge");
 */
+using ComplectComponents = std::tuple
+<MotherBoard, CPU, GraphicCard, RAM, StorageDevice, std::string>;
 
 std::shared_ptr<ITequipment>
 DataManager::createITequipment(typeITEquipment typeITE)
@@ -45,14 +50,14 @@ DataManager::createITequipment(typeITEquipment typeITE)
 	case typeITEquipment::typePC: {
 		//get parameters for construction
 
-		auto& [infoOfPCPair,
+		auto [infoOfPCPair,
 			nameOfMotherBoard,
 			_cpuPair, GraphicCardPair,
 			ramVolume, storageDeviceTuple,
-			operSystem] = PCgetDatas().getData();
+			operSystem] = pcGetData->getData();
 
 		auto info{ std::make_pair(infoOfPCPair.first,  //name pc
-		static_cast<PC::TypePC>(infoOfPCPair.second)) };
+			infoOfPCPair.second) }; //typePC
 
 		ComplectComponents components{
 			MotherBoard(nameOfMotherBoard),
@@ -62,8 +67,7 @@ DataManager::createITequipment(typeITEquipment typeITE)
 			StorageDevice(
 				std::get<0>(storageDeviceTuple), //volume
 				std::get<1>(storageDeviceTuple), //name
-				static_cast<StorageDevice::typeStorageDevice>
-				(std::get<2>(storageDeviceTuple))), //type
+				std::get<2>(storageDeviceTuple)), //type
 			operSystem
 		};
 
@@ -72,16 +76,18 @@ DataManager::createITequipment(typeITEquipment typeITE)
 		return std::move(pcFabric->create());
 	}
 
-	case typeITEquipment::typeMonitor: 
-		monitorFabric->setInfo(MonitorGetDatas().getData());
+	case typeITEquipment::typeMonitor:
+		monitorFabric->setInfo(monitorGetData->getData());
 		return std::move(monitorFabric->create());
 
-	case typeITEquipment::typePrinter: 
-		printerFabric->setInfo(PrinterGetDatas().getData());
+	case typeITEquipment::typePrinter: {
+		auto [name, cartridge, type] = printerGetData->getData();
+		printerFabric->setInfo(std::make_tuple(name, Cartridge(cartridge), type));
 		return std::move(printerFabric->create());
+	}
 
 	case typeITEquipment::typeoOtherITEquipment:
-		otherFabric->setInfo(OtherGetDatas().getData());
+		otherFabric->setInfo(otherGetData->getData());
 		return std::move(otherFabric->create());
 	}
 }
@@ -90,4 +96,26 @@ DataManager::createITequipment(typeITEquipment typeITE)
 std::unique_ptr<Item> DataManager::createItem(typeITEquipment type, int64_t inventoryNumber_)
 {
 	return std::make_unique<Item>(createITequipment(type), inventoryNumber_);
+}
+
+void DataManager::setDataPC(DataPC& data) {
+	pcGetData->setData(data);
+}
+
+void DataManager::setDataMonitor(const std::string& name, float diagonal)
+{
+	monitorGetData->setData(name, diagonal);
+}
+
+void DataManager::setDataPrinter(
+	const std::string& name,
+	const std::string& cartridge,
+	Printer::PrinterType type)
+{
+	printerGetData->setData(name, cartridge, type);
+}
+
+void DataManager::setDataOther(const std::string& name, const std::string& otherInfo)
+{
+	otherGetData->setData(name, otherInfo);
 }

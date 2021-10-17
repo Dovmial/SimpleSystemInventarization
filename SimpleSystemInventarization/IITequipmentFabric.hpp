@@ -3,6 +3,7 @@
 #include "BaseObject.hpp"
 #include "ITequipment.hpp"
 #include <memory>
+#include <tuple>
 
 struct IITequipmentFabric { 
 	virtual std::shared_ptr<ITequipment> create() = 0; //fabric method
@@ -44,12 +45,12 @@ class PrinterFabric : public IITequipmentFabric
 {
 public:
 	PrinterFabric();
-	PrinterFabric(std::tuple<std::string, Cartridge, bool>&& info);
+	PrinterFabric(std::tuple<std::string, Cartridge, Printer::PrinterType>&& info);
 public:
 	std::shared_ptr<ITequipment> create() override;
-	void setInfo(std::tuple<std::string, Cartridge, bool>&& info_);
+	void setInfo(std::tuple<std::string, Cartridge, Printer::PrinterType>&& info_);
 private:
-	std::tuple<std::string, Cartridge, bool> info;
+	std::tuple<std::string, Cartridge, Printer::PrinterType> info;
 };
 
 class OtherFabric : public IITequipmentFabric

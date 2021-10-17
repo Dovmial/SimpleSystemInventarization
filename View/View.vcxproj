@@ -55,8 +55,14 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <ExecutablePath>$(VC_ExecutablePath_x64);$(CommonExecutablePath)</ExecutablePath>
+    <LibraryPath>$(SolutionDir)bin\$(Platform)\$(Configuration)\;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <ExecutablePath>$(VC_ExecutablePath_x64);$(CommonExecutablePath)</ExecutablePath>
+    <OutDir>$(SolutionDir)bin\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)bin\$(Platform)\$(Configuration)\intermediate\$(ProjectName)\</IntDir>
+    <LibraryPath>$(SolutionDir)bin\$(Platform)\$(Configuration)\;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -99,17 +105,22 @@
   <ItemGroup>
     <QtRcc Include="View.qrc" />
     <QtMoc Include="View.h" />
+    <ClCompile Include="AbstractEditDialog.cpp" />
     <ClCompile Include="CreateItemDialog.cpp" />
+    <ClCompile Include="MonitorEditDialog.cpp" />
+    <ClCompile Include="OtherEditDialog.cpp" />
+    <ClCompile Include="PCeditDialog.cpp" />
+    <ClCompile Include="PrinterEditDialog.cpp" />
     <ClCompile Include="RoomViewer.cpp" />
     <ClCompile Include="View.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="CreateItemDialog.ui" />
-    <QtUic Include="MonitorCharcteristicDialog.ui" />
-    <QtUic Include="OtherСharacteristicDialog.ui" />
-    <QtUic Include="PCcharacteristicDialog.ui" />
-    <QtUic Include="PrinterCharacteristicDialog.ui" />
+    <QtUic Include="MonitorEditDialog.ui" />
+    <QtUic Include="OtherEditDialog.ui" />
+    <QtUic Include="PCeditDialog.ui" />
+    <QtUic Include="PrinterEditDialog.ui" />
     <QtUic Include="RoomViewer.ui" />
     <QtUic Include="View.ui" />
   </ItemGroup>
@@ -118,6 +129,27 @@
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="RoomViewer.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="PCeditDialog.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="MonitorEditDialog.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="PrinterEditDialog.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="OtherEditDialog.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="AbstractEditDialog.hpp" />
+    <ClInclude Include="IItemCreatable.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SimpleSystemInventarization\SimpleSystemInventarization.vcxproj">
+      <Project>{0d0abc55-1e64-4405-9e3d-3eba557894e5}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">

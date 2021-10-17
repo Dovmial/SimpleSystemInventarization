@@ -5,15 +5,6 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="GetDatas">
-      <UniqueIdentifier>{5fdd7c97-dcbb-4633-b51e-4a8cc2b99887}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="GetDatas\Исходные файлы">
-      <UniqueIdentifier>{450562c2-9818-471d-b1ab-2aeb52585277}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="GetDatas\Файлы заголовков">
-      <UniqueIdentifier>{20cc9be9-349b-4851-a9d2-6aa3bb9531b4}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Creators">
       <UniqueIdentifier>{cf7a9e0a-9b5d-4a36-8371-2fc93da85ca2}</UniqueIdentifier>
     </Filter>
@@ -52,6 +43,15 @@
     <Filter Include="BaseObject\Файлы заголовков">
       <UniqueIdentifier>{296c70ca-fddf-48f0-a5c3-c3fd82081972}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GetData">
+      <UniqueIdentifier>{5fdd7c97-dcbb-4633-b51e-4a8cc2b99887}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GetData\Исходные файлы">
+      <UniqueIdentifier>{450562c2-9818-471d-b1ab-2aeb52585277}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GetData\Файлы заголовков">
+      <UniqueIdentifier>{20cc9be9-349b-4851-a9d2-6aa3bb9531b4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -66,8 +66,8 @@
     <ClCompile Include="IITequipmentFabric.cpp">
       <Filter>Creators\Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="GetDatas.cpp">
-      <Filter>GetDatas\Исходные файлы</Filter>
+    <ClCompile Include="GetDataEquipment.cpp">
+      <Filter>GetData\Исходные файлы</Filter>
     </ClCompile>
     <ClCompile Include="Components.cpp">
       <Filter>Equipment\Исходные файлы</Filter>
@@ -95,8 +95,8 @@
     <ClInclude Include="DataManager.hpp">
       <Filter>Creators\Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="GetDatas.hpp">
-      <Filter>GetDatas\Файлы заголовков</Filter>
+    <ClInclude Include="GetDataEquipment.hpp">
+      <Filter>GetData\Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="IITequipmentFabric.hpp">
       <Filter>Creators\Файлы заголовков</Filter>

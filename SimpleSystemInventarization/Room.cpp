@@ -1,15 +1,25 @@
 
 #include "Room.hpp" 
-
+/*
 Room::Room(const std::string& name_, std::shared_ptr<DataManager> dm) :
 	dataManager(dm),
 	BaseObject(name_)
 {
 }
+*/
 
-void Room::addItem(DataManager::typeITEquipment type, int64_t inventoryNumber)
+Room::Room(const std::string& name_): BaseObject(name_)
 {
-	auto item = dataManager->createItem(type, inventoryNumber);
+
+}
+
+Item* Room::showItem(size_t index)
+{
+	return items.at(index).get();
+}
+
+void Room::addItem(std::unique_ptr<Item> item)
+{
 	items.push_back(move(item));
 }
 

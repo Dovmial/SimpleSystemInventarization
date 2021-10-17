@@ -2,17 +2,14 @@
 #include <sstream>
 #include <iomanip>
 
-
-
 ITequipment::ITequipment(const std::string& name_): BaseObject(name_)
-{
-}
+{}
 
-
-PC::PC(const std::string& name_, TypePC typePC_): typePC(typePC_), ITequipment(name_),
-motherboard(MotherBoard("")), _cpu(CPU("")), ram(RAM(0.f)),
-storageDevice(0.f), graphicCard("", 0.f),
-operationSystem("")
+PC::PC(const std::string& name_, TypePC typePC_):
+	typePC(typePC_), ITequipment(name_),
+	motherboard(MotherBoard("")), _cpu(CPU("")), ram(RAM(0.f)),
+	storageDevice(0.f), graphicCard("", 0.f),
+	operationSystem("")
 {
 }
 
@@ -57,40 +54,40 @@ void PC::setComplectComponents(std::shared_ptr<ComplectComponents> complect)
 
 void PC::setMotherboard(const MotherBoard& mb)
 {
-	motherboard = std::move(mb);
+	motherboard = mb;
 }
 
 void PC::setCPU(const CPU& _cpu)
 {
-	this->_cpu = std::move(_cpu);
+	this->_cpu = _cpu;
 }
 
 void PC::setRAM(const RAM& ram_)
 {
-	ram = std::move(ram_);
+	ram = ram_;
 }
 
 std::string PC::typePCtoStr() const
 {
 	switch (typePC)
 	{
-	case SystemBlock:
+	case PC::TypePC::SystemBlock:
 		return "System block";
-	case Laptop:
+	case PC::TypePC::Laptop:
 		return "Laptop";
-	case Monoblock:
+	case PC::TypePC::Monoblock:
 		return "Monoblock";
 	}
 }
 
 void PC::setStorageDevice(const StorageDevice& sd)
 {
-	storageDevice = std::move(sd);
+	storageDevice = sd;
 }
 
 void PC::setGraphicCard(const GraphicCard& gc)
 {
-	graphicCard = std::move(gc);
+	graphicCard = gc;
 }
 
 void PC::setOperationSystem(const std::string& opSys)
@@ -132,14 +129,14 @@ std::string Monitor::getInfo() const
 }
 
 Printer::Printer
-(const std::string& name_, Cartridge&& cartridge_, bool isMFU_):
-	cartridge(cartridge_), isMFU(isMFU_), ITequipment(name_)
+(const std::string& name_, Cartridge&& cartridge_, PrinterType type_):
+	cartridge(cartridge_), type(type_), ITequipment(name_)
 {
 }
 
-Printer::Printer(const std::tuple<const std::string, Cartridge, bool>& info):
+Printer::Printer(const std::tuple<const std::string, Cartridge, PrinterType>& info):
 	cartridge(std::get<1>(info)),
-	isMFU(std::get<2>(info)),
+	type(std::get<2>(info)),
 	ITequipment(std::get<0>(info))
 {
 }
@@ -157,19 +154,22 @@ Cartridge Printer::getCartridge() const
 std::string Printer::getInfo() const
 {
 	std::stringstream ssInfo;
-	ssInfo << std::setw(15) << "Type: " << (isMFU ? "MFU\n" : "Printer\n")
+	ssInfo << std::setw(15) << "Type: " << printerTypeToStr()<<'\n'
 		<< std::setw(15) << "Cartridge: " << cartridge.getName() << '\n';
 	return ssInfo.str();
 }
 
-void Printer::setIsMFU(bool isMFU_)
+std::string Printer::printerTypeToStr() const
 {
-	isMFU = isMFU_;
-}
-
-bool Printer::getIsMFU() const
-{
-	return isMFU;
+	switch (type)
+	{
+	case Printer::PrinterType::Printer:
+		return std::string("Printer");
+	case Printer::PrinterType::MFU:
+		return std::string("MFU");
+	case Printer::PrinterType::Printer3D:
+		return std::string("3D-Printer");
+	}
 }
 
 OtherEquipment::OtherEquipment(const std::string& name_, const std::string& someInfo_)

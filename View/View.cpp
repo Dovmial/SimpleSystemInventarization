@@ -1,7 +1,5 @@
 #include "View.h"
 
-
-
 View::View(QWidget* parent)
     : ui{new Ui::ViewClass()},
     QMainWindow(parent)

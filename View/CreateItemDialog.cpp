@@ -1,5 +1,11 @@
 #include "CreateItemDialog.hpp"
-#include <QDebug>
+#include "PCeditDialog.hpp"
+#include "MonitorEditDialog.hpp"
+#include "PrinterEditDialog.hpp"
+#include "OtherEditDialog.hpp"
+#include "qdialog.h"
+#include <qfontdialog.h>
+
 CreateItemDialog::CreateItemDialog(QWidget* parent) :QDialog(parent)
 {
 	ui = new Ui::CreateItemDialog();
@@ -10,26 +16,15 @@ CreateItemDialog::~CreateItemDialog() {
 	delete ui;
 }
 
-std::tuple<QString, int64_t, int> CreateItemDialog::getItemBaseInfo()
+AbstractEditDialog* CreateItemDialog::getEditItemDialog(std::shared_ptr<DataManager> dm)
 {
-	auto name{ ui->leName->text() };
-	auto number{ ui->leInvNumber->text().toLongLong() };
-	int typePC{
-		[&]()->int {
-			if (ui->rbPCtype->isChecked()) {
-			return 1;
-		}
-		else if (ui->rbMonitorType->isChecked()) {
-			return 2;
-		}
-		else if (ui->rbPrinterType->isChecked()) {
-				return 3;
-		}
-		else {
-			return 4;
-		}
-	}()
-	};
-	//qDebug() << typePC;
-	return std::make_tuple(name, number, typePC);
+	if (ui->rbPCtype->isChecked())
+		return new PCeditDialog(dm, this);
+	else if (ui->rbMonitorType->isChecked())
+		return new MonitorEditDialog(dm, this);
+	else if (ui->rbPrinterType->isChecked())
+		return new PrinterEditDialog(dm,this);
+	else
+		return new OtherEditDialog(dm, this);
 }
+

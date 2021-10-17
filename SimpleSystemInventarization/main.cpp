@@ -4,7 +4,7 @@
 #include <iomanip>
 
 
-
+/*
 void splitter() {
 	std::cout << '\n';
 	for (size_t i{}; i < 40; ++i) {
@@ -44,9 +44,6 @@ void Application() {
 	printItem(&pc308);
 	splitter();
 	printItem(&printer307);
-	*/
+	
 }
-
-int main() {
-	Application();
-}
+*/

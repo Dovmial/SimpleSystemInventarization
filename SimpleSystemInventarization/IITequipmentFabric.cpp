@@ -46,11 +46,11 @@ std::shared_ptr<ITequipment> MonitorFabric::create()
 }
 
 PrinterFabric::PrinterFabric():
-	PrinterFabric(std::tuple("", Cartridge(""), false))
+	PrinterFabric(std::tuple("", Cartridge(""), Printer::PrinterType::Printer))
 {
 }
 
-PrinterFabric::PrinterFabric(std::tuple<std::string, Cartridge, bool>&& info_):
+PrinterFabric::PrinterFabric(std::tuple<std::string, Cartridge, Printer::PrinterType>&& info_):
 	info(std::move(info_))
 {
 }
@@ -61,7 +61,7 @@ std::shared_ptr<ITequipment> PrinterFabric::create()
 	return printer;
 }
 
-void PrinterFabric::setInfo(std::tuple<std::string, Cartridge, bool>&& info_)
+void PrinterFabric::setInfo(std::tuple<std::string, Cartridge, Printer::PrinterType>&& info_)
 {
 	info = std::move(info_);
 }

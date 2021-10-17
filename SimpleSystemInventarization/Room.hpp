@@ -11,13 +11,14 @@
 class Room: public BaseObject{
 private:
 	std::vector<std::unique_ptr<Item>> items;
-	std::shared_ptr<DataManager> dataManager;
+	//std::shared_ptr<DataManager> dataManager;
 
 public:
 	Room() = delete;
-	Room(const std::string& name_, std::shared_ptr<DataManager> dm);
-
-	void addItem(DataManager::typeITEquipment type, int64_t inventoryNumber);
+	Room(const std::string& name_);
+		//, std::shared_ptr<DataManager> dm);Room(const std::string& name_);
+	Item* showItem(size_t index);
+	void addItem(std::unique_ptr<Item> item);
 	void eraseItem(Item* item);
 };
 

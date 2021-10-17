@@ -17,8 +17,7 @@ public:
 	ITequipment(const std::string& name_);
 };
 
-/*
-using PCinfo = std::tuple<
+/*using PCinfo = std::tuple<
 	std::string,
 	std::pair<std::string, float>,
 	float, float,
@@ -29,7 +28,7 @@ using PCinfo = std::tuple<
 class PC : public ITequipment {
 public:
 	//TODO: class laptop, monoblock with diagonal
-	enum TypePC {
+	enum class TypePC {
 		SystemBlock = 1,
 		Laptop,
 		Monoblock
@@ -81,21 +80,24 @@ private:
 
 class Printer :public ITequipment {
 public:
+	enum class PrinterType {
+		Printer = 1,
+		MFU,
+		Printer3D
+	};
 	Printer() = delete;
-	Printer(const std::string& name_,
+	Printer(std::string& name_,
 		Cartridge&& cartridge,
-		bool isMFU_ = false
-	);
-	Printer(const std::tuple<const std::string, Cartridge, bool>& info);
+		PrinterType type);
+	Printer(const std::tuple<std::string, Cartridge, PrinterType>& info);
 public:
 	void setCartridge(Cartridge&& cartridge_);
 	Cartridge getCartridge() const;
 	virtual std::string getInfo()const override;
-	void setIsMFU(bool isMFU_);
-	bool getIsMFU() const;
+	std::string printerTypeToStr() const;
 private:
 	Cartridge cartridge;
-	bool isMFU; //add 3d printer
+	PrinterType type;
 };
 
 class OtherEquipment : public ITequipment {

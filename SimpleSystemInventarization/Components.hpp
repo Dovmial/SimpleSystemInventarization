@@ -40,7 +40,7 @@ private:
 
 class StorageDevice : public Components {
 public:
-	enum typeStorageDevice {
+	enum class typeStorageDevice {
 		HDD = 1,
 		SSD
 	};
@@ -48,11 +48,11 @@ public:
 	StorageDevice(
 		float  volume_,
 		const std::string& name = "",
-		typeStorageDevice tSD = HDD);
+		typeStorageDevice tSD = typeStorageDevice::HDD);
 	StorageDevice(std::tuple <
 		float,
 		const std::string,
-		size_t> data);
+		typeStorageDevice> data);
 	virtual std::string getInfo() const override;
 	
 public:
