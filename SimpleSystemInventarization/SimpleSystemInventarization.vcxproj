@@ -26,7 +26,6 @@
     <ClCompile Include="IITequipmentFabric.cpp" />
     <ClCompile Include="ITequipment.cpp" />
     <ClCompile Include="Item.cpp" />
-    <ClCompile Include="main.cpp" />
     <ClCompile Include="Room.cpp" />
     <ClCompile Include="ServiceInfo.cpp" />
   </ItemGroup>

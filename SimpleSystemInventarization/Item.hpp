@@ -7,6 +7,11 @@
 #include "ITequipment.hpp"
 #include "ServiceInfo.hpp"
 
+#ifdef MODEL_EXPORTS
+#define DECLSPEC __declspec(dllexport)
+#else
+#define DECLSPEC __declspec(dllimport)
+#endif
 
 using ServiceInfoContainer = std::vector<std::shared_ptr<ServiceInfo>>;
 using ProblemSolutionContainer = std::vector<std::shared_ptr<ProblemSolutionInfo>>;
@@ -16,7 +21,7 @@ using PSiterator = ProblemSolutionContainer::iterator;
 using PSiteratorConst = ProblemSolutionContainer::const_iterator;
 
 /*Item - эквивалент реального оборудования*/
-class Item {
+class DECLSPEC Item {
 //maybe add ID
 public:
 	Item() = delete;

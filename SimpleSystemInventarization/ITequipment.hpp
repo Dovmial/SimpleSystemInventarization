@@ -10,8 +10,13 @@
 #include "Iinfo.hpp"
 #include <memory>
 
+#ifdef MODEL_EXPORTS
+#define DECLSPEC __declspec(dllexport)
+#else
+#define DECLSPEC __declspec(dllimport)
+#endif
 
-class ITequipment: public BaseObject, public Iinfo{
+class DECLSPEC ITequipment: public BaseObject, public Iinfo{
 public:
 	ITequipment() = delete;
 	ITequipment(const std::string& name_);
@@ -25,7 +30,7 @@ public:
 	std::string
 >;*/
 
-class PC : public ITequipment {
+class DECLSPEC PC : public ITequipment {
 public:
 	//TODO: class laptop, monoblock with diagonal
 	enum class TypePC {
@@ -38,8 +43,8 @@ using ComplectComponents = std::tuple
 <PC::TypePC, MotherBoard, CPU, GraphicCard, RAM, StorageDevice, std::string>;
 
 	PC() = delete;
-	PC(const std::string &name_, TypePC typePC_);
-	PC(const std::tuple<std::string, TypePC>& baseInfo,
+	//PC(const std::string &name_, TypePC typePC_);
+	PC(const std::string name_, TypePC baseInfo,
 		std::shared_ptr<ComplectComponents> complect);
 
 	virtual std::string getInfo()const override;
@@ -66,7 +71,7 @@ private:
 	std::string operationSystem;
 };
 
-class Monitor :public ITequipment {
+class DECLSPEC Monitor :public ITequipment {
 public:
 	Monitor() = delete;
 	Monitor(const std::string& name_, float diagonal_ = -1.f);
@@ -78,7 +83,7 @@ private:
 	float diagonal;
 };
 
-class Printer :public ITequipment {
+class DECLSPEC Printer :public ITequipment {
 public:
 	enum class PrinterType {
 		Printer = 1,
@@ -86,7 +91,7 @@ public:
 		Printer3D
 	};
 	Printer() = delete;
-	Printer(std::string& name_,
+	Printer(const std::string& name_,
 		Cartridge&& cartridge,
 		PrinterType type);
 	Printer(const std::tuple<std::string, Cartridge, PrinterType>& info);
@@ -100,7 +105,7 @@ private:
 	PrinterType type;
 };
 
-class OtherEquipment : public ITequipment {
+class DECLSPEC OtherEquipment : public ITequipment {
 public:
 	OtherEquipment() = delete;
 	OtherEquipment(const std::string& name_, const std::string& someInfo_ = "");

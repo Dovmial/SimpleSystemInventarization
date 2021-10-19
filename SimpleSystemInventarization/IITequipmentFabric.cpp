@@ -1,14 +1,17 @@
 #include "IITequipmentFabric.hpp"
 
+/*using ComplectComponents = std::tuple
+<MotherBoard, CPU, GraphicCard, RAM, StorageDevice, std::string>;*/
+
 PCfabric::PCfabric(): 
-	complect(nullptr), info(std::pair("", PC::TypePC::SystemBlock))
+	name{ "" }, type{ PC::TypePC::SystemBlock }, complect{ nullptr }
 {
 }
 
 PCfabric::PCfabric(
-	const std::pair<std::string, PC::TypePC>& info_,
+	const std::string& name_, PC::TypePC type_,
 	std::shared_ptr<ComplectComponents>&& complect_) :
-	info(info_), complect(move(complect_))
+	name{ name_ }, type{type_}, complect(move(complect_))
 {
 }
 
@@ -17,21 +20,16 @@ void PCfabric::setComponents(std::shared_ptr<ComplectComponents>&& complect_)
 	complect = std::move(complect_);
 }
 
-void PCfabric::setInfo(const std::string& name, const PC::TypePC& typePC)
+void PCfabric::setInfo(const std::string& name_, PC::TypePC type_)
 {
-	info.first = name;
-	info.second = typePC;
+	name = name_;
+	type = type_;
 }
 
 std::shared_ptr<ITequipment> PCfabric::create()
 {
-	auto pc{ std::make_shared<PC>(info, complect) };
+	auto pc{ std::make_shared<PC>(name,type, std::move(complect)) };
 	return pc;
-}
-
-MonitorFabric::MonitorFabric(std::pair<std::string, float> &&info_): 
-	info(std::move(info_))
-{
 }
 
 void MonitorFabric::setInfo(std::pair<std::string, float>&& info_)

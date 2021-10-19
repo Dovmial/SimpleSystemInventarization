@@ -1,9 +1,16 @@
 #ifndef __SERVICEINFO_HPP__
 #define __SERVICEINFO_HPP__
 
+
+#ifdef MODEL_EXPORTS
+#define DECLSPEC __declspec(dllexport)
+#else
+#define DECLSPEC __declspec(dllimport)
+#endif
+
 #include <string>
 
-class ServiceInfo {
+class DECLSPEC ServiceInfo {
 public:
 	ServiceInfo();
 	ServiceInfo(const std::string& description,
@@ -19,7 +26,7 @@ protected:
 	std::string date;
 };
 
-class ProblemSolutionInfo: public ServiceInfo {
+class DECLSPEC ProblemSolutionInfo: public ServiceInfo{
 public:
 	ProblemSolutionInfo();
 	ProblemSolutionInfo(const std::string& description,

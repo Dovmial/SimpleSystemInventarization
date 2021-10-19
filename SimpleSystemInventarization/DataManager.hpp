@@ -17,7 +17,7 @@
 #endif // MODEL_EXPORTS
 
 using DataPC = std::tuple<
-	std::pair<std::string, PC::TypePC>, //0-info (name/type)
+	std::string, PC::TypePC, //0-info (name/type)
 	std::string, //1-motherboard
 	std::pair<std::string, float>, //2-cpu
 	std::pair<std::string, float>, //3-graphicCard
@@ -42,7 +42,7 @@ public:
 	);
 
 	void setDataMonitor	(const std::string& name, float diagonal);
-	void setDataPC(DataPC& data);
+	void setDataPC(DataPC&& data);
 
 	void setDataPrinter(
 		const std::string& name, const std::string& cartridge, Printer::PrinterType data);

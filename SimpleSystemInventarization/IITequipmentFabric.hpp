@@ -5,31 +5,36 @@
 #include <memory>
 #include <tuple>
 
-struct IITequipmentFabric { 
+#ifdef MODEL_EXPORTS
+#define DECLSPEC __declspec(dllexport)
+#else
+#define DECLSPEC __declspec(dllimport)
+#endif
+
+struct DECLSPEC IITequipmentFabric {
 	virtual std::shared_ptr<ITequipment> create() = 0; //fabric method
 };
 
 using ComplectComponents = std::tuple
 <MotherBoard, CPU, GraphicCard, RAM, StorageDevice, std::string>;
 
-class PCfabric: public IITequipmentFabric {
+class DECLSPEC PCfabric: public IITequipmentFabric {
 public:
 	PCfabric();
-	PCfabric(
-		const std::pair<std::string, PC::TypePC>& info_,
+	PCfabric(const std::string& name, PC::TypePC info_,
 		std::shared_ptr<ComplectComponents>&& complect_);
-
 public:
 	void setComponents(std::shared_ptr<ComplectComponents>&& complect);
-	void setInfo(const std::string& name, const PC::TypePC& typePC);
+	void setInfo(const std::string& name_, PC::TypePC type_);
 	std::shared_ptr<ITequipment> create() override;
 private:
+	std::string name;
+	PC::TypePC type;
 	std::shared_ptr<ComplectComponents> complect;
-	std::pair<std::string, PC::TypePC> info;
 };
 
 
-class MonitorFabric: public IITequipmentFabric
+class DECLSPEC MonitorFabric: public IITequipmentFabric
 {
 public:
 	MonitorFabric() {};
@@ -41,7 +46,7 @@ private:
 	std::pair<std::string, float> info;
 };
 
-class PrinterFabric : public IITequipmentFabric
+class DECLSPEC PrinterFabric : public IITequipmentFabric
 {
 public:
 	PrinterFabric();
@@ -53,7 +58,7 @@ private:
 	std::tuple<std::string, Cartridge, Printer::PrinterType> info;
 };
 
-class OtherFabric : public IITequipmentFabric
+class DECLSPEC OtherFabric : public IITequipmentFabric
 {
 public:
 	OtherFabric();

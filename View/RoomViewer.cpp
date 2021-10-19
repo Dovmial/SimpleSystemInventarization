@@ -16,7 +16,12 @@ RoomViewer::~RoomViewer()
     delete room;
 }
 
-
+void RoomViewer::setRoom(Room* room_) {
+    room = room_;
+}
+Room* RoomViewer::getRoom()const {
+    return room;
+}
 void RoomViewer::on_mnuAddItem_triggered() {
     auto pCrItemDialog{ new CreateItemDialog(nullptr) };
     if (pCrItemDialog->exec() == CreateItemDialog::Accepted) {

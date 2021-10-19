@@ -31,9 +31,9 @@ std::unique_ptr<Item> PCeditDialog::createItem()
 		}
 	}() };
 
-	auto info{ std::make_pair(ui->leName->text().toStdString() , type) };
-	auto motherboard{ ui->leMotherboard->text().toStdString() };
-	auto _cpu{ std::make_pair(
+	auto name		 { ui->leName->text().toStdString() };
+	auto motherboard { ui->leMotherboard->text().toStdString() };
+	auto _cpu		 { std::make_pair(
 		ui->leCPUname->text().toStdString(),
 		ui->leCPUfrequency->text().toFloat())
 	};
@@ -42,7 +42,7 @@ std::unique_ptr<Item> PCeditDialog::createItem()
 		ui->leVideocardVolumeRam->text().toFloat())
 	};
 	auto ram{ ui->leRAMvolume->text().toFloat() };
-	auto storagedevice{ std::make_tuple(
+	auto storageDevice{ std::make_tuple(
 		ui->leStorageDeviceVolume->text().toFloat(),
 		ui->leStorageDeviceName->text().toStdString(),
 		[&]()->StorageDevice::typeStorageDevice {
@@ -53,13 +53,15 @@ std::unique_ptr<Item> PCeditDialog::createItem()
 		}())
 	};
 	auto operationSystem{ ui->leOperationSystem->text().toStdString() };
-	auto& data_{ 
+	auto data{ 
 		std::make_tuple(
-			info, motherboard, _cpu,
-			graphicCard, ram, storagedevice,
+			name, type, 
+			motherboard, _cpu,
+			graphicCard, ram, 
+			storageDevice,
 			operationSystem) 
 	};
-	dataManager->setDataPC(std::move(data_));
+	dataManager->setDataPC(std::move(data));
 	auto& item{
 		dataManager->createItem(
 			DataManager::typeITEquipment::typePC, number) 

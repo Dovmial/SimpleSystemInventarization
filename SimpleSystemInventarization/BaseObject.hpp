@@ -2,8 +2,13 @@
 #define __BASEOBJECT__HPP__
 
 #include <string>
+#ifdef MODEL_EXPORTS
+#define DECLSPEC __declspec(dllexport)
+#else
+#define DECLSPEC __declspec(dllimport)
+#endif
 
-class BaseObject {
+class DECLSPEC BaseObject {
 public:
 	BaseObject() = delete;
 	BaseObject(const std::string& name_);

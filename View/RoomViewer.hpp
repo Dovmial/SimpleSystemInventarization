@@ -12,6 +12,9 @@ class RoomViewer : public QMainWindow
 public:
     RoomViewer(QWidget* parent = Q_NULLPTR);
     ~RoomViewer();
+
+    void setRoom(Room* room_);
+    Room* getRoom()const;
 private slots:
     void on_mnuAddItem_triggered();
 private:

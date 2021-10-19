@@ -8,7 +8,14 @@
 #include "DataManager.hpp"
 #include <memory>
 
-class Build: public BaseObject{
+
+#ifdef MODEL_EXPORTS
+#define DECLSPEC __declspec(dllexport)
+#else
+#define DECLSPEC __declspec(dllimport)
+#endif
+
+class DECLSPEC Build: public BaseObject{
 private:
 	std::set<std::unique_ptr<Room>> rooms;//vector
 	std::shared_ptr<DataManager> dataManager;

@@ -5,17 +5,24 @@
 ITequipment::ITequipment(const std::string& name_): BaseObject(name_)
 {}
 
-PC::PC(const std::string& name_, TypePC typePC_):
+/*
+PC::PC(const std::string& name_, TypePC typePC_) :
 	typePC(typePC_), ITequipment(name_),
 	motherboard(MotherBoard("")), _cpu(CPU("")), ram(RAM(0.f)),
 	storageDevice(0.f), graphicCard("", 0.f),
 	operationSystem("")
 {
 }
-
-PC::PC(const std::tuple<std::string, TypePC>& baseInfo,
-	std::shared_ptr<ComplectComponents> complect):  
-	PC(std::get<0>(baseInfo), std::get<1>(baseInfo))
+*/
+PC::PC(const std::string name_, TypePC type_,
+	std::shared_ptr<ComplectComponents> complect) :
+	typePC{ type_ },
+	motherboard{ "" },
+	_cpu{ "" },
+	ram{ 0.0 },
+	storageDevice{ 0.0 },
+	graphicCard{""},
+	ITequipment(name_)
 {
 	setComplectComponents(complect);
 }
@@ -128,13 +135,12 @@ std::string Monitor::getInfo() const
 	return ssInfo.str();
 }
 
-Printer::Printer
-(const std::string& name_, Cartridge&& cartridge_, PrinterType type_):
+Printer::Printer(const std::string& name_, Cartridge&& cartridge_, PrinterType type_):
 	cartridge(cartridge_), type(type_), ITequipment(name_)
 {
 }
 
-Printer::Printer(const std::tuple<const std::string, Cartridge, PrinterType>& info):
+Printer::Printer(const std::tuple<std::string, Cartridge, PrinterType>& info):
 	cartridge(std::get<1>(info)),
 	type(std::get<2>(info)),
 	ITequipment(std::get<0>(info))

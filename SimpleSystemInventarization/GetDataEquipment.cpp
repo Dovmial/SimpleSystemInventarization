@@ -8,7 +8,7 @@ DataPC PCgetData::getData()
 	return std::move(dataPC);
 }
 
-void PCgetData::setData(DataPC& dataPC_)
+void PCgetData::setData(DataPC&& dataPC_)
 {
 	dataPC = std::move(dataPC_);
 }

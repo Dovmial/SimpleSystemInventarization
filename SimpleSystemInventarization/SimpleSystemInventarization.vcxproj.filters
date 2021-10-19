@@ -54,9 +54,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp">
-      <Filter>Building\Исходные файлы</Filter>
-    </ClCompile>
     <ClCompile Include="Room.cpp">
       <Filter>Building\Исходные файлы</Filter>
     </ClCompile>
