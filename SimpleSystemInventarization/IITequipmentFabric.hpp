@@ -22,9 +22,9 @@ class DECLSPEC PCfabric: public IITequipmentFabric {
 public:
 	PCfabric();
 	PCfabric(const std::string& name, PC::TypePC info_,
-		std::shared_ptr<ComplectComponents>&& complect_);
+		std::shared_ptr<ComplectComponents> complect_);
 public:
-	void setComponents(std::shared_ptr<ComplectComponents>&& complect);
+	void setComponents(std::shared_ptr<ComplectComponents> complect);
 	void setInfo(const std::string& name_, PC::TypePC type_);
 	std::shared_ptr<ITequipment> create() override;
 private:

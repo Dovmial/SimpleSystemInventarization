@@ -24,7 +24,7 @@ class DECLSPEC PCgetData {
 public:
 	PCgetData();
 	auto getData()->DataPC;
-	void setData(DataPC&& dataPC_);
+	void setData(const DataPC& dataPC_);
 private:
 	DataPC dataPC;
 };

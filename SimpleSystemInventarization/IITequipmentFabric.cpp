@@ -10,14 +10,14 @@ PCfabric::PCfabric():
 
 PCfabric::PCfabric(
 	const std::string& name_, PC::TypePC type_,
-	std::shared_ptr<ComplectComponents>&& complect_) :
-	name{ name_ }, type{type_}, complect(move(complect_))
+	std::shared_ptr<ComplectComponents> complect_) :
+	name{ name_ }, type{type_}, complect(complect_)
 {
 }
 
-void PCfabric::setComponents(std::shared_ptr<ComplectComponents>&& complect_)
+void PCfabric::setComponents(std::shared_ptr<ComplectComponents> complect_)
 {
-	complect = std::move(complect_);
+	complect = complect_;
 }
 
 void PCfabric::setInfo(const std::string& name_, PC::TypePC type_)
@@ -81,5 +81,5 @@ std::shared_ptr<ITequipment> OtherFabric::create()
 
 void OtherFabric::setInfo(std::pair< std::string, std::string>&& info_)
 {
-	info = move(info_);
+	info = std::move(info_);
 }

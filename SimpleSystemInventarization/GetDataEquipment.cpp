@@ -5,12 +5,12 @@ PCgetData::PCgetData()
 
 DataPC PCgetData::getData()
 {
-	return std::move(dataPC);
+	return dataPC;
 }
 
-void PCgetData::setData(DataPC&& dataPC_)
+void PCgetData::setData(const DataPC& dataPC_)
 {
-	dataPC = std::move(dataPC_);
+	dataPC = dataPC_;
 }
 
 MonitorGetData::MonitorGetData()

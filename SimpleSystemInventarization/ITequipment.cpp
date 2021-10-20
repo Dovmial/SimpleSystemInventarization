@@ -14,7 +14,7 @@ PC::PC(const std::string& name_, TypePC typePC_) :
 {
 }
 */
-PC::PC(const std::string name_, TypePC type_,
+PC::PC(const std::string& name_, TypePC type_,
 	std::shared_ptr<ComplectComponents> complect) :
 	typePC{ type_ },
 	motherboard{ "" },

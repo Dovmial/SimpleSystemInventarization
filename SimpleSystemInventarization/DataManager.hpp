@@ -42,7 +42,7 @@ public:
 	);
 
 	void setDataMonitor	(const std::string& name, float diagonal);
-	void setDataPC(DataPC&& data);
+	void setDataPC(const DataPC& data);
 
 	void setDataPrinter(
 		const std::string& name, const std::string& cartridge, Printer::PrinterType data);

@@ -48,7 +48,7 @@ DataManager::createITequipment(typeITEquipment typeITE)
 
 		pcFabric->setComponents(std::make_shared<ComplectComponents>(components));
 		pcFabric->setInfo(name, type);
-		return std::move(pcFabric->create());
+		return pcFabric->create();
 	}
 
 	case typeITEquipment::typeMonitor:
@@ -67,14 +67,13 @@ DataManager::createITequipment(typeITEquipment typeITE)
 	}
 }
 
-
 std::unique_ptr<Item> DataManager::createItem(typeITEquipment type, int64_t inventoryNumber_)
 {
 	return std::make_unique<Item>(createITequipment(type), inventoryNumber_);
 }
 
-void DataManager::setDataPC(DataPC&& data) {
-	pcGetData->setData(std::move(data));
+void DataManager::setDataPC(const DataPC& data) {
+	pcGetData->setData(data);
 }
 
 void DataManager::setDataMonitor(const std::string& name, float diagonal)

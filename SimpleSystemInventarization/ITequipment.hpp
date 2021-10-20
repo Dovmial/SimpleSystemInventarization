@@ -44,7 +44,7 @@ using ComplectComponents = std::tuple
 
 	PC() = delete;
 	//PC(const std::string &name_, TypePC typePC_);
-	PC(const std::string name_, TypePC baseInfo,
+	PC(const std::string& name_, TypePC baseInfo,
 		std::shared_ptr<ComplectComponents> complect);
 
 	virtual std::string getInfo()const override;
