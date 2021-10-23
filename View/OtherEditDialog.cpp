@@ -19,9 +19,9 @@ std::unique_ptr<Item> OtherEditDialog::createItem()
 	auto otherInfo	{ ui->teOtherInfo->toPlainText().toStdString()	};
 
 	dataManager->setDataOther(name, otherInfo);
-	auto item{
+	auto item{ std::move(
 		dataManager->createItem(
 			DataManager::typeITEquipment::typeoOtherITEquipment, number)
-	};
+	) };
 	return std::move(item);
 }

@@ -32,9 +32,8 @@ std::unique_ptr<Item> PrinterEditDialog::createItem()
 	}() };
 	
 	dataManager->setDataPrinter(name, cartridge, printerType);
-	auto item{ dataManager->createItem(
-		DataManager::typeITEquipment::typePrinter, number) 
-	};
+	auto item{ std::move(dataManager->createItem(
+		DataManager::typeITEquipment::typePrinter, number) )};
 	return std::move(item);
 }
 

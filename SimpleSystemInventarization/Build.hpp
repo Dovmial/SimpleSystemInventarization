@@ -9,18 +9,9 @@
 #include <memory>
 
 
-#ifdef MODEL_EXPORTS
-#define DECLSPEC __declspec(dllexport)
-#else
-#define DECLSPEC __declspec(dllimport)
-#endif
 
-class DECLSPEC Build: public BaseObject{
-private:
-	std::set<std::unique_ptr<Room>> rooms;//vector
-	std::shared_ptr<DataManager> dataManager;
-	/*std::unique_ptr<Room> createRoom(
-		const DataManager& dm, const std::string& name);*/
+class Build: public BaseObject{
+
 public:
 	Build() = delete;
 	Build(const std::string& name, std::shared_ptr<DataManager> dm);
@@ -29,6 +20,11 @@ public:
 	void findItem(const std::string& name);
 	void findItem(int64_t inventoryNumber);
 	*/
+private:
+	std::set<std::unique_ptr<Room>> rooms;//vector
+	std::shared_ptr<DataManager> dataManager;
+	/*std::unique_ptr<Room> createRoom(
+		const DataManager& dm, const std::string& name);*/
 };
 
 #endif

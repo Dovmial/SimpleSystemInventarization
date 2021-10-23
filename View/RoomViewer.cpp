@@ -29,9 +29,8 @@ void RoomViewer::on_mnuAddItem_triggered() {
         if (dialog->exec() == QDialog::Accepted) {
             room->addItem(dialog->createItem());
             ui->pteInfoItems->setPlainText(
-                QString::fromStdString(room->showItem(0)->getITequipment()->getInfo()));
+                QString::fromStdString(room->showItem(0)->getITequipment()->getInfo()));    
         }
 
     }
-
 }

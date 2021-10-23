@@ -5,11 +5,6 @@
 #include <utility>
 #include "ITequipment.hpp"
 
-#ifdef MODEL_EXPORTS
-#define DECLSPEC __declspec(dllexport)
-#else
-#define DECLSPEC __declspec(dllimport)
-#endif
 
 using DataPC = std::tuple<
 	std::string, PC::TypePC, //0-(name/type)
@@ -20,7 +15,7 @@ using DataPC = std::tuple<
 	std::tuple <float, std::string, StorageDevice::typeStorageDevice>, //5-storageDevice
 	std::string>; //6-operationSystem
 
-class DECLSPEC PCgetData {
+class  PCgetData {
 public:
 	PCgetData();
 	auto getData()->DataPC;
@@ -29,7 +24,7 @@ private:
 	DataPC dataPC;
 };
 
-class DECLSPEC MonitorGetData {
+class MonitorGetData {
 public:
 	MonitorGetData();
 	auto getData() -> std::pair <std::string, float>;
@@ -39,7 +34,7 @@ private:
 };
 
 using DataPrinter = std::tuple < std::string, std::string, Printer::PrinterType >;
-class DECLSPEC PrinterGetData {
+class  PrinterGetData {
 public:
 	PrinterGetData();
 	DataPrinter getData();
@@ -51,7 +46,7 @@ private:
 	DataPrinter dataPrinter;
 };
 
-class DECLSPEC OtherGetData{
+class  OtherGetData{
 public:
 	OtherGetData();
 	auto getData()->std::pair<std::string, std::string>;

@@ -8,6 +8,7 @@ DataManager::DataManager() :
 	monitorFabric	{ std::make_unique<MonitorFabric>	()},
 	printerFabric	{ std::make_unique<PrinterFabric>	()},
 	otherFabric		{ std::make_unique<OtherFabric>		()},
+
 	pcGetData		{ std::make_unique<PCgetData>		()},
 	monitorGetData	{ std::make_unique<MonitorGetData>	()},
 	printerGetData	{ std::make_unique<PrinterGetData>	()},

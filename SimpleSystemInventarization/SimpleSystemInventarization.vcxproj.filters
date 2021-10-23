@@ -81,6 +81,9 @@
     <ClCompile Include="BaseObject.cpp">
       <Filter>BaseObject\Исходные файлы</Filter>
     </ClCompile>
+    <ClCompile Include="Build.cpp">
+      <Filter>Building\Исходные файлы</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Room.hpp">

@@ -7,11 +7,6 @@
 #include "ITequipment.hpp"
 #include "ServiceInfo.hpp"
 
-#ifdef MODEL_EXPORTS
-#define DECLSPEC __declspec(dllexport)
-#else
-#define DECLSPEC __declspec(dllimport)
-#endif
 
 using ServiceInfoContainer = std::vector<std::shared_ptr<ServiceInfo>>;
 using ProblemSolutionContainer = std::vector<std::shared_ptr<ProblemSolutionInfo>>;
@@ -19,6 +14,12 @@ using SIiterator = ServiceInfoContainer::iterator;
 using SIiteratorConst = ServiceInfoContainer::const_iterator;
 using PSiterator = ProblemSolutionContainer::iterator;
 using PSiteratorConst = ProblemSolutionContainer::const_iterator;
+
+#ifdef MODEL_EXPORTS
+#define DECLSPEC __declspec(dllexport)
+#else
+#define DECLSPEC __declspec(dllimport)
+#endif // MODEL_EXPORTS
 
 /*Item - эквивалент реального оборудования*/
 class DECLSPEC Item {
@@ -44,7 +45,7 @@ public:
 	std::pair<PSiterator, PSiterator> getProblemsSolutions();
 	std::pair<SIiteratorConst, SIiteratorConst> getServiceInfoView() const;
 	std::pair<PSiteratorConst, PSiteratorConst> getProblemsSolutionsView() const;
-	void getPrintInfoItem() const;
+	//void getPrintInfoItem() const;
 private:
 	std::shared_ptr<ITequipment> equipment;
 	int64_t inventoryNumber;

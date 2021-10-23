@@ -19,9 +19,9 @@ std::unique_ptr<Item> MonitorEditDialog::createItem()
 	auto number		{ ui->leNumber	->text().toLongLong()	};
 
 	dataManager->setDataMonitor(name, diagonal);
-	auto item{ dataManager->createItem(
+	auto item{ std::move(dataManager->createItem(
 		DataManager::typeITEquipment::typeMonitor,
-		number)
+		number))
 	};
 	return std::move(item);
 }

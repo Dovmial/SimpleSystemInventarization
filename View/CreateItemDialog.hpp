@@ -6,7 +6,7 @@
 #include <memory>
 
 //#include "../SimpleSystemInventarization/Item.hpp"
-namespace Ui { class CreateItemDialog; }
+//namespace Ui { class CreateItemDialog; }
 class CreateItemDialog : public QDialog {
 	Q_OBJECT
 public:

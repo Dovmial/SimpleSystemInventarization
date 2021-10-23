@@ -2,27 +2,22 @@
 #include "BaseObject.hpp"
 #include "Iinfo.hpp"
 
-#ifdef MODEL_EXPORTS
-#define DECLSPEC __declspec(dllexport)
-#else
-#define DECLSPEC __declspec(dllimport)
-#endif
 
-class DECLSPEC Components : public BaseObject, public Iinfo{
+class Components : public BaseObject, public Iinfo{
 public:
 	Components() = delete;
 	Components(const std::string& name);
 };
 
 
-class DECLSPEC MotherBoard : public Components{
+class  MotherBoard : public Components{
 public:
 	MotherBoard() = delete;
 	MotherBoard(const std::string& name);
 	virtual std::string getInfo() const override;
 };
 
-class DECLSPEC CPU: public Components {
+class  CPU: public Components {
 public:
 	CPU() = delete;
 	CPU(const std::string& name, float frequency_ = -1.f);
@@ -33,7 +28,7 @@ private:
 	float frequency;
 };
 
-class DECLSPEC RAM : public Components{
+class  RAM : public Components{
 public:
 	RAM() = delete;
 	RAM(float volume_, const std::string& name = "");
@@ -44,7 +39,7 @@ private:
 	float volume;
 };
 
-class DECLSPEC StorageDevice : public Components {
+class StorageDevice : public Components {
 public:
 	enum class typeStorageDevice {
 		HDD = 1,
@@ -72,7 +67,7 @@ private:
 	float volume;
 };
 
-class DECLSPEC GraphicCard : public Components {
+class  GraphicCard : public Components {
 public:
 	GraphicCard() = delete;
 	GraphicCard(
@@ -85,7 +80,7 @@ private:
 	float volume;
 };
 
-class DECLSPEC Cartridge : public Components {
+class  Cartridge : public Components {
 public:
 	Cartridge() = delete;
 	Cartridge(const std::string& name);

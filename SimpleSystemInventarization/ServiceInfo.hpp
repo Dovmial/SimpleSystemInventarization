@@ -1,14 +1,13 @@
 #ifndef __SERVICEINFO_HPP__
 #define __SERVICEINFO_HPP__
 
+#include <string>
 
 #ifdef MODEL_EXPORTS
 #define DECLSPEC __declspec(dllexport)
 #else
 #define DECLSPEC __declspec(dllimport)
-#endif
-
-#include <string>
+#endif // MODEL_EXPORTS
 
 class DECLSPEC ServiceInfo {
 public:

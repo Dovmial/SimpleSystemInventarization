@@ -62,10 +62,10 @@ std::unique_ptr<Item> PCeditDialog::createItem()
 			operationSystem) 
 	};
 	dataManager->setDataPC(std::move(data));
-	auto& item{
+	auto item{std::move(
 		dataManager->createItem(
 			DataManager::typeITEquipment::typePC, number) 
-	};
+	) };
 	return std::move(item);
 }
 

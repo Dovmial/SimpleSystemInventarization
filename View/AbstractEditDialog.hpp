@@ -10,7 +10,7 @@ class AbstractEditDialog : public QDialog, public IItemCreatable {
 public:
 	AbstractEditDialog(std::shared_ptr<DataManager> dm,
 		QWidget* parent = nullptr);
-
+	virtual ~AbstractEditDialog();
 protected:
 	std::shared_ptr<DataManager> dataManager;
 };

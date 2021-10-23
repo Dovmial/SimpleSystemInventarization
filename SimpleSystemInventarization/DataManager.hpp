@@ -10,6 +10,7 @@
 
 //Singleton
 
+
 #ifdef MODEL_EXPORTS
 #define DECLSPEC __declspec(dllexport)
 #else

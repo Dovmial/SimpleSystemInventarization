@@ -13,18 +13,20 @@ Room::Room(const std::string& name_): BaseObject(name_)
 
 }
 
-Item* Room::showItem(size_t index)
+Item* Room::showItem(size_t index) const
 {
 	return items.at(index).get();
 }
 
 void Room::addItem(std::unique_ptr<Item> item)
 {
-	items.push_back(move(item));
+	items.push_back(std::move(item));
 }
 
 void Room::eraseItem(Item* item)
 {
+	/*
 	auto erItem = find(begin(items), end(items), item);
 	items.erase(erItem);
+	*/
 }

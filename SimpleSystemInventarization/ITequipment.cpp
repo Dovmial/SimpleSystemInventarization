@@ -49,8 +49,7 @@ void PC::setTypePC(TypePC typePC_)
 
 void PC::setComplectComponents(std::shared_ptr<ComplectComponents> complect)
 {
-	auto& [type, motherBoard, _cpu, graphCard, ram, storDevice, operSystem] = *complect;
-	setTypePC(type);
+	auto& [ motherBoard, _cpu, graphCard, ram, storDevice, operSystem] = *complect;
 	setMotherboard(motherBoard);
 	setCPU(_cpu);
 	setGraphicCard(graphCard);

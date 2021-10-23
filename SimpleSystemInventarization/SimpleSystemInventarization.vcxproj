@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BaseObject.cpp" />
+    <ClCompile Include="Build.cpp" />
     <ClCompile Include="Components.cpp" />
     <ClCompile Include="DataManager.cpp" />
     <ClCompile Include="GetDataEquipment.cpp" />

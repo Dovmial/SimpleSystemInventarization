@@ -28,8 +28,13 @@ void PCfabric::setInfo(const std::string& name_, PC::TypePC type_)
 
 std::shared_ptr<ITequipment> PCfabric::create()
 {
-	auto pc{ std::make_shared<PC>(name,type, std::move(complect)) };
+	auto pc{ std::make_shared<PC>(name,type, complect) };
 	return pc;
+}
+
+MonitorFabric::MonitorFabric(std::pair<std::string, float>&& info_)
+{
+	info = info_;
 }
 
 void MonitorFabric::setInfo(std::pair<std::string, float>&& info_)

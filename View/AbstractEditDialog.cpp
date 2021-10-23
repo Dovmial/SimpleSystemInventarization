@@ -5,3 +5,7 @@ AbstractEditDialog::AbstractEditDialog(
 	dataManager(dm),
 	QDialog(parent)
 {}
+
+AbstractEditDialog::~AbstractEditDialog() {
+
+}

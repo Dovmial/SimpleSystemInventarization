@@ -67,30 +67,4 @@ Item::getProblemsSolutionsView() const
 	return std::pair(cbegin(problemsSolutions), cend(problemsSolutions));
 }
 
-void Item::getPrintInfoItem() const
-{
-	/*
-	std::cout << "------" << item->getITequipment()->getName() << " --- #"
-		<< getInventoryNumber() << "--------- \n";
-
-	std::cout << getITequipment()->getInfo() //polymorph function
-		<< "--------------------------------" << "\n\n";
-		
-	auto [servInfoBegin, servInfoEnd] = getServiceInfoView();
-	auto [probSolutionBegin, probSolutionEnd] = getProblemsSolutionsView();
-
-	while (servInfoBegin != servInfoEnd) {
-		std::cout << "--Service: " << (*servInfoBegin)->getDescription()
-			<< "  ----  " << (*servInfoBegin)->getDate() << " --\n\n";
-		++servInfoBegin;
-	}
-
-	while (probSolutionBegin != probSolutionEnd) {
-		std::cout << "--Problem: " << (*probSolutionBegin)->getDescription()
-			<< "\n--Solution: " << (*probSolutionBegin)->getSolution()
-			<< "\n----  " << (*probSolutionBegin)->getDate() << " --\n\n";
-		++probSolutionBegin;
-	}
-	*/
-}
 

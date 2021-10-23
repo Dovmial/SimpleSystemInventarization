@@ -12,20 +12,23 @@
 #define DECLSPEC __declspec(dllexport)
 #else
 #define DECLSPEC __declspec(dllimport)
-#endif
+#endif // MODEL_EXPORTS
 
-class DECLSPEC Room: public BaseObject{
+
+class  Room: public BaseObject{
+
+public:
+	Room() = delete;
+	DECLSPEC Room(const std::string& name_);
+		//, std::shared_ptr<DataManager> dm);
+	DECLSPEC Item* showItem(size_t index) const ;
+	DECLSPEC void addItem(std::unique_ptr<Item> item);
+	DECLSPEC void eraseItem(Item* item);
+
 private:
 	std::vector<std::unique_ptr<Item>> items;
 	//std::shared_ptr<DataManager> dataManager;
 
-public:
-	Room() = delete;
-	Room(const std::string& name_);
-		//, std::shared_ptr<DataManager> dm);Room(const std::string& name_);
-	Item* showItem(size_t index);
-	void addItem(std::unique_ptr<Item> item);
-	void eraseItem(Item* item);
 };
 
 #endif // !__ROOM__HPP___

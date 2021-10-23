@@ -5,20 +5,15 @@
 #include <memory>
 #include <tuple>
 
-#ifdef MODEL_EXPORTS
-#define DECLSPEC __declspec(dllexport)
-#else
-#define DECLSPEC __declspec(dllimport)
-#endif
 
-struct DECLSPEC IITequipmentFabric {
+struct  IITequipmentFabric {
 	virtual std::shared_ptr<ITequipment> create() = 0; //fabric method
 };
 
 using ComplectComponents = std::tuple
 <MotherBoard, CPU, GraphicCard, RAM, StorageDevice, std::string>;
 
-class DECLSPEC PCfabric: public IITequipmentFabric {
+class  PCfabric: public IITequipmentFabric {
 public:
 	PCfabric();
 	PCfabric(const std::string& name, PC::TypePC info_,
@@ -34,7 +29,7 @@ private:
 };
 
 
-class DECLSPEC MonitorFabric: public IITequipmentFabric
+class MonitorFabric: public IITequipmentFabric
 {
 public:
 	MonitorFabric() {};
@@ -46,7 +41,7 @@ private:
 	std::pair<std::string, float> info;
 };
 
-class DECLSPEC PrinterFabric : public IITequipmentFabric
+class PrinterFabric : public IITequipmentFabric
 {
 public:
 	PrinterFabric();
@@ -58,7 +53,7 @@ private:
 	std::tuple<std::string, Cartridge, Printer::PrinterType> info;
 };
 
-class DECLSPEC OtherFabric : public IITequipmentFabric
+class  OtherFabric : public IITequipmentFabric
 {
 public:
 	OtherFabric();
