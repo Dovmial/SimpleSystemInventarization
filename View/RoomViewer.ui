@@ -72,8 +72,16 @@
        <property name="childrenCollapsible">
         <bool>false</bool>
        </property>
-       <widget class="QTableView" name="tvItems"/>
-       <widget class="QPlainTextEdit" name="pteInfoItems"/>
+       <widget class="QTableView" name="tvItems">
+        <property name="editTriggers">
+         <set>QAbstractItemView::NoEditTriggers</set>
+        </property>
+       </widget>
+       <widget class="QPlainTextEdit" name="pteInfoItems">
+        <property name="readOnly">
+         <bool>true</bool>
+        </property>
+       </widget>
       </widget>
       <widget class="QSplitter" name="splitter_2">
        <property name="orientation">

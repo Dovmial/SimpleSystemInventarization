@@ -24,7 +24,8 @@ public:
 	DECLSPEC Item* showItem(size_t index) const ;
 	DECLSPEC void addItem(std::unique_ptr<Item> item);
 	DECLSPEC void eraseItem(Item* item);
-
+	DECLSPEC bool isEmpty();
+	DECLSPEC bool operator<(const Room& other);
 private:
 	std::vector<std::unique_ptr<Item>> items;
 	//std::shared_ptr<DataManager> dataManager;

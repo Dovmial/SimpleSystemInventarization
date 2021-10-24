@@ -10,7 +10,6 @@ Room::Room(const std::string& name_, std::shared_ptr<DataManager> dm) :
 
 Room::Room(const std::string& name_): BaseObject(name_)
 {
-
 }
 
 Item* Room::showItem(size_t index) const
@@ -29,4 +28,14 @@ void Room::eraseItem(Item* item)
 	auto erItem = find(begin(items), end(items), item);
 	items.erase(erItem);
 	*/
+}
+
+bool Room::isEmpty()
+{
+	return items.empty();
+}
+
+ bool Room::operator<(const Room& other)
+{
+	 return  name < other.name;
 }
