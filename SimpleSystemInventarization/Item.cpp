@@ -6,6 +6,10 @@ Item::Item(std::shared_ptr<ITequipment> equipment_, int64_t inventoryNumber_) :
 	equipment(equipment_),
 	inventoryNumber(inventoryNumber_)
 {}
+std::string Item::getName()
+{
+	return getITequipment()->getName();
+}
 /*
 Item::~Item()
 {

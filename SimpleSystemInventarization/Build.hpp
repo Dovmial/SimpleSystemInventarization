@@ -21,11 +21,11 @@ class Build: public BaseObject{
 public:
 	Build() = delete;
 	DECLSPEC Build(const std::string& name, std::shared_ptr<DataManager> dm);
-	void addRoom(const std::string& nameRoom);
-	bool removeRoom(const std::string& nameRoom);
-	int findRoom(const std::string& nameRoom);
-	//void findItem(const std::string& name);
-	//void findItem(int64_t inventoryNumber);
+	DECLSPEC void addRoom(const std::string& nameRoom);
+	DECLSPEC bool removeRoom(const std::string& nameRoom);
+	DECLSPEC int findRoom(const std::string& nameRoom);
+	DECLSPEC Room* findItem(const std::string& name);
+	DECLSPEC Room* findItem(int64_t inventoryNumber);
 	
 private:
 	std::vector<std::unique_ptr<Room>> rooms;

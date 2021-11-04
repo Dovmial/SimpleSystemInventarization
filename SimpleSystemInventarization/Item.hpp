@@ -28,7 +28,7 @@ public:
 	Item() = delete;
 	Item(std::shared_ptr<ITequipment> equipment_, int64_t inventoryNumber_);
 	//~Item();
-
+	std::string getName();
 	void addSignService(std::string description, std::string date);
 	void addSignProblemsSolutions(
 		std::string problems,

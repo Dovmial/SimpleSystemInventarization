@@ -25,11 +25,12 @@ public:
 	DECLSPEC void addItem(std::unique_ptr<Item> item);
 	DECLSPEC void eraseItem(Item* item);
 	DECLSPEC bool isEmpty();
+	DECLSPEC Item* findItem(const std::string& name);
+	DECLSPEC Item*  findItem(int64_t inventoryNumber);
 	DECLSPEC bool operator<(const Room& other);
+	
 private:
 	std::vector<std::unique_ptr<Item>> items;
-	//std::shared_ptr<DataManager> dataManager;
-
 };
 
 #endif // !__ROOM__HPP___

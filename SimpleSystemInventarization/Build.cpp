@@ -16,7 +16,7 @@ void Build::addRoom(const std::string& nameRoom)
 bool Build::removeRoom(const std::string& nameRoom)
 {
 	int index = findRoom(nameRoom);
-	if (index == -1 || !rooms[index]->isEmpty()) {
+	if (index == -1 || !rooms[index]->isEmpty()) {//remove only for an empty room
 		return false;
 	}
 	rooms.erase(begin(rooms) + index);
@@ -35,4 +35,24 @@ int Build::findRoom(const std::string& nameRoom)
 			return i;
 		}
 	}
+}
+
+Room* Build::findItem(const std::string& name)
+{
+	size_t SIZE = rooms.size();
+	for (size_t i{}; i < SIZE; ++i) {
+		if (rooms[i]->findItem(name))
+			return rooms[i].get();
+	}
+	return nullptr;
+}
+
+Room* Build::findItem(int64_t inventoryNumber)
+{
+	size_t SIZE = rooms.size();
+	for (size_t i{}; i < SIZE; ++i) {
+		if (rooms[i]->findItem(inventoryNumber))
+			return rooms[i].get();
+	}
+	return nullptr;
 }
