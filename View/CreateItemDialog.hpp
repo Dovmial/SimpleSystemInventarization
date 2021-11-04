@@ -13,7 +13,7 @@ public:
 	CreateItemDialog(QWidget* parent = nullptr);
 	~CreateItemDialog();
 
-	AbstractEditDialog* getEditItemDialog(std::shared_ptr<DataManager> dm);
+	AbstractEditDialog* getEditItemDialog(DataManager* dm);
 private slots:
 	
 private:

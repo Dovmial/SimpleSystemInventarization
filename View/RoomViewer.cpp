@@ -1,10 +1,10 @@
 #include "RoomViewer.hpp"
 #include "CreateItemDialog.hpp"
 
-RoomViewer::RoomViewer(QWidget* parent)
+RoomViewer::RoomViewer(std::unique_ptr<DataManager> dm, QWidget* parent)
     : ui{new Ui::RoomViewer()},
-    dataManager{ std::make_shared<DataManager>() },
-    room{ new Room("309") },
+    dataManager{ std::move(dm) },
+    room{ nullptr },
     QMainWindow(parent)
 {
     ui->setupUi(this);
@@ -13,7 +13,6 @@ RoomViewer::RoomViewer(QWidget* parent)
 RoomViewer::~RoomViewer()
 {
     delete ui;
-    delete room;
 }
 
 void RoomViewer::setRoom(Room* room_) {
@@ -25,7 +24,7 @@ Room* RoomViewer::getRoom()const {
 void RoomViewer::on_mnuAddItem_triggered() {
     auto pCrItemDialog{ new CreateItemDialog(nullptr) };
     if (pCrItemDialog->exec() == CreateItemDialog::Accepted) {
-        auto dialog{ pCrItemDialog->getEditItemDialog(dataManager) };
+        auto dialog{ pCrItemDialog->getEditItemDialog(dataManager.get()) };
         if (dialog->exec() == QDialog::Accepted) {
             room->addItem(dialog->createItem());
             ui->pteInfoItems->setPlainText(

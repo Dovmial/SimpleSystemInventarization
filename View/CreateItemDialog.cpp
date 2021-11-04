@@ -16,7 +16,7 @@ CreateItemDialog::~CreateItemDialog() {
 	delete ui;
 }
 
-AbstractEditDialog* CreateItemDialog::getEditItemDialog(std::shared_ptr<DataManager> dm)
+AbstractEditDialog* CreateItemDialog::getEditItemDialog(DataManager* dm)
 {
 	if (ui->rbPCtype->isChecked())
 		return new PCeditDialog(dm, this);

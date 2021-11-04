@@ -7,7 +7,7 @@
 class MonitorEditDialog: public AbstractEditDialog {
 	Q_OBJECT
 public:
-	MonitorEditDialog(std::shared_ptr<DataManager> dm,
+	MonitorEditDialog(DataManager* dm,
 		QWidget* parent = nullptr);
 	~MonitorEditDialog();
 	std::unique_ptr<Item> createItem() override;

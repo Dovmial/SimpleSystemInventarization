@@ -2,12 +2,10 @@
 #ifndef __BUILD__HPP___
 #define __BUILD__HPP___
 
-#include <set>
+#include <memory>
 #include "BaseObject.hpp"
 #include "Room.hpp"
-#include "DataManager.hpp"
-#include <memory>
-#include <algorithm>
+
 
 #ifdef MODEL_EXPORTS
 #define DECLSPEC __declspec(dllexport)
@@ -16,11 +14,11 @@
 #endif // MODEL_EXPORTS
 
 
-class Build: public BaseObject{
+class  Build: public BaseObject{
 
 public:
 	Build() = delete;
-	DECLSPEC Build(const std::string& name, std::shared_ptr<DataManager> dm);
+	DECLSPEC Build(const std::string& name);
 	DECLSPEC void addRoom(const std::string& nameRoom);
 	DECLSPEC bool removeRoom(const std::string& nameRoom);
 	DECLSPEC int findRoom(const std::string& nameRoom);
@@ -29,7 +27,6 @@ public:
 	
 private:
 	std::vector<std::unique_ptr<Room>> rooms;
-	std::shared_ptr<DataManager> dataManager;
 };
 
 #endif

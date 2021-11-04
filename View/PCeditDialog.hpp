@@ -7,7 +7,7 @@
 class PCeditDialog : public AbstractEditDialog {
 	Q_OBJECT
 public:
-	PCeditDialog(std::shared_ptr<DataManager> dm, QWidget* parent = nullptr);
+	PCeditDialog(DataManager* dm, QWidget* parent = nullptr);
 	~PCeditDialog();
 	std::unique_ptr<Item> createItem() override;
 private:

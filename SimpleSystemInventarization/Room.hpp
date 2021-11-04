@@ -5,7 +5,6 @@
 #include <string>
 #include "Item.hpp"
 #include "BaseObject.hpp"
-#include "DataManager.hpp"
 #include <memory>
 
 #ifdef MODEL_EXPORTS
@@ -15,12 +14,11 @@
 #endif // MODEL_EXPORTS
 
 
-class  Room: public BaseObject{
+class Room: public BaseObject{
 
 public:
 	Room() = delete;
 	DECLSPEC Room(const std::string& name_);
-		//, std::shared_ptr<DataManager> dm);
 	DECLSPEC Item* showItem(size_t index) const ;
 	DECLSPEC void addItem(std::unique_ptr<Item> item);
 	DECLSPEC void eraseItem(Item* item);

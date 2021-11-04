@@ -3,6 +3,7 @@
 #include <QtWidgets/QMainWindow>
 #include "ui_View.h"
 #include "RoomViewer.hpp"
+#include <memory>
 
 class View : public QMainWindow
 {
@@ -16,4 +17,5 @@ private slots:
 private:
     Ui::ViewClass* ui;
     RoomViewer* roomViewer;
+    std::unique_ptr<DataManager> dataManager;
 };

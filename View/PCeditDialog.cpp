@@ -3,8 +3,7 @@
 
 
 
-PCeditDialog::PCeditDialog(
-	std::shared_ptr<DataManager> dm, QWidget* parent):
+PCeditDialog::PCeditDialog(DataManager* dm, QWidget* parent):
 	ui {new Ui::PCeditDialog()},
 	AbstractEditDialog(dm, parent)
 {

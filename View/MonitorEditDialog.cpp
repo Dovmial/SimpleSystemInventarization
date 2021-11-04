@@ -1,6 +1,6 @@
 #include "MonitorEditDialog.hpp"
 
-MonitorEditDialog::MonitorEditDialog(std::shared_ptr<DataManager> dm,
+MonitorEditDialog::MonitorEditDialog(DataManager* dm,
 	QWidget* parent) :
 	ui{ new Ui::MonitorEditDialog() },
 	AbstractEditDialog(dm, parent)

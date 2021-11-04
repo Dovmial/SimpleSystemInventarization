@@ -2,14 +2,13 @@
 #include "Item.hpp"
 #include <vector>
 #include <memory>
+#include <map>
 #include "IITequipmentFabric.hpp"
 #include "GetDataEquipment.hpp"
+#include "Build.hpp"
 
 //$(SolutionDir)bin\$(Platform)\$(Configuration)\
 //$(SolutionDir)bin\$(Platform)\$(Configuration)\intermediate\$(ProjectName)\
-
-//Singleton
-
 
 #ifdef MODEL_EXPORTS
 #define DECLSPEC __declspec(dllexport)
@@ -36,13 +35,13 @@ public:
 	};
 	DataManager();
 	~DataManager();
-	
+
 	std::unique_ptr<Item> createItem(
 		typeITEquipment type,
 		int64_t inventoryNumber_ = -1
 	);
 
-	void setDataMonitor	(const std::string& name, float diagonal);
+	void setDataMonitor(const std::string& name, float diagonal);
 	void setDataPC(const DataPC& data);
 
 	void setDataPrinter(
@@ -50,14 +49,9 @@ public:
 	void setDataOther(const std::string& name, const std::string& otherInfo);
 private:
 	std::shared_ptr<ITequipment> createITequipment(typeITEquipment typeITE);
-
-/*private:
-	std::vector<std::shared_ptr<PC>> equipPC;
-	std::vector<std::shared_ptr<Monitor>> equipMonitor;
-	std::vector<std::shared_ptr<Printer>> equipPrinter;
-	std::vector<std::shared_ptr<OtherEquipment>> equipOther;
-	std::vector<std::unique_ptr<Item>> items;
-	*/
+private:
+	std::vector<Build> builds;
+	std::multimap<std::string, std::unique_ptr<Item>> devices;
 private:
 	std::unique_ptr<PCfabric> pcFabric;
 	std::unique_ptr<MonitorFabric> monitorFabric;

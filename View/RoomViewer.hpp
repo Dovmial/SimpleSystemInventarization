@@ -10,7 +10,7 @@ class RoomViewer : public QMainWindow
 {
     Q_OBJECT
 public:
-    RoomViewer(QWidget* parent = Q_NULLPTR);
+    RoomViewer(std::unique_ptr<DataManager> dm, QWidget* parent = Q_NULLPTR);
     ~RoomViewer();
 
     void setRoom(Room* room_);
@@ -20,7 +20,7 @@ private slots:
 private:
    // GetDatas getDatas;
     Ui::RoomViewer* ui;
-    std::shared_ptr<DataManager> dataManager;
+    std::unique_ptr<DataManager> dataManager;
     Room* room;
     //std::set<unique_ptr<Room>> rooms
 };

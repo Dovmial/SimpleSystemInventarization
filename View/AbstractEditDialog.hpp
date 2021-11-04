@@ -3,14 +3,13 @@
 #include <QDialog>
 #include "IItemCreatable.hpp"
 #include "../SimpleSystemInventarization/DataManager.hpp"
-#include <memory>
 
 class AbstractEditDialog : public QDialog, public IItemCreatable {
 	Q_OBJECT
 public:
-	AbstractEditDialog(std::shared_ptr<DataManager> dm,
+	AbstractEditDialog(DataManager* dm,
 		QWidget* parent = nullptr);
 	virtual ~AbstractEditDialog();
 protected:
-	std::shared_ptr<DataManager> dataManager;
+	DataManager* dataManager;
 };

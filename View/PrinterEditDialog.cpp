@@ -1,8 +1,7 @@
 #include "PrinterEditDialog.hpp"
 #include <tuple>
 
-PrinterEditDialog::PrinterEditDialog(
-	std::shared_ptr<DataManager> dm, QWidget* parent) :
+PrinterEditDialog::PrinterEditDialog(DataManager* dm, QWidget* parent) :
 	ui{ new Ui::PrinterEditDialog() },
 	AbstractEditDialog(dm, parent)
 {

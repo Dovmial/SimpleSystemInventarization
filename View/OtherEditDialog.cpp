@@ -1,7 +1,6 @@
 #include "OtherEditDialog.hpp"
 
-OtherEditDialog::OtherEditDialog(
-	std::shared_ptr<DataManager> dm, QWidget* parent) :
+OtherEditDialog::OtherEditDialog(DataManager* dm, QWidget* parent) :
 	ui{ new Ui::OtherEditDialog() },
 	AbstractEditDialog(dm, parent)
 {
