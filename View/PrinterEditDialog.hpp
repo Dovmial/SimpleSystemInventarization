@@ -10,7 +10,7 @@ class PrinterEditDialog : public AbstractEditDialog
 public:
 	PrinterEditDialog(DataManager* dm, QWidget* parent = nullptr);
 	~PrinterEditDialog();
-	std::unique_ptr<Item> createItem() override;
+	Item* createItem() override;
 private:
 	Ui::PrinterEditDialog* ui;
 };

@@ -10,7 +10,7 @@ public:
 	MonitorEditDialog(DataManager* dm,
 		QWidget* parent = nullptr);
 	~MonitorEditDialog();
-	std::unique_ptr<Item> createItem() override;
+	Item* createItem() override;
 private slots:
 	
 private:

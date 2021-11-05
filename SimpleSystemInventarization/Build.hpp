@@ -24,6 +24,7 @@ public:
 	DECLSPEC int findRoom(const std::string& nameRoom);
 	DECLSPEC Room* findItem(const std::string& name);
 	DECLSPEC Room* findItem(int64_t inventoryNumber);
+	DECLSPEC Room* getRoom(int index);
 	
 private:
 	std::vector<std::unique_ptr<Room>> rooms;

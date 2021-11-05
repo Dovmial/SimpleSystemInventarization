@@ -1,8 +1,6 @@
 
 #include "PCeditDialog.hpp"
 
-
-
 PCeditDialog::PCeditDialog(DataManager* dm, QWidget* parent):
 	ui {new Ui::PCeditDialog()},
 	AbstractEditDialog(dm, parent)
@@ -14,7 +12,7 @@ PCeditDialog::~PCeditDialog() {
 	delete ui;
 }
 
-std::unique_ptr<Item> PCeditDialog::createItem()
+Item* PCeditDialog::createItem()
 {
 	auto number { ui->leNumber->text().toLongLong() };
 
@@ -63,8 +61,11 @@ std::unique_ptr<Item> PCeditDialog::createItem()
 	dataManager->setDataPC(std::move(data));
 	auto item{std::move(
 		dataManager->createItem(
-			DataManager::typeITEquipment::typePC, number) 
+			DataManager::typeITEquipment::typePC,
+			number,
+			dataManager->getCurrentLocationInfo().second,
+			dataManager->getCurrentLocationInfo().first)
 	) };
-	return std::move(item);
+	return item;
 }
 

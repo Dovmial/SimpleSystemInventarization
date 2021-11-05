@@ -11,7 +11,7 @@ OtherEditDialog::~OtherEditDialog() {
 	delete ui;
 }
 
-std::unique_ptr<Item> OtherEditDialog::createItem()
+Item* OtherEditDialog::createItem()
 {
 	auto name		{ ui->leName->text().toStdString()				};
 	auto number		{ ui->leName->text().toLongLong()				};
@@ -20,7 +20,10 @@ std::unique_ptr<Item> OtherEditDialog::createItem()
 	dataManager->setDataOther(name, otherInfo);
 	auto item{ std::move(
 		dataManager->createItem(
-			DataManager::typeITEquipment::typeoOtherITEquipment, number)
+			DataManager::typeITEquipment::typeoOtherITEquipment,
+			number,
+			dataManager->getCurrentLocationInfo().second,
+			dataManager->getCurrentLocationInfo().first)
 	) };
-	return std::move(item);
+	return item;
 }

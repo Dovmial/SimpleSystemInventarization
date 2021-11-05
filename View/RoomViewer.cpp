@@ -5,9 +5,19 @@ RoomViewer::RoomViewer(std::unique_ptr<DataManager> dm, QWidget* parent)
     : ui{new Ui::RoomViewer()},
     dataManager{ std::move(dm) },
     room{ nullptr },
+    currentLocationInfo(new QLabel(this)),
     QMainWindow(parent)
 {
     ui->setupUi(this);
+    room = dataManager->getCurrentRoom();
+    ui->lblRoomName->setText(QString::fromStdString(room->getName()));
+    QString status = QString::fromStdString(
+        "Build: " + dataManager->getCurrentLocationInfo().first +
+        "\tRoom: " + dataManager->getCurrentLocationInfo().second
+    );
+    currentLocationInfo->setText(status);
+    currentLocationInfo->setStyleSheet("QLabel {color: blue;}");
+    ui->statusbar->addWidget(currentLocationInfo);
 }
 
 RoomViewer::~RoomViewer()

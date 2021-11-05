@@ -52,13 +52,19 @@
     <Filter Include="GetData\Файлы заголовков">
       <UniqueIdentifier>{20cc9be9-349b-4851-a9d2-6aa3bb9531b4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Managers">
+      <UniqueIdentifier>{270a1472-ac2b-44d9-af80-face086eb461}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Managers\Исходные файлы">
+      <UniqueIdentifier>{1bd3a1d8-a1e0-455c-ae02-cda11a53dae9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Managers\Файлы Заголовков">
+      <UniqueIdentifier>{cf167431-e6b1-4c5e-ae18-e1f4885d3874}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Room.cpp">
       <Filter>Building\Исходные файлы</Filter>
-    </ClCompile>
-    <ClCompile Include="DataManager.cpp">
-      <Filter>Creators\Исходные файлы</Filter>
     </ClCompile>
     <ClCompile Include="IITequipmentFabric.cpp">
       <Filter>Creators\Исходные файлы</Filter>
@@ -84,6 +90,12 @@
     <ClCompile Include="Build.cpp">
       <Filter>Building\Исходные файлы</Filter>
     </ClCompile>
+    <ClCompile Include="DataManager.cpp">
+      <Filter>Managers\Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="Navigator.cpp">
+      <Filter>Managers\Исходные файлы</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Room.hpp">
@@ -91,9 +103,6 @@
     </ClInclude>
     <ClInclude Include="Build.hpp">
       <Filter>Building\Файлы заголовков</Filter>
-    </ClInclude>
-    <ClInclude Include="DataManager.hpp">
-      <Filter>Creators\Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="GetDataEquipment.hpp">
       <Filter>GetData\Файлы заголовков</Filter>
@@ -118,6 +127,15 @@
     </ClInclude>
     <ClInclude Include="BaseObject.hpp">
       <Filter>BaseObject\Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="DataManager.hpp">
+      <Filter>Managers\Файлы Заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Location.hpp">
+      <Filter>Managers\Файлы Заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Navigator.hpp">
+      <Filter>Managers\Файлы Заголовков</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

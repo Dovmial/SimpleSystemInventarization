@@ -6,12 +6,13 @@ View::View(QWidget* parent)
 {
     ui->setupUi(this);
     dataManager = std::make_unique<DataManager>();
-    roomViewer = new RoomViewer(nullptr);
+    roomViewer = new RoomViewer(std::move(dataManager));
 }
 
 View::~View()
 {
     delete ui;
+    delete roomViewer;
 }
 
 void View::on_pushButtonStart_clicked() {

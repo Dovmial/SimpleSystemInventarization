@@ -3,15 +3,16 @@
 #include "Build.hpp"
 
 Build::Build(const std::string& name) :
-	BaseObject{ name }
+	BaseObject(name)
 {
+	rooms.push_back(std::make_unique<Room>("Virtual room"));
 }
 
 void Build::addRoom(const std::string& nameRoom)
 {
 	auto room{ std::make_unique<Room>(nameRoom) };
 	rooms.push_back(std::move(room));
-	std::sort(begin(rooms), end(rooms));
+	std::sort(begin(rooms)+1, end(rooms));
 }
 
 bool Build::removeRoom(const std::string& nameRoom)
@@ -56,4 +57,9 @@ Room* Build::findItem(int64_t inventoryNumber)
 			return rooms[i].get();
 	}
 	return nullptr;
+}
+
+Room* Build::getRoom(int index)
+{
+	return rooms[index].get();
 }

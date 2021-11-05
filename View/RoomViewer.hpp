@@ -18,9 +18,8 @@ public:
 private slots:
     void on_mnuAddItem_triggered();
 private:
-   // GetDatas getDatas;
     Ui::RoomViewer* ui;
     std::unique_ptr<DataManager> dataManager;
     Room* room;
-    //std::set<unique_ptr<Room>> rooms
+    QLabel* currentLocationInfo;
 };

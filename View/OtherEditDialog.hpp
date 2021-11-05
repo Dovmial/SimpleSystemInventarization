@@ -9,7 +9,7 @@ class OtherEditDialog : public AbstractEditDialog
 public:
 	OtherEditDialog(DataManager* dm,QWidget* parent = nullptr);
 	~OtherEditDialog();
-	std::unique_ptr<Item> createItem() override;
+	Item* createItem() override;
 private:
 	Ui::OtherEditDialog* ui;
 };

@@ -20,7 +20,7 @@ public:
 	Room() = delete;
 	DECLSPEC Room(const std::string& name_);
 	DECLSPEC Item* showItem(size_t index) const ;
-	DECLSPEC void addItem(std::unique_ptr<Item> item);
+	DECLSPEC void addItem(Item* item);
 	DECLSPEC void eraseItem(Item* item);
 	DECLSPEC bool isEmpty();
 	DECLSPEC Item* findItem(const std::string& name);
@@ -28,7 +28,7 @@ public:
 	DECLSPEC bool operator<(const Room& other);
 	
 private:
-	std::vector<std::unique_ptr<Item>> items;
+	std::vector<Item*> items;
 };
 
 #endif // !__ROOM__HPP___

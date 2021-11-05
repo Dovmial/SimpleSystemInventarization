@@ -1,6 +1,4 @@
 #include "DataManager.hpp"
-#include "IITequipmentFabric.hpp"
-#include "GetDataEquipment.hpp"
 #include <memory>
 
 DataManager::DataManager() :
@@ -13,7 +11,13 @@ DataManager::DataManager() :
 	monitorGetData	{ std::make_unique<MonitorGetData>	()},
 	printerGetData	{ std::make_unique<PrinterGetData>	()},
 	otherGetData	{ std::make_unique<OtherGetData>	()}
-{}
+{
+	buildings.push_back(std::move(std::make_unique<Build>("Virtual building")));
+	currentLocation = std::make_unique<Navigator>(
+		buildings[0]->getName(),
+		buildings[0]->getRoom(0)->getName()
+	);
+}
 
 DataManager::~DataManager()
 {
@@ -68,9 +72,20 @@ DataManager::createITequipment(typeITEquipment typeITE)
 	}
 }
 
-std::unique_ptr<Item> DataManager::createItem(typeITEquipment type, int64_t inventoryNumber_)
+Item* DataManager::createItem(
+	typeITEquipment type,
+	int64_t inventoryNumber_,
+	const std::string& nameBuilding, 
+	const std::string& nameRoom
+	)
 {
-	return std::make_unique<Item>(createITequipment(type), inventoryNumber_);
+	devices.push_back({
+		std::make_unique<Item>(createITequipment(type),inventoryNumber_),
+		nameBuilding,
+		nameRoom
+		}
+	);
+	return devices.back().item.get();
 }
 
 void DataManager::setDataPC(const DataPC& data) {
@@ -93,4 +108,25 @@ void DataManager::setDataPrinter(
 void DataManager::setDataOther(const std::string& name, const std::string& otherInfo)
 {
 	otherGetData->setData(name, otherInfo);
+}
+
+void DataManager::setCurrentLocationInfo(std::pair<std::string, std::string> location)
+{
+	currentLocation->setCurrentLocation(location.first, location.second);
+}
+
+auto DataManager::getCurrentLocationInfo() const -> std::pair<std::string, std::string>
+{
+	return currentLocation->getCurrentlocation();
+}
+
+Room* DataManager::getCurrentRoom() const
+{
+	auto iter = find_if(begin(buildings), end(buildings),
+		[&](std::unique_ptr<Build> const& obj)-> bool {
+			return obj->getName() == currentLocation->getCurrentlocation().first;
+		});
+	int index = iter->get()->
+		findRoom(currentLocation->getCurrentlocation().second);
+	return iter->get()->getRoom(index);
 }

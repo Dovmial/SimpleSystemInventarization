@@ -12,16 +12,18 @@ MonitorEditDialog::~MonitorEditDialog() {
 	delete ui;
 }
 
-std::unique_ptr<Item> MonitorEditDialog::createItem() 
+Item* MonitorEditDialog::createItem() 
 {
 	auto name		{ ui->leName	->text().toStdString()	};
 	auto diagonal	{ ui->leDiagonal->text().toFloat()		};
 	auto number		{ ui->leNumber	->text().toLongLong()	};
 
 	dataManager->setDataMonitor(name, diagonal);
-	auto item{ std::move(dataManager->createItem(
+	auto item{ dataManager->createItem(
 		DataManager::typeITEquipment::typeMonitor,
-		number))
+		number,
+		dataManager->getCurrentLocationInfo().second,
+		dataManager->getCurrentLocationInfo().first)
 	};
-	return std::move(item);
+	return item;
 }

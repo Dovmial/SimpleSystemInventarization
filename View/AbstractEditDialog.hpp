@@ -10,6 +10,7 @@ public:
 	AbstractEditDialog(DataManager* dm,
 		QWidget* parent = nullptr);
 	virtual ~AbstractEditDialog();
+	
 protected:
 	DataManager* dataManager;
 };

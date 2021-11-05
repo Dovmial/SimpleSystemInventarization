@@ -1,11 +1,13 @@
-#pragma once
-#include "Item.hpp"
+#ifndef __DATAMANAGER__HPP__
+#define __DATAMANAGER__HPP__
+
 #include <vector>
 #include <memory>
-#include <map>
+#include "Item.hpp"
 #include "IITequipmentFabric.hpp"
 #include "GetDataEquipment.hpp"
 #include "Build.hpp"
+#include "Navigator.hpp"
 
 //$(SolutionDir)bin\$(Platform)\$(Configuration)\
 //$(SolutionDir)bin\$(Platform)\$(Configuration)\intermediate\$(ProjectName)\
@@ -27,31 +29,39 @@ using DataPC = std::tuple<
 
 class DECLSPEC DataManager {
 public:
-	enum class typeITEquipment {
+	 enum class typeITEquipment {
 		typePC = 1,
 		typeMonitor,
 		typePrinter,
 		typeoOtherITEquipment
 	};
-	DataManager();
+	 DataManager();
 	~DataManager();
 
-	std::unique_ptr<Item> createItem(
-		typeITEquipment type,
-		int64_t inventoryNumber_ = -1
+	 Item* createItem(
+		typeITEquipment type, 
+		int64_t inventoryNumber_,
+		const std::string& nameBuilding,
+		const std::string& nameRoom
 	);
 
 	void setDataMonitor(const std::string& name, float diagonal);
 	void setDataPC(const DataPC& data);
-
 	void setDataPrinter(
 		const std::string& name, const std::string& cartridge, Printer::PrinterType data);
 	void setDataOther(const std::string& name, const std::string& otherInfo);
+
+public:
+	void setCurrentLocationInfo(std::pair<std::string, std::string> location);
+	auto getCurrentLocationInfo() const->std::pair<std::string, std::string>;
+
+	Room* getCurrentRoom() const;
+
 private:
 	std::shared_ptr<ITequipment> createITequipment(typeITEquipment typeITE);
 private:
-	std::vector<Build> builds;
-	std::multimap<std::string, std::unique_ptr<Item>> devices;
+	std::vector<std::unique_ptr<Build>> buildings;
+	std::vector<DeviceLocation> devices;
 private:
 	std::unique_ptr<PCfabric> pcFabric;
 	std::unique_ptr<MonitorFabric> monitorFabric;
@@ -62,4 +72,7 @@ private:
 	std::unique_ptr<PCgetData> pcGetData;
 	std::unique_ptr<PrinterGetData> printerGetData;
 	std::unique_ptr<OtherGetData> otherGetData;
+private:
+	std::unique_ptr<INavigator> currentLocation;
 };
+#endif

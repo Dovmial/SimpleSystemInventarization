@@ -27,6 +27,7 @@
     <ClCompile Include="IITequipmentFabric.cpp" />
     <ClCompile Include="ITequipment.cpp" />
     <ClCompile Include="Item.cpp" />
+    <ClCompile Include="Navigator.cpp" />
     <ClCompile Include="Room.cpp" />
     <ClCompile Include="ServiceInfo.cpp" />
   </ItemGroup>
@@ -35,11 +36,13 @@
     <ClInclude Include="Build.hpp" />
     <ClInclude Include="Components.hpp" />
     <ClInclude Include="DataManager.hpp" />
+    <ClInclude Include="Location.hpp" />
     <ClInclude Include="GetDataEquipment.hpp" />
     <ClInclude Include="Iinfo.hpp" />
     <ClInclude Include="IITequipmentFabric.hpp" />
     <ClInclude Include="ITequipment.hpp" />
     <ClInclude Include="Item.hpp" />
+    <ClInclude Include="Navigator.hpp" />
     <ClInclude Include="Room.hpp" />
     <ClInclude Include="ServiceInfo.hpp" />
   </ItemGroup>
@@ -149,7 +152,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;MODEL_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard>stdcpp20</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
     </ClCompile>
     <Link>
@@ -165,7 +168,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;MODEL_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard>stdcpp20</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
     </ClCompile>
     <Link>

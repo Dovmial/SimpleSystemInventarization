@@ -12,7 +12,7 @@ PrinterEditDialog::~PrinterEditDialog() {
 	delete ui;
 }
 
-std::unique_ptr<Item> PrinterEditDialog::createItem()
+Item* PrinterEditDialog::createItem()
 {
 	auto name		{ ui->leName->text().toStdString		()};
 	auto cartridge	{ ui->leCartFilName->text().toStdString	()};
@@ -32,7 +32,12 @@ std::unique_ptr<Item> PrinterEditDialog::createItem()
 	
 	dataManager->setDataPrinter(name, cartridge, printerType);
 	auto item{ std::move(dataManager->createItem(
-		DataManager::typeITEquipment::typePrinter, number) )};
-	return std::move(item);
+		DataManager::typeITEquipment::typePrinter,
+		number,
+		dataManager->getCurrentLocationInfo().second,
+		dataManager->getCurrentLocationInfo().first
+		)
+	)};
+	return item;
 }
 
