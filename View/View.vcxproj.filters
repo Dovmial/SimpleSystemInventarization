@@ -58,6 +58,9 @@
     <ClCompile Include="AbstractEditDialog.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="CreateRoomDialog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="View.ui">
@@ -81,6 +84,9 @@
     <QtUic Include="RoomViewer.ui">
       <Filter>Form Files</Filter>
     </QtUic>
+    <QtUic Include="CreateRoomDialog.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="CreateItemDialog.hpp">
@@ -102,6 +108,9 @@
       <Filter>Header Files</Filter>
     </QtMoc>
     <QtMoc Include="AbstractEditDialog.hpp">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="CreateRoomDialog.hpp">
       <Filter>Header Files</Filter>
     </QtMoc>
   </ItemGroup>

@@ -115,6 +115,7 @@
     <QtMoc Include="View.h" />
     <ClCompile Include="AbstractEditDialog.cpp" />
     <ClCompile Include="CreateItemDialog.cpp" />
+    <ClCompile Include="CreateRoomDialog.cpp" />
     <ClCompile Include="MonitorEditDialog.cpp" />
     <ClCompile Include="OtherEditDialog.cpp" />
     <ClCompile Include="PCeditDialog.cpp" />
@@ -125,6 +126,7 @@
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="CreateItemDialog.ui" />
+    <QtUic Include="CreateRoomDialog.ui" />
     <QtUic Include="MonitorEditDialog.ui" />
     <QtUic Include="OtherEditDialog.ui" />
     <QtUic Include="PCeditDialog.ui" />
@@ -152,6 +154,7 @@
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="AbstractEditDialog.hpp" />
+    <QtMoc Include="CreateRoomDialog.hpp" />
     <ClInclude Include="IItemCreatable.hpp" />
   </ItemGroup>
   <ItemGroup>

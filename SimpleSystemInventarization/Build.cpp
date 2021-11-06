@@ -25,11 +25,8 @@ bool Build::removeRoom(const std::string& nameRoom)
 	return true;
 }
 
-int Build::findRoom(const std::string& nameRoom)
+int Build::findRoom(const std::string& nameRoom) const
 {
-	if (rooms.empty()) {
-		return -1;
-	}
 	size_t size{ rooms.size() };
 	
 	for (size_t i{ }; i < size; ++i) {
@@ -37,9 +34,10 @@ int Build::findRoom(const std::string& nameRoom)
 			return i;
 		}
 	}
+	return -1;
 }
 
-Room* Build::findItem(const std::string& name)
+Room* Build::findItem(const std::string& name) const
 {
 	size_t SIZE = rooms.size();
 	for (size_t i{}; i < SIZE; ++i) {
@@ -49,7 +47,7 @@ Room* Build::findItem(const std::string& name)
 	return nullptr;
 }
 
-Room* Build::findItem(int64_t inventoryNumber)
+Room* Build::findItem(int64_t inventoryNumber) const
 {
 	size_t SIZE = rooms.size();
 	for (size_t i{}; i < SIZE; ++i) {
@@ -59,7 +57,12 @@ Room* Build::findItem(int64_t inventoryNumber)
 	return nullptr;
 }
 
-Room* Build::getRoom(int index)
+Room* Build::getRoom(int index) const
 {
 	return rooms[index].get();
+}
+
+bool Build::isExistRoom(const std::string& nameRoom) const
+{
+	return findRoom(nameRoom) != -1;
 }

@@ -1,6 +1,7 @@
 #include "RoomViewer.hpp"
 #include "CreateItemDialog.hpp"
-
+#include "CreateRoomDialog.hpp"
+#include <QMessageBox>
 RoomViewer::RoomViewer(std::unique_ptr<DataManager> dm, QWidget* parent)
     : ui{new Ui::RoomViewer()},
     dataManager{ std::move(dm) },
@@ -56,12 +57,19 @@ void RoomViewer::setRoom(Room* room_) {
 Room* RoomViewer::getRoom()const {
     return room;
 }
-void RoomViewer::setTextStatusBar(const std::string& str1, const std::string& str2)
+void RoomViewer::on_mnuAddBuilding_triggered()
 {
-    QString status = QString::fromStdString(
-        "Build: " + str1 + "\tRoom: " + str2);
-    currentLocationInfo->setText(status);
+
 }
+void RoomViewer::on_mnuAddRoom_triggered()
+{
+    auto crRoomDialog{ new CreateRoomDialog(dataManager.get(), this) };
+    if (crRoomDialog->exec() == CreateRoomDialog::Accepted) {
+        crRoomDialog->addRoom();
+        delete crRoomDialog;
+    }
+}
+
 void RoomViewer::on_mnuAddItem_triggered() {
     auto pCrItemDialog{ new CreateItemDialog(nullptr) };
     if (pCrItemDialog->exec() == CreateItemDialog::Accepted) {
@@ -70,8 +78,24 @@ void RoomViewer::on_mnuAddItem_triggered() {
             room->addItem(dialog->createItem());
             ui->pteInfoItems->setPlainText(
                 QString::fromStdString(room->showItem(0)->getITequipment()->getInfo())
-            );    
+            );
+
+           QList<QStandardItem*> itemStringList;
+            itemStringList.append(
+                new QStandardItem(QString::fromStdString(room->showItem(0)->getName())
+                    ));
+            itemStringList.append(
+                new QStandardItem(QString::number(room->showItem(0)->getInventoryNumber()))
+                    );
+            deviceTableModel->insertRow(
+                deviceTableModel->rowCount(), itemStringList);
         }
 
     }
+}
+void RoomViewer::setTextStatusBar(const std::string& str1, const std::string& str2)
+{
+    QString status = QString::fromStdString(
+        "Build: " + str1 + "\tRoom: " + str2);
+    currentLocationInfo->setText(status);
 }

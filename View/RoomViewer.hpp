@@ -20,6 +20,8 @@ public:
 
 private slots:
 	void on_mnuAddItem_triggered();
+	void on_mnuAddBuilding_triggered();
+	void on_mnuAddRoom_triggered();
 private:
 	void setTextStatusBar(const std::string& str1, const std::string& str2);
 private:

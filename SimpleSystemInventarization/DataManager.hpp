@@ -56,7 +56,8 @@ public:
 	auto getCurrentLocationInfo() const->std::pair<std::string, std::string>;
 
 	Room* getCurrentRoom() const;
-
+	Build* getBuilding(const std::string& nameBuilding) const;
+	Build* getCurrentBuilding()const;
 private:
 	std::shared_ptr<ITequipment> createITequipment(typeITEquipment typeITE);
 private:

@@ -122,11 +122,25 @@ auto DataManager::getCurrentLocationInfo() const -> std::pair<std::string, std::
 
 Room* DataManager::getCurrentRoom() const
 {
+	Build* build = getCurrentBuilding();
+	int index = 
+		build->findRoom(currentLocation->getCurrentlocation().second);
+	return build->getRoom(index);
+}
+
+Build* DataManager::getBuilding(const std::string& nameBuilding) const
+{
 	auto iter = find_if(begin(buildings), end(buildings),
 		[&](std::unique_ptr<Build> const& obj)-> bool {
-			return obj->getName() == currentLocation->getCurrentlocation().first;
+			return obj->getName() == nameBuilding;
 		});
-	int index = iter->get()->
-		findRoom(currentLocation->getCurrentlocation().second);
-	return iter->get()->getRoom(index);
+	if (iter == end(buildings))
+		return nullptr;
+	else
+		return iter->get();
+}
+
+Build* DataManager::getCurrentBuilding() const
+{
+	return getBuilding(currentLocation->getCurrentlocation().first);
 }

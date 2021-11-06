@@ -21,10 +21,11 @@ public:
 	DECLSPEC Build(const std::string& name);
 	DECLSPEC void addRoom(const std::string& nameRoom);
 	DECLSPEC bool removeRoom(const std::string& nameRoom);
-	DECLSPEC int findRoom(const std::string& nameRoom);
-	DECLSPEC Room* findItem(const std::string& name);
-	DECLSPEC Room* findItem(int64_t inventoryNumber);
-	DECLSPEC Room* getRoom(int index);
+	DECLSPEC int findRoom(const std::string& nameRoom) const;
+	DECLSPEC Room* findItem(const std::string& name) const;
+	DECLSPEC Room* findItem(int64_t inventoryNumber) const;
+	DECLSPEC Room* getRoom(int index) const;
+	DECLSPEC bool  isExistRoom(const std::string& nameRoom )const;
 	
 private:
 	std::vector<std::unique_ptr<Room>> rooms;
