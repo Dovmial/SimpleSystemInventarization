@@ -58,7 +58,16 @@
     <ClCompile Include="AbstractEditDialog.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="CreateRoomDialog.cpp">
+    <ClCompile Include="EditRoomDialog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DialogTransitToRoom.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="EditBuildingDialog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DialogTransitToBuilding.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -84,7 +93,16 @@
     <QtUic Include="RoomViewer.ui">
       <Filter>Form Files</Filter>
     </QtUic>
-    <QtUic Include="CreateRoomDialog.ui">
+    <QtUic Include="EditRoomDialog.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="DialogTransitToRoom.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="EditBuildingDialog.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="DialogTransitToBuilding.ui">
       <Filter>Form Files</Filter>
     </QtUic>
   </ItemGroup>
@@ -110,12 +128,21 @@
     <QtMoc Include="AbstractEditDialog.hpp">
       <Filter>Header Files</Filter>
     </QtMoc>
-    <QtMoc Include="CreateRoomDialog.hpp">
+    <QtMoc Include="EditRoomDialog.hpp">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="EditBuildingDialog.hpp">
       <Filter>Header Files</Filter>
     </QtMoc>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="IItemCreatable.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DialogTransitToRoom.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DialogTransitToBuilding.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

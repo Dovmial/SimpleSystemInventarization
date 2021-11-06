@@ -1,7 +1,11 @@
 #include "RoomViewer.hpp"
 #include "CreateItemDialog.hpp"
-#include "CreateRoomDialog.hpp"
+#include "EditRoomDialog.hpp"
+#include "EditBuildingDialog.hpp"
+#include "DialogTransitToRoom.hpp"
+#include "DialogTransitTobuilding.hpp"
 #include <QMessageBox>
+
 RoomViewer::RoomViewer(std::unique_ptr<DataManager> dm, QWidget* parent)
     : ui{new Ui::RoomViewer()},
     dataManager{ std::move(dm) },
@@ -13,14 +17,9 @@ RoomViewer::RoomViewer(std::unique_ptr<DataManager> dm, QWidget* parent)
     QMainWindow(parent)
 {
     ui->setupUi(this);
-    room = dataManager->getCurrentRoom();
-    ui->lblRoomName->setText(QString::fromStdString(room->getName()));
-    
     currentLocationInfo->setStyleSheet("QLabel {color: blue;}");
-    setTextStatusBar(
-        dataManager->getCurrentLocationInfo().first,
-        dataManager->getCurrentLocationInfo().second);
-    ui->statusbar->addWidget(currentLocationInfo);
+
+    updateRoomViewer();
 
     deviceTableModel->setColumnCount(2);
     deviceTableModel->setHorizontalHeaderLabels(
@@ -59,14 +58,47 @@ Room* RoomViewer::getRoom()const {
 }
 void RoomViewer::on_mnuAddBuilding_triggered()
 {
-
+    auto dialog{ new EditBuildingDialog(dataManager.get(), this) };
+    if (dialog->exec() == QDialog::Accepted) {
+        dialog->addBuilding();
+        delete dialog;
+    }
 }
 void RoomViewer::on_mnuAddRoom_triggered()
 {
-    auto crRoomDialog{ new CreateRoomDialog(dataManager.get(), this) };
-    if (crRoomDialog->exec() == CreateRoomDialog::Accepted) {
+    auto crRoomDialog{ new EditRoomDialog(dataManager.get(), this) };
+    if (crRoomDialog->exec() == EditRoomDialog::Accepted) {
         crRoomDialog->addRoom();
         delete crRoomDialog;
+    }
+}
+
+void RoomViewer::on_btnTransitRoom_clicked()
+{
+    auto dialog{ new DialogTransitToRoom(dataManager.get(), this) };
+    if (dialog->exec() == QDialog::Accepted) {
+        std::string transitToRoom = dialog->getNameRoomTransit().toStdString();
+        if (dataManager->getCurrentBuilding()->isExistRoom(transitToRoom)) {
+            dataManager->setCurrentRoomLocationInfo(transitToRoom);
+            updateRoomViewer();
+        }
+
+        else
+            QMessageBox::critical(this, "Error!", "Such a room does not exist");
+    }
+}
+
+void RoomViewer::on_btnTransitBuilding_clicked()
+{
+    auto dialog{ new DialogTransitToBuilding(dataManager.get(), this) };
+    if (dialog->exec() == QDialog::Accepted) {
+        std::string transitToBuilding = dialog->getNameBuildingTransit().toStdString();
+        if (dataManager->getBuilding(transitToBuilding)) {
+            dataManager->setCurrentBuildingLocationInfo(transitToBuilding);
+            updateRoomViewer();
+        }
+        else
+            QMessageBox::critical(this, "Error!", "Such a building does not exist");
     }
 }
 
@@ -96,6 +128,16 @@ void RoomViewer::on_mnuAddItem_triggered() {
 void RoomViewer::setTextStatusBar(const std::string& str1, const std::string& str2)
 {
     QString status = QString::fromStdString(
-        "Build: " + str1 + "\tRoom: " + str2);
+        "Building: " + str1 + "\tRoom: " + str2);
     currentLocationInfo->setText(status);
+}
+
+void RoomViewer::updateRoomViewer()
+{
+    room = dataManager->getCurrentRoom();
+    ui->lblRoomName->setText(QString::fromStdString(room->getName()));
+    setTextStatusBar(
+        dataManager->getCurrentLocationInfo().first,
+        dataManager->getCurrentLocationInfo().second);
+    ui->statusbar->addWidget(currentLocationInfo);
 }

@@ -69,14 +69,14 @@
     <item row="0" column="0">
      <layout class="QHBoxLayout" name="horizontalLayout">
       <item>
-       <widget class="QPushButton" name="pushButton_2">
+       <widget class="QPushButton" name="btnTransitBuilding">
         <property name="text">
          <string>выбрать здание</string>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="pushButton">
+       <widget class="QPushButton" name="btnTransitRoom">
         <property name="text">
          <string>выбрать комнату</string>
         </property>

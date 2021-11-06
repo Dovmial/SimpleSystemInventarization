@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>CreateRoomDialog</class>
- <widget class="QDialog" name="CreateRoomDialog">
+ <class>EditRoomDialog</class>
+ <widget class="QDialog" name="EditRoomDialog">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>411</width>
+    <width>421</width>
     <height>104</height>
    </rect>
   </property>
@@ -82,7 +82,7 @@
       <enum>Qt::Horizontal</enum>
      </property>
      <property name="standardButtons">
-      <set>QDialogButtonBox::Apply|QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+      <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
      </property>
      <property name="centerButtons">
       <bool>false</bool>
@@ -96,7 +96,7 @@
   <connection>
    <sender>buttonBox</sender>
    <signal>accepted()</signal>
-   <receiver>CreateRoomDialog</receiver>
+   <receiver>EditRoomDialog</receiver>
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -112,7 +112,7 @@
   <connection>
    <sender>buttonBox</sender>
    <signal>rejected()</signal>
-   <receiver>CreateRoomDialog</receiver>
+   <receiver>EditRoomDialog</receiver>
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel">

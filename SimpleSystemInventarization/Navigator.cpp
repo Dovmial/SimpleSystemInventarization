@@ -15,3 +15,14 @@ void Navigator::setCurrentLocation(const std::string& building, const std::strin
 	location.buildingName = building;
 	location.roomName = room;
 }
+
+void Navigator::setCurrentRoom(const std::string& room)
+{
+	location.roomName = room;
+}
+
+void Navigator::setCurrentBuilding(const std::string& building)
+{
+	location.buildingName = building;
+	location.roomName = "Virtual room";
+}

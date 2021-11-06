@@ -66,3 +66,8 @@ bool Build::isExistRoom(const std::string& nameRoom) const
 {
 	return findRoom(nameRoom) != -1;
 }
+
+size_t Build::size() const
+{
+	return rooms.size();
+}

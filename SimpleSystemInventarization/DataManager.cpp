@@ -120,6 +120,21 @@ auto DataManager::getCurrentLocationInfo() const -> std::pair<std::string, std::
 	return currentLocation->getCurrentlocation();
 }
 
+void DataManager::setCurrentRoomLocationInfo(const std::string& room)
+{
+	currentLocation->setCurrentRoom(room);
+}
+
+void DataManager::setCurrentBuildingLocationInfo(const std::string& building)
+{
+	currentLocation->setCurrentBuilding(building);
+}
+
+void DataManager::addBuilding(const std::string& nameBuilding)
+{
+	buildings.push_back(std::make_unique<Build>(nameBuilding));
+}
+
 Room* DataManager::getCurrentRoom() const
 {
 	Build* build = getCurrentBuilding();
@@ -143,4 +158,25 @@ Build* DataManager::getBuilding(const std::string& nameBuilding) const
 Build* DataManager::getCurrentBuilding() const
 {
 	return getBuilding(currentLocation->getCurrentlocation().first);
+}
+
+std::vector<std::string> DataManager::getListBuildingNames() const
+{ 
+	const size_t SIZE = buildings.size();
+	std::vector<std::string> buildingNames(SIZE);
+	for (int i{ 0 }; i < SIZE; ++i) {
+		buildingNames[i] = buildings[i]->getName();
+	}
+	return buildingNames;
+}
+
+std::vector<std::string> DataManager::getListRoomNames() const
+{
+	auto building{ getCurrentBuilding() };
+	size_t SIZE{ building->size() };
+	std::vector<std::string> roomNames(SIZE);
+	for (int i{}; i < SIZE; ++i) {
+		roomNames[i] = building->getRoom(i)->getName();
+	}
+	return roomNames;
 }

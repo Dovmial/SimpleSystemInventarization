@@ -1,23 +1,23 @@
 
-#include "CreateRoomDialog.hpp"
+#include "EditRoomDialog.hpp"
 #include <qmessagebox.h>
-CreateRoomDialog::CreateRoomDialog(DataManager* dm, QWidget* parent):
+EditRoomDialog::EditRoomDialog(DataManager* dm, QWidget* parent):
 	dataManager{dm},
 	QDialog(parent)
 {
-	ui = new Ui::CreateRoomDialog;
+	ui = new Ui::EditRoomDialog;
 	ui->setupUi(this);
 	ui->lblNameBuilding->setText(
 		QString::fromStdString(dataManager->getCurrentLocationInfo().first)
 	);
 }
 
-CreateRoomDialog::~CreateRoomDialog()
+EditRoomDialog::~EditRoomDialog()
 {
 	delete ui;
 }
 
-void CreateRoomDialog::addRoom()
+void EditRoomDialog::addRoom()
 {
 	std::string nameNewRoom = ui->lineEdit->text().toStdString();
 	if (dataManager->getCurrentBuilding()->isExistRoom(nameNewRoom)) {

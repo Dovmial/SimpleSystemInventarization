@@ -54,10 +54,15 @@ public:
 public:
 	void setCurrentLocationInfo(std::pair<std::string, std::string> location);
 	auto getCurrentLocationInfo() const->std::pair<std::string, std::string>;
-
+	void setCurrentRoomLocationInfo(const std::string& room);
+	void setCurrentBuildingLocationInfo(const std::string& building);
+public:
+	void addBuilding(const std::string& nameBuilding);
 	Room* getCurrentRoom() const;
 	Build* getBuilding(const std::string& nameBuilding) const;
 	Build* getCurrentBuilding()const;
+	std::vector<std::string> getListBuildingNames() const;
+	std::vector<std::string> getListRoomNames() const;
 private:
 	std::shared_ptr<ITequipment> createITequipment(typeITEquipment typeITE);
 private:

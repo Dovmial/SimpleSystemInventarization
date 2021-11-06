@@ -26,7 +26,8 @@ public:
 	DECLSPEC Room* findItem(int64_t inventoryNumber) const;
 	DECLSPEC Room* getRoom(int index) const;
 	DECLSPEC bool  isExistRoom(const std::string& nameRoom )const;
-	
+	DECLSPEC size_t size() const;
+
 private:
 	std::vector<std::unique_ptr<Room>> rooms;
 };

@@ -22,8 +22,12 @@ private slots:
 	void on_mnuAddItem_triggered();
 	void on_mnuAddBuilding_triggered();
 	void on_mnuAddRoom_triggered();
+
+	void on_btnTransitRoom_clicked();
+	void on_btnTransitBuilding_clicked();
 private:
 	void setTextStatusBar(const std::string& str1, const std::string& str2);
+	void updateRoomViewer();
 private:
 	Ui::RoomViewer* ui;
 	std::unique_ptr<DataManager> dataManager;
