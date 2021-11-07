@@ -12,7 +12,7 @@ DataManager::DataManager() :
 	printerGetData	{ std::make_unique<PrinterGetData>	()},
 	otherGetData	{ std::make_unique<OtherGetData>	()}
 {
-	buildings.push_back(std::move(std::make_unique<Build>("Virtual building")));
+	buildings.push_back(std::move(std::make_unique<Building>("Virtual building")));
 	currentLocation = std::make_unique<Navigator>(
 		buildings[0]->getName(),
 		buildings[0]->getRoom(0)->getName()
@@ -132,21 +132,21 @@ void DataManager::setCurrentBuildingLocationInfo(const std::string& building)
 
 void DataManager::addBuilding(const std::string& nameBuilding)
 {
-	buildings.push_back(std::make_unique<Build>(nameBuilding));
+	buildings.push_back(std::make_unique<Building>(nameBuilding));
 }
 
 Room* DataManager::getCurrentRoom() const
 {
-	Build* build = getCurrentBuilding();
+	Building* build = getCurrentBuilding();
 	int index = 
 		build->findRoom(currentLocation->getCurrentlocation().second);
 	return build->getRoom(index);
 }
 
-Build* DataManager::getBuilding(const std::string& nameBuilding) const
+Building* DataManager::getBuilding(const std::string& nameBuilding) const
 {
 	auto iter = find_if(begin(buildings), end(buildings),
-		[&](std::unique_ptr<Build> const& obj)-> bool {
+		[&](std::unique_ptr<Building> const& obj)-> bool {
 			return obj->getName() == nameBuilding;
 		});
 	if (iter == end(buildings))
@@ -155,7 +155,7 @@ Build* DataManager::getBuilding(const std::string& nameBuilding) const
 		return iter->get();
 }
 
-Build* DataManager::getCurrentBuilding() const
+Building* DataManager::getCurrentBuilding() const
 {
 	return getBuilding(currentLocation->getCurrentlocation().first);
 }

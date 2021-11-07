@@ -87,7 +87,7 @@
     <ClCompile Include="BaseObject.cpp">
       <Filter>BaseObject\Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="Build.cpp">
+    <ClCompile Include="Building.cpp">
       <Filter>Building\Исходные файлы</Filter>
     </ClCompile>
     <ClCompile Include="DataManager.cpp">
@@ -101,7 +101,7 @@
     <ClInclude Include="Room.hpp">
       <Filter>Building\Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="Build.hpp">
+    <ClInclude Include="Building.hpp">
       <Filter>Building\Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="GetDataEquipment.hpp">
@@ -135,6 +135,9 @@
       <Filter>Managers\Файлы Заголовков</Filter>
     </ClInclude>
     <ClInclude Include="Navigator.hpp">
+      <Filter>Managers\Файлы Заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Serializer.hpp">
       <Filter>Managers\Файлы Заголовков</Filter>
     </ClInclude>
   </ItemGroup>

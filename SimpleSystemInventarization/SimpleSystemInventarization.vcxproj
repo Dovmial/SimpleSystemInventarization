@@ -20,7 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BaseObject.cpp" />
-    <ClCompile Include="Build.cpp" />
+    <ClCompile Include="Building.cpp" />
     <ClCompile Include="Components.cpp" />
     <ClCompile Include="DataManager.cpp" />
     <ClCompile Include="GetDataEquipment.cpp" />
@@ -33,7 +33,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BaseObject.hpp" />
-    <ClInclude Include="Build.hpp" />
+    <ClInclude Include="Building.hpp" />
     <ClInclude Include="Components.hpp" />
     <ClInclude Include="DataManager.hpp" />
     <ClInclude Include="Location.hpp" />
@@ -44,6 +44,7 @@
     <ClInclude Include="Item.hpp" />
     <ClInclude Include="Navigator.hpp" />
     <ClInclude Include="Room.hpp" />
+    <ClInclude Include="Serializer.hpp" />
     <ClInclude Include="ServiceInfo.hpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
@@ -154,6 +155,7 @@
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
+      <AdditionalIncludeDirectories>C:\Users\nma91\source\repos\SSI\SimpleSystemInventarization\json\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -170,6 +172,7 @@
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
+      <AdditionalIncludeDirectories>C:\Users\nma91\source\repos\SSI\SimpleSystemInventarization\json\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

@@ -1,6 +1,6 @@
 
-#ifndef __BUILD__HPP___
-#define __BUILD__HPP___
+#ifndef __BUILDING__HPP___
+#define __BUILDING__HPP___
 
 #include <memory>
 #include "BaseObject.hpp"
@@ -14,11 +14,11 @@
 #endif // MODEL_EXPORTS
 
 
-class  Build: public BaseObject{
+class  Building: public BaseObject{
 
 public:
-	Build() = delete;
-	DECLSPEC Build(const std::string& name);
+	Building() = delete;
+	DECLSPEC Building(const std::string& name);
 	DECLSPEC void addRoom(const std::string& nameRoom);
 	DECLSPEC bool removeRoom(const std::string& nameRoom);
 	DECLSPEC int findRoom(const std::string& nameRoom) const;

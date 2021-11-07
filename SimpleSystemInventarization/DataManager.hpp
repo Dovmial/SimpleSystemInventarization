@@ -6,7 +6,7 @@
 #include "Item.hpp"
 #include "IITequipmentFabric.hpp"
 #include "GetDataEquipment.hpp"
-#include "Build.hpp"
+#include "Building.hpp"
 #include "Navigator.hpp"
 
 //$(SolutionDir)bin\$(Platform)\$(Configuration)\
@@ -59,14 +59,14 @@ public:
 public:
 	void addBuilding(const std::string& nameBuilding);
 	Room* getCurrentRoom() const;
-	Build* getBuilding(const std::string& nameBuilding) const;
-	Build* getCurrentBuilding()const;
+	Building* getBuilding(const std::string& nameBuilding) const;
+	Building* getCurrentBuilding()const;
 	std::vector<std::string> getListBuildingNames() const;
 	std::vector<std::string> getListRoomNames() const;
 private:
 	std::shared_ptr<ITequipment> createITequipment(typeITEquipment typeITE);
 private:
-	std::vector<std::unique_ptr<Build>> buildings;
+	std::vector<std::unique_ptr<Building>> buildings;
 	std::vector<DeviceLocation> devices;
 private:
 	std::unique_ptr<PCfabric> pcFabric;

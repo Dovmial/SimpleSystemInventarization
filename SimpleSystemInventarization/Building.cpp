@@ -1,21 +1,21 @@
 
 #include <algorithm>
-#include "Build.hpp"
+#include "Building.hpp"
 
-Build::Build(const std::string& name) :
+Building::Building(const std::string& name) :
 	BaseObject(name)
 {
 	rooms.push_back(std::make_unique<Room>("Virtual room"));
 }
 
-void Build::addRoom(const std::string& nameRoom)
+void Building::addRoom(const std::string& nameRoom)
 {
 	auto room{ std::make_unique<Room>(nameRoom) };
 	rooms.push_back(std::move(room));
 	std::sort(begin(rooms)+1, end(rooms));
 }
 
-bool Build::removeRoom(const std::string& nameRoom)
+bool Building::removeRoom(const std::string& nameRoom)
 {
 	int index = findRoom(nameRoom);
 	if (index == -1 || !rooms[index]->isEmpty()) {//remove only for an empty room
@@ -25,7 +25,7 @@ bool Build::removeRoom(const std::string& nameRoom)
 	return true;
 }
 
-int Build::findRoom(const std::string& nameRoom) const
+int Building::findRoom(const std::string& nameRoom) const
 {
 	size_t size{ rooms.size() };
 	
@@ -37,7 +37,7 @@ int Build::findRoom(const std::string& nameRoom) const
 	return -1;
 }
 
-Room* Build::findItem(const std::string& name) const
+Room* Building::findItem(const std::string& name) const
 {
 	size_t SIZE = rooms.size();
 	for (size_t i{}; i < SIZE; ++i) {
@@ -47,7 +47,7 @@ Room* Build::findItem(const std::string& name) const
 	return nullptr;
 }
 
-Room* Build::findItem(int64_t inventoryNumber) const
+Room* Building::findItem(int64_t inventoryNumber) const
 {
 	size_t SIZE = rooms.size();
 	for (size_t i{}; i < SIZE; ++i) {
@@ -57,17 +57,17 @@ Room* Build::findItem(int64_t inventoryNumber) const
 	return nullptr;
 }
 
-Room* Build::getRoom(int index) const
+Room* Building::getRoom(int index) const
 {
 	return rooms[index].get();
 }
 
-bool Build::isExistRoom(const std::string& nameRoom) const
+bool Building::isExistRoom(const std::string& nameRoom) const
 {
 	return findRoom(nameRoom) != -1;
 }
 
-size_t Build::size() const
+size_t Building::size() const
 {
 	return rooms.size();
 }
