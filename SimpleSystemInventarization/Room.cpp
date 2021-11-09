@@ -46,6 +46,16 @@ Item* Room::findItem(int64_t inventoryNumber)
 	return nullptr;
 }
 
+void Room::clear()
+{
+	items.clear();
+}
+
+size_t Room::size()
+{
+	return  items.size();
+}
+
  bool Room::operator<(const Room& other)
 {
 	 return  name < other.name;

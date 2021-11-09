@@ -14,16 +14,16 @@ OtherEditDialog::~OtherEditDialog() {
 Item* OtherEditDialog::createItem()
 {
 	auto name		{ ui->leName->text().toStdString()				};
-	auto number		{ ui->leName->text().toLongLong()				};
+	auto number		{ ui->leNumber->text().toLongLong()				};
 	auto otherInfo	{ ui->teOtherInfo->toPlainText().toStdString()	};
 
 	dataManager->setDataOther(name, otherInfo);
-	auto item{ std::move(
+	auto item{ 
 		dataManager->createItem(
 			DataManager::typeITEquipment::typeoOtherITEquipment,
 			number,
 			dataManager->getCurrentLocationInfo().second,
 			dataManager->getCurrentLocationInfo().first)
-	) };
+	 };
 	return item;
 }

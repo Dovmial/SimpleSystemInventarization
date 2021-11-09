@@ -8,11 +8,12 @@
 #include "BaseObject.hpp"
 #include "Components.hpp"
 #include "Iinfo.hpp"
+#include "IinfoType.hpp"
 #include <memory>
 
 
 
-class ITequipment: public BaseObject, public Iinfo{
+class ITequipment: public BaseObject, public Iinfo, public IInfoType {
 public:
 	ITequipment() = delete;
 	ITequipment(const std::string& name_);
@@ -45,6 +46,7 @@ public:
 		std::shared_ptr<ComplectComponents> complect);
 
 	virtual std::string getInfo()const override;
+	virtual typeDevice getType() const override;
 public:
 	void setComplectComponents(std::shared_ptr<ComplectComponents> complect);
 	void setMotherboard(const MotherBoard& mb);
@@ -74,6 +76,7 @@ public:
 	void setDiagonal(float diagonal);
 	float getDiagonal() const;
 	virtual std::string getInfo()const override;
+	virtual typeDevice getType()const override;
 private:
 	float diagonal;
 };
@@ -81,9 +84,9 @@ private:
 class Printer :public ITequipment {
 public:
 	enum class PrinterType {
-		Printer = 1,
+		PRINTER = 1,
 		MFU,
-		Printer3D
+		PRINTER3D
 	};
 	Printer() = delete;
 	Printer(const std::string& name_,
@@ -93,8 +96,9 @@ public:
 public:
 	void setCartridge(Cartridge&& cartridge_);
 	Cartridge getCartridge() const;
-	virtual std::string getInfo()const override;
 	std::string printerTypeToStr() const;
+	virtual std::string getInfo()const override;
+	virtual typeDevice getType()const override;
 private:
 	Cartridge cartridge;
 	PrinterType type;
@@ -109,6 +113,7 @@ public:
 	void setSomeInfo(const std::string& someInfo_);
 	std::string getSomeInfo() const;
 	virtual std::string getInfo()const override;
+	virtual typeDevice getType()const override;
 private:
 	std::string someInfo;
 };

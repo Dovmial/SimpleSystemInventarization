@@ -9,6 +9,7 @@
 #include "Building.hpp"
 #include "Navigator.hpp"
 
+
 //$(SolutionDir)bin\$(Platform)\$(Configuration)\
 //$(SolutionDir)bin\$(Platform)\$(Configuration)\intermediate\$(ProjectName)\
 
@@ -44,6 +45,11 @@ public:
 		const std::string& nameBuilding,
 		const std::string& nameRoom
 	);
+	void setItem(Item* item);
+	std::vector<DeviceLocation>::iterator findItem(Item* item);
+	void eraseItem(std::vector<DeviceLocation>::iterator&& iter);
+	void update();
+
 
 	void setDataMonitor(const std::string& name, float diagonal);
 	void setDataPC(const DataPC& data);
@@ -56,6 +62,7 @@ public:
 	auto getCurrentLocationInfo() const->std::pair<std::string, std::string>;
 	void setCurrentRoomLocationInfo(const std::string& room);
 	void setCurrentBuildingLocationInfo(const std::string& building);
+	
 public:
 	void addBuilding(const std::string& nameBuilding);
 	Room* getCurrentRoom() const;
@@ -67,7 +74,7 @@ private:
 	std::shared_ptr<ITequipment> createITequipment(typeITEquipment typeITE);
 private:
 	std::vector<std::unique_ptr<Building>> buildings;
-	std::vector<DeviceLocation> devices;
+	std::vector<DeviceLocation> devices; // maybe std::list
 private:
 	std::unique_ptr<PCfabric> pcFabric;
 	std::unique_ptr<MonitorFabric> monitorFabric;
@@ -80,5 +87,6 @@ private:
 	std::unique_ptr<OtherGetData> otherGetData;
 private:
 	std::unique_ptr<INavigator> currentLocation;
+	
 };
 #endif

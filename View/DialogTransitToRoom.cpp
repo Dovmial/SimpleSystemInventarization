@@ -11,7 +11,7 @@ DialogTransitToRoom::DialogTransitToRoom(DataManager* dm, QWidget* parent):
 	
 	auto roomsList{ dataManager->getListRoomNames() };
 	QStringList list;
-	for (auto room : roomsList) {
+	for (const auto& room : roomsList) {
 		list << QString::fromStdString(room);
 	}
 	ui->comboBox->addItems(list);

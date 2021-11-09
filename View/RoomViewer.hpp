@@ -17,7 +17,6 @@ public:
 	void setRoom(Room* room_);
 	Room* getRoom()const;
 
-
 private slots:
 	void on_mnuAddItem_triggered();
 	void on_mnuAddBuilding_triggered();
@@ -25,9 +24,14 @@ private slots:
 
 	void on_btnTransitRoom_clicked();
 	void on_btnTransitBuilding_clicked();
+
+	void slotEditRecord(QModelIndex index);
+	void slotShowInfoSelectItem(QModelIndex index);
 private:
 	void setTextStatusBar(const std::string& str1, const std::string& str2);
 	void updateRoomViewer();
+	void updateRoomContent();
+	void setHeadersModels();
 private:
 	Ui::RoomViewer* ui;
 	std::unique_ptr<DataManager> dataManager;

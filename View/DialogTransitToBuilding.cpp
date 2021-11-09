@@ -7,7 +7,7 @@ DialogTransitToBuilding::DialogTransitToBuilding(DataManager* dm, QWidget* paren
 {
 	ui->setupUi(this);
 	auto buildingList{ dataManager->getListBuildingNames() };
-	for (auto building : buildingList) {
+	for (const auto& building : buildingList) {
 		ui->comboBox->addItem(QString::fromStdString(building));
 	}
 

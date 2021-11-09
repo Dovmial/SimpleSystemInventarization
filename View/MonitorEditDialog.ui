@@ -58,7 +58,11 @@
         </widget>
        </item>
        <item>
-        <widget class="QLineEdit" name="leNumber"/>
+        <widget class="QLineEdit" name="leNumber">
+         <property name="inputMask">
+          <string/>
+         </property>
+        </widget>
        </item>
        <item>
         <spacer name="horizontalSpacer_5">

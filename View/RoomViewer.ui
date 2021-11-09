@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>694</width>
+    <width>668</width>
     <height>484</height>
    </rect>
   </property>
@@ -71,14 +71,14 @@
       <item>
        <widget class="QPushButton" name="btnTransitBuilding">
         <property name="text">
-         <string>выбрать здание</string>
+         <string>выбрать здание...</string>
         </property>
        </widget>
       </item>
       <item>
        <widget class="QPushButton" name="btnTransitRoom">
         <property name="text">
-         <string>выбрать комнату</string>
+         <string>выбрать комнату...</string>
         </property>
        </widget>
       </item>
@@ -120,18 +120,10 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>694</width>
+     <width>668</width>
      <height>22</height>
     </rect>
    </property>
-   <widget class="QMenu" name="menu">
-    <property name="title">
-     <string>Добавить</string>
-    </property>
-    <addaction name="mnuAddItem"/>
-    <addaction name="mnuAddRoom"/>
-    <addaction name="mnuAddBuilding"/>
-   </widget>
    <widget class="QMenu" name="menu_2">
     <property name="title">
      <string> Найти</string>
@@ -144,34 +136,48 @@
      <string>Справка</string>
     </property>
    </widget>
-   <addaction name="menu"/>
+   <widget class="QMenu" name="menu_4">
+    <property name="title">
+     <string>Редактировать</string>
+    </property>
+    <widget class="QMenu" name="menu_5">
+     <property name="title">
+      <string>Добавить</string>
+     </property>
+     <addaction name="mnuAddItem"/>
+     <addaction name="mnuAddRoom"/>
+     <addaction name="mnuAddBuilding"/>
+    </widget>
+    <addaction name="menu_5"/>
+   </widget>
+   <addaction name="menu_4"/>
    <addaction name="menu_2"/>
    <addaction name="menu_3"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
+  <action name="findDeviceByNumber">
+   <property name="text">
+    <string>по инвентарному номеру...</string>
+   </property>
+  </action>
+  <action name="findDeviceByName">
+   <property name="text">
+    <string>по названию...</string>
+   </property>
+  </action>
   <action name="mnuAddItem">
    <property name="text">
     <string>Оборудование...</string>
    </property>
   </action>
-  <action name="findDeviceByNumber">
+  <action name="mnuAddRoom">
    <property name="text">
-    <string>по инвентарному номеру</string>
-   </property>
-  </action>
-  <action name="findDeviceByName">
-   <property name="text">
-    <string>по названию</string>
+    <string>Комнату...</string>
    </property>
   </action>
   <action name="mnuAddBuilding">
    <property name="text">
-    <string>Здание</string>
-   </property>
-  </action>
-  <action name="mnuAddRoom">
-   <property name="text">
-    <string>Комнату</string>
+    <string>Здание...</string>
    </property>
   </action>
  </widget>

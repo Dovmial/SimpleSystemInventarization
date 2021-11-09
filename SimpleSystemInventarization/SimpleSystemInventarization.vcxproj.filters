@@ -96,6 +96,9 @@
     <ClCompile Include="Navigator.cpp">
       <Filter>Managers\Исходные файлы</Filter>
     </ClCompile>
+    <ClCompile Include="Location.cpp">
+      <Filter>Building\Исходные файлы</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Room.hpp">
@@ -137,8 +140,8 @@
     <ClInclude Include="Navigator.hpp">
       <Filter>Managers\Файлы Заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="Serializer.hpp">
-      <Filter>Managers\Файлы Заголовков</Filter>
+    <ClInclude Include="IInfoType.hpp">
+      <Filter>Equipment\Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

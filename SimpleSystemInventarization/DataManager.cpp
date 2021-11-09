@@ -1,5 +1,6 @@
 #include "DataManager.hpp"
 #include <memory>
+#include <algorithm>
 
 DataManager::DataManager() :
 	pcFabric		{ std::make_unique<PCfabric>		()},
@@ -11,6 +12,8 @@ DataManager::DataManager() :
 	monitorGetData	{ std::make_unique<MonitorGetData>	()},
 	printerGetData	{ std::make_unique<PrinterGetData>	()},
 	otherGetData	{ std::make_unique<OtherGetData>	()}
+
+	
 {
 	buildings.push_back(std::move(std::make_unique<Building>("Virtual building")));
 	currentLocation = std::make_unique<Navigator>(
@@ -85,7 +88,55 @@ Item* DataManager::createItem(
 		nameRoom
 		}
 	);
-	return devices.back().item.get();
+	Item* newItem{ devices.back().item.get() };
+	this->getCurrentRoom()->addItem(newItem);
+	return newItem;
+}
+
+//unusable   (for edit)
+void DataManager::setItem(Item* item)
+{
+	auto iter = findItem(item);
+	if(iter != devices.end())
+		iter->item.reset(item);
+}
+
+void DataManager::eraseItem(std::vector<DeviceLocation>::iterator&& iter) {
+	
+	getCurrentRoom()->eraseItem(iter->item.get());
+	devices.erase(iter);
+
+}
+
+void DataManager::update()
+{
+	size_t SIZE{ devices.size() };
+	std::unique_ptr<Navigator> navigator;
+	Room* room;
+	std::vector<bool> flagsDevicePlacement(SIZE);
+
+	for (auto& building : buildings) {
+		for (size_t i{}; i < building->size(); ++i) {
+			room = building->getRoom(i);
+			room->clear();
+			navigator->setCurrentLocation(
+				building->getName(), building->getRoom(i)->getName()
+			);
+			for (size_t j{}; j < SIZE && !flagsDevicePlacement[j]; ++j) {
+				if(devices[j].location == navigator->getLocation())
+					room->addItem(devices[j].item.get());
+			}
+		}
+	}
+}
+
+std::vector<DeviceLocation>::iterator DataManager::findItem(Item* item)
+{
+	auto iter = std::find_if(begin(devices), end(devices),
+		[&](DeviceLocation& const obj) -> bool {
+			return obj.item.get() == item;
+		});
+	return iter;
 }
 
 void DataManager::setDataPC(const DataPC& data) {
@@ -117,7 +168,7 @@ void DataManager::setCurrentLocationInfo(std::pair<std::string, std::string> loc
 
 auto DataManager::getCurrentLocationInfo() const -> std::pair<std::string, std::string>
 {
-	return currentLocation->getCurrentlocation();
+	return currentLocation->getCurrentLocation();
 }
 
 void DataManager::setCurrentRoomLocationInfo(const std::string& room)
@@ -139,7 +190,7 @@ Room* DataManager::getCurrentRoom() const
 {
 	Building* build = getCurrentBuilding();
 	int index = 
-		build->findRoom(currentLocation->getCurrentlocation().second);
+		build->findRoom(currentLocation->getCurrentLocation().second);
 	return build->getRoom(index);
 }
 
@@ -157,7 +208,7 @@ Building* DataManager::getBuilding(const std::string& nameBuilding) const
 
 Building* DataManager::getCurrentBuilding() const
 {
-	return getBuilding(currentLocation->getCurrentlocation().first);
+	return getBuilding(currentLocation->getCurrentLocation().first);
 }
 
 std::vector<std::string> DataManager::getListBuildingNames() const

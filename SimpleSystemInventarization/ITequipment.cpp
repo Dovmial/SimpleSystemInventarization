@@ -41,6 +41,10 @@ std::string PC::getInfo() const
 	return ssInfo.str();
 }
 
+typeDevice PC::getType() const 
+{
+	return typeDevice::PC_TYPE;
+}
 
 void PC::setTypePC(TypePC typePC_)
 {
@@ -134,6 +138,11 @@ std::string Monitor::getInfo() const
 	return ssInfo.str();
 }
 
+typeDevice Monitor::getType() const
+{
+	return typeDevice::MONITOR_TYPE;
+}
+
 Printer::Printer(const std::string& name_, Cartridge&& cartridge_, PrinterType type_):
 	cartridge(cartridge_), type(type_), ITequipment(name_)
 {
@@ -168,13 +177,17 @@ std::string Printer::printerTypeToStr() const
 {
 	switch (type)
 	{
-	case Printer::PrinterType::Printer:
+	case Printer::PrinterType::PRINTER:
 		return std::string("Printer");
 	case Printer::PrinterType::MFU:
 		return std::string("MFU");
-	case Printer::PrinterType::Printer3D:
+	case Printer::PrinterType::PRINTER3D:
 		return std::string("3D-Printer");
 	}
+}
+
+typeDevice Printer::getType()const {
+	return typeDevice::PRINTER_TYPE;
 }
 
 OtherEquipment::OtherEquipment(const std::string& name_, const std::string& someInfo_)
@@ -197,9 +210,11 @@ std::string OtherEquipment::getSomeInfo() const
 	return someInfo;
 }
 
-
-
 std::string OtherEquipment::getInfo() const
 {
 	return std::string(name + " " + someInfo + '\n');
+}
+
+typeDevice OtherEquipment::getType()const {
+	return typeDevice::OTHER_TYPE;
 }

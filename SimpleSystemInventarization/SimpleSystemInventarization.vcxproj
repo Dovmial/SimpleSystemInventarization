@@ -27,6 +27,7 @@
     <ClCompile Include="IITequipmentFabric.cpp" />
     <ClCompile Include="ITequipment.cpp" />
     <ClCompile Include="Item.cpp" />
+    <ClCompile Include="Location.cpp" />
     <ClCompile Include="Navigator.cpp" />
     <ClCompile Include="Room.cpp" />
     <ClCompile Include="ServiceInfo.cpp" />
@@ -36,6 +37,7 @@
     <ClInclude Include="Building.hpp" />
     <ClInclude Include="Components.hpp" />
     <ClInclude Include="DataManager.hpp" />
+    <ClInclude Include="IInfoType.hpp" />
     <ClInclude Include="Location.hpp" />
     <ClInclude Include="GetDataEquipment.hpp" />
     <ClInclude Include="Iinfo.hpp" />
@@ -44,7 +46,6 @@
     <ClInclude Include="Item.hpp" />
     <ClInclude Include="Navigator.hpp" />
     <ClInclude Include="Room.hpp" />
-    <ClInclude Include="Serializer.hpp" />
     <ClInclude Include="ServiceInfo.hpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

@@ -8,6 +8,7 @@
 struct Location {
 	std::string buildingName;
 	std::string roomName;
+	bool operator==(const Location& other) const;
 };
 
 struct  DeviceLocation {

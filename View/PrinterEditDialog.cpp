@@ -20,13 +20,13 @@ Item* PrinterEditDialog::createItem()
 
 	auto printerType{ [&]()->Printer::PrinterType {
 		if (ui->rbPrinterType->isChecked()) {
-			return Printer::PrinterType::Printer;
+			return Printer::PrinterType::PRINTER;
 		}
 		else if (ui->rbMFUtype->isChecked()) {
 			return Printer::PrinterType::MFU;
 		}
 		else {
-			return  Printer::PrinterType::Printer3D;
+			return  Printer::PrinterType::PRINTER3D;
 		}
 	}() };
 	

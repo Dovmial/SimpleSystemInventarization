@@ -49,7 +49,7 @@ std::shared_ptr<ITequipment> MonitorFabric::create()
 }
 
 PrinterFabric::PrinterFabric():
-	PrinterFabric(std::tuple("", Cartridge(""), Printer::PrinterType::Printer))
+	PrinterFabric(std::tuple("", Cartridge(""), Printer::PrinterType::PRINTER))
 {
 }
 

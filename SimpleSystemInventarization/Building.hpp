@@ -27,7 +27,6 @@ public:
 	DECLSPEC Room* getRoom(int index) const;
 	DECLSPEC bool  isExistRoom(const std::string& nameRoom )const;
 	DECLSPEC size_t size() const;
-
 private:
 	std::vector<std::unique_ptr<Room>> rooms;
 };

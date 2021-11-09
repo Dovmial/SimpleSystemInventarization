@@ -5,7 +5,7 @@ Navigator::Navigator(const std::string& building, const std::string& room)
 {
 }
 
-auto Navigator::getCurrentlocation() const -> std::pair<std::string, std::string>
+auto Navigator::getCurrentLocation() const -> std::pair<std::string, std::string>
 {
 	return std::make_pair(location.buildingName, location.roomName);
 }
@@ -19,6 +19,11 @@ void Navigator::setCurrentLocation(const std::string& building, const std::strin
 void Navigator::setCurrentRoom(const std::string& room)
 {
 	location.roomName = room;
+}
+
+Location Navigator::getLocation() const
+{
+	return location;
 }
 
 void Navigator::setCurrentBuilding(const std::string& building)

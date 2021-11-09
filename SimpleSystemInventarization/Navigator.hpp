@@ -13,8 +13,7 @@
 
 struct INavigator {
 public:
-	virtual auto getCurrentlocation() const
-		->std::pair < std::string, std::string > = 0;
+	virtual auto getCurrentLocation() const->std::pair < std::string, std::string > = 0;
 	virtual void setCurrentLocation(
 		const std::string& building, const std::string& room) = 0;
 	virtual void setCurrentRoom(const std::string& roomName) = 0;
@@ -24,14 +23,16 @@ public:
 class  Navigator: public INavigator
 {
 public:
-	Navigator(const std::string& building, const std::string& name);
-	auto getCurrentlocation() const
+	Navigator(const std::string& building = "", const std::string& name ="");
+	auto getCurrentLocation() const
 		->std::pair < std::string, std::string > override;
 	void setCurrentLocation(
 		const std::string& building, const std::string& room) override;
 	void setCurrentRoom(const std::string& room) override;
 	void setCurrentBuilding(const std::string& building) override;
+	Location getLocation() const;
 private:
+
 	Location location;
 };
 
