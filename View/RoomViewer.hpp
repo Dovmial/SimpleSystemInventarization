@@ -27,6 +27,10 @@ private slots:
 
 	void slotEditRecord(QModelIndex index);
 	void slotShowInfoSelectItem(QModelIndex index);
+	void slotAddProblemSolutionInfo();
+	void slotAddServiceInfo();
+	void slotRemoveDevice();
+	void slotContextMenuItem(QPoint pos);
 private:
 	void setTextStatusBar(const std::string& str1, const std::string& str2);
 	void updateRoomViewer();

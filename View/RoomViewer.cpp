@@ -8,6 +8,7 @@
 #include "MonitorEditDialog.hpp"
 #include "PrinterEditDialog.hpp"
 #include "OtherEditDialog.hpp"
+#include "DialogServiceInfo.hpp"
 
 #include <QMessageBox>
 
@@ -34,7 +35,7 @@ RoomViewer::RoomViewer(std::unique_ptr<DataManager> dm, QWidget* parent)
     ui->tvItems->resizeColumnsToContents();
     ui->tvItems->horizontalHeader()->setStretchLastSection(true);
     ui->tvItems->setEditTriggers(QAbstractItemView::NoEditTriggers);
-
+    ui->tvItems->setContextMenuPolicy(Qt::CustomContextMenu);
 
     ui->tvServiceItems->setModel(serviceTableModel);
     ui->tvServiceItems->setSelectionBehavior(QAbstractItemView::SelectRows);
@@ -55,6 +56,8 @@ RoomViewer::RoomViewer(std::unique_ptr<DataManager> dm, QWidget* parent)
         this, &RoomViewer::slotEditRecord);
     QObject::connect(ui->tvItems, &QTableView::clicked,
         this, &RoomViewer::slotShowInfoSelectItem);
+    QObject::connect(ui->tvItems, &QTableView::customContextMenuRequested,
+        this, &RoomViewer::slotContextMenuItem);
 }
 
 RoomViewer::~RoomViewer()
@@ -159,6 +162,50 @@ void RoomViewer::slotShowInfoSelectItem(QModelIndex index)
         ->getITequipment()->getInfo()) 
     };
     ui->pteInfoItems->setPlainText(str);
+}
+
+void RoomViewer::slotAddProblemSolutionInfo()
+{
+    QMessageBox::information(this, "info1", "todo", QMessageBox::Ok);
+}
+
+void RoomViewer::slotAddServiceInfo()
+{
+    Item* item = getRoom()->showItem( ui->tvItems->selectionModel()->currentIndex().row());
+    auto dialog = new DialogServiceInfo(item,this);
+    if (dialog->exec() == QDialog::Accepted) {
+        dialog->addSignServiceInfo();
+    }
+    updateRoomContent();
+}
+
+void RoomViewer::slotRemoveDevice()
+{
+    int row = ui->tvItems->selectionModel()->currentIndex().row();
+    Item* item = dataManager->getCurrentRoom()->showItem(row);
+    dataManager->eraseItem(dataManager->findItem(item));
+    updateRoomContent();
+}
+
+void RoomViewer::slotContextMenuItem(QPoint pos)
+{
+    QMenu* menu = new QMenu(this);
+    QAction* addProblemSoltionInfo = new QAction(QStringLiteral(u"добавить проблему/решение..."));
+    QAction* addServiceInfo = new QAction(QStringLiteral(u"добавить сервисную информацию..."));
+    QAction* removeDevice = new QAction(QStringLiteral(u"Удалить элемент"));
+
+    QObject::connect(addProblemSoltionInfo, &QAction::triggered,
+        this, &RoomViewer::slotAddProblemSolutionInfo);
+
+    QObject::connect(addServiceInfo, &QAction::triggered,
+        this, &RoomViewer::slotAddServiceInfo);
+
+    QObject::connect(removeDevice, &QAction::triggered, this, &RoomViewer::slotRemoveDevice);
+    menu->addAction(addProblemSoltionInfo);
+    menu->addAction(addServiceInfo);
+    menu->addAction(removeDevice);
+
+    menu->popup(ui->tvItems->viewport()->mapToGlobal(pos));
 }
 
 void RoomViewer::on_mnuAddItem_triggered() {

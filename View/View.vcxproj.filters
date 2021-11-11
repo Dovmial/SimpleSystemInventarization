@@ -70,6 +70,9 @@
     <ClCompile Include="DialogTransitToBuilding.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="DialogServiceInfo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="View.ui">
@@ -103,6 +106,9 @@
       <Filter>Form Files</Filter>
     </QtUic>
     <QtUic Include="DialogTransitToBuilding.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="dialogServiceInfo.ui">
       <Filter>Form Files</Filter>
     </QtUic>
   </ItemGroup>
@@ -143,6 +149,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="DialogTransitToBuilding.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DialogServiceInfo.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
