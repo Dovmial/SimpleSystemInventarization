@@ -1,4 +1,6 @@
 #include "Components.hpp"
+#include <sstream>
+#include <iomanip>
 
 Components::Components(const std::string& name): BaseObject(name)
 {
@@ -31,8 +33,10 @@ void CPU::setFrequency(float frequency_)
 
 std::string CPU::getInfo() const
 {
+	std::stringstream ss;
+	ss << std::fixed << std::setprecision(2) << frequency;
 	return std::string("CPU: " + name + " "
-		+ std::to_string(frequency) + " GHz\n");
+		+ ss.str() + " GHz\n");
 }
 
 RAM::RAM(float volume_, const std::string& name) :
@@ -52,8 +56,10 @@ void RAM::setVolume(float volume_)
 
 std::string RAM::getInfo() const
 {
+	std::stringstream ss;
+	ss << std::fixed << std::setprecision(0) << volume;
 	return std::string("RAM: " + (!name.empty()?(name+" ") : "") 
-		+ std::to_string(volume) + " GB\n");
+		+ ss.str() + " GB\n");
 }
 
 StorageDevice::StorageDevice(
@@ -75,8 +81,10 @@ StorageDevice::StorageDevice(
 
 std::string StorageDevice::getInfo() const
 {
+	std::stringstream ss;
+	ss << std::fixed << std::setprecision(0) << volume;
 	return std::string("Storage device: " + (!name.empty() ? (name + " ") : "")
-		+ std::to_string(volume) + " GB\n");
+		+ ss.str() + " GB\n");
 }
 
 void StorageDevice::setTypeStorDev(typeStorageDevice type)
@@ -116,8 +124,10 @@ void GraphicCard::setVolume(float volume_)
 
 std::string GraphicCard::getInfo() const
 {
+	std::stringstream ss;
+	ss << std::fixed << std::setprecision(0) << volume;
 	return std::string("Graphic card: " + name + " "
-		+ std::to_string(volume) + " GB\n");
+		+ ss.str() + " GB\n");
 }
 
 Cartridge::Cartridge(const std::string& name): Components(name)

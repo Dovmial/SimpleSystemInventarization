@@ -1,34 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>DialogServiceInfo</class>
- <widget class="QDialog" name="DialogServiceInfo">
+ <class>DialogProblemSolutionInfo</class>
+ <widget class="QDialog" name="DialogProblemSolutionInfo">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>410</width>
-    <height>214</height>
+    <width>400</width>
+    <height>230</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Добавление информации об обслуживании</string>
+   <string>Обнаруженные проблемы</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="0">
     <widget class="QLabel" name="label">
      <property name="text">
-      <string>Сервисная информация:</string>
+      <string>Проблема:</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="1">
+    <widget class="QPlainTextEdit" name="pteProblem"/>
+   </item>
+   <item row="1" column="0">
+    <widget class="QLabel" name="label_2">
+     <property name="text">
+      <string>Решение:</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
      </property>
     </widget>
    </item>
-   <item row="0" column="1">
-    <widget class="QPlainTextEdit" name="pteServiceInfo"/>
+   <item row="1" column="1">
+    <widget class="QPlainTextEdit" name="pteSolution"/>
    </item>
-   <item row="1" column="0">
-    <widget class="QLabel" name="label_2">
+   <item row="2" column="0">
+    <widget class="QLabel" name="label_3">
      <property name="text">
       <string>Дата:</string>
      </property>
@@ -37,14 +47,14 @@
      </property>
     </widget>
    </item>
-   <item row="1" column="1">
+   <item row="2" column="1">
     <widget class="QDateEdit" name="dateEdit">
      <property name="calendarPopup">
       <bool>true</bool>
      </property>
     </widget>
    </item>
-   <item row="2" column="1">
+   <item row="3" column="1">
     <spacer name="verticalSpacer">
      <property name="orientation">
       <enum>Qt::Vertical</enum>
@@ -52,12 +62,12 @@
      <property name="sizeHint" stdset="0">
       <size>
        <width>20</width>
-       <height>0</height>
+       <height>1</height>
       </size>
      </property>
     </spacer>
    </item>
-   <item row="3" column="0" colspan="2">
+   <item row="4" column="0" colspan="2">
     <widget class="QDialogButtonBox" name="buttonBox">
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
@@ -74,7 +84,7 @@
   <connection>
    <sender>buttonBox</sender>
    <signal>accepted()</signal>
-   <receiver>DialogServiceInfo</receiver>
+   <receiver>DialogProblemSolutionInfo</receiver>
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -90,7 +100,7 @@
   <connection>
    <sender>buttonBox</sender>
    <signal>rejected()</signal>
-   <receiver>DialogServiceInfo</receiver>
+   <receiver>DialogProblemSolutionInfo</receiver>
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel">

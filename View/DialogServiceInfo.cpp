@@ -7,6 +7,7 @@ DialogServiceInfo::DialogServiceInfo(Item* item_, QWidget* parent) :
 	item{ item_ }
 {
 	ui->setupUi(this);
+	ui->dateEdit->setDate(QDate::currentDate());
 }
 
 DialogServiceInfo::~DialogServiceInfo() {
@@ -15,6 +16,6 @@ DialogServiceInfo::~DialogServiceInfo() {
 
 void DialogServiceInfo::addSignServiceInfo() {
 	std::string description{ ui->pteServiceInfo->toPlainText().toStdString() };
-	std::string date{ ui->leDate->text().toStdString() };
+	std::string date{ ui->dateEdit->text().toStdString() };
 	item->addSignService(description, date);
 }

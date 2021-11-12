@@ -30,12 +30,25 @@ private slots:
 	void slotAddProblemSolutionInfo();
 	void slotAddServiceInfo();
 	void slotRemoveDevice();
+	void slotRemoveServiceSign();
+	void slotRemoveProblemSolutiondSign();
+
 	void slotContextMenuItem(QPoint pos);
+	void slotContextMenuServices(QPoint pos);
+	void slotContextMenuProblemsSolutions(QPoint pos);
+
 private:
 	void setTextStatusBar(const std::string& str1, const std::string& str2);
 	void updateRoomViewer();
 	void updateRoomContent();
+	void updateTableDevices();
+	void updateTableServices();
+	void updateTableProblemsSolutions();
 	void setHeadersModels();
+	void tablesModelsConfiguration();
+	void setHeadersDeviceTable();
+	void setHeadersServiceTable();
+	void setHeadersProblemSolutionTable();
 private:
 	Ui::RoomViewer* ui;
 	std::unique_ptr<DataManager> dataManager;

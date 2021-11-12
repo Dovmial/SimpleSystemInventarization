@@ -34,6 +34,8 @@ public:
 		std::string problems,
 		std::string date = "",
 		std::string solution = "");
+	void removeSignService(int index);
+	void removeSignProblemSolution(int index);
 
 	//void setITequipment(ITequipment* eq);
 	std::shared_ptr <ITequipment> getITequipment()const;

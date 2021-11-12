@@ -114,6 +114,7 @@
     <QtRcc Include="View.qrc" />
     <QtMoc Include="View.h" />
     <ClCompile Include="AbstractEditDialog.cpp" />
+    <ClCompile Include="DialogProblemSolutionInfo.cpp" />
     <ClCompile Include="DialogServiceInfo.cpp" />
     <ClCompile Include="DialogTransitToBuilding.cpp" />
     <ClCompile Include="EditBuildingDialog.cpp" />
@@ -129,7 +130,8 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <QtUic Include="dialogServiceInfo.ui" />
+    <QtUic Include="DialogProblemSolutionInfo.ui" />
+    <QtUic Include="DialogServiceInfo.ui" />
     <QtUic Include="DialogTransitToBuilding.ui" />
     <QtUic Include="EditBuildingDialog.ui" />
     <QtUic Include="CreateItemDialog.ui" />
@@ -164,6 +166,7 @@
     <QtMoc Include="AbstractEditDialog.hpp" />
     <QtMoc Include="EditRoomDialog.hpp" />
     <QtMoc Include="EditBuildingDialog.hpp" />
+    <ClInclude Include="DialogProblemSolutionInfo.hpp" />
     <ClInclude Include="DialogServiceInfo.hpp" />
     <ClInclude Include="DialogTransitToBuilding.hpp" />
     <ClInclude Include="DialogTransitToRoom.hpp" />

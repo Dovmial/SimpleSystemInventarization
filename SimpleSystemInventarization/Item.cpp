@@ -34,6 +34,16 @@ void Item::addSignProblemsSolutions(
 		std::make_shared<ProblemSolutionInfo>(problem, date, solution)); 
 }
 
+void Item::removeSignService(int index)
+{
+	services.erase(begin(services) + index);
+}
+
+void Item::removeSignProblemSolution(int index)
+{
+	problemsSolutions.erase(begin(problemsSolutions) + index);
+}
+
 std::shared_ptr<ITequipment> Item::getITequipment() const
 {
 	return equipment;
