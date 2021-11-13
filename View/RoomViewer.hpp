@@ -16,11 +16,12 @@ public:
 public:
 	void setRoom(Room* room_);
 	Room* getRoom()const;
-
+	void showFoundItem(const DeviceLocation* devicesFound);
 private slots:
 	void on_mnuAddItem_triggered();
 	void on_mnuAddBuilding_triggered();
 	void on_mnuAddRoom_triggered();
+	void on_mnuFindItem_triggered();
 
 	void on_btnTransitRoom_clicked();
 	void on_btnTransitBuilding_clicked();
@@ -49,6 +50,7 @@ private:
 	void setHeadersDeviceTable();
 	void setHeadersServiceTable();
 	void setHeadersProblemSolutionTable();
+	
 private:
 	Ui::RoomViewer* ui;
 	std::unique_ptr<DataManager> dataManager;

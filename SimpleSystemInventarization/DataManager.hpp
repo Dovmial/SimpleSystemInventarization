@@ -47,6 +47,8 @@ public:
 	);
 	void setItem(Item* item);
 	std::vector<DeviceLocation>::iterator findItem(Item* item);
+	std::vector<const DeviceLocation*> findItemByName(const std::string& nameItem) const;
+	std::vector<const DeviceLocation*> findItemByNumber(int64_t numberItem) const;
 	void eraseItem(std::vector<DeviceLocation>::iterator&& iter);
 	void update();
 

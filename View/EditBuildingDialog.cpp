@@ -20,3 +20,4 @@ void EditBuildingDialog::addBuilding()
 	if(!dataManager->getBuilding(nameBuilding))
 		dataManager->addBuilding(nameBuilding);
 }
+

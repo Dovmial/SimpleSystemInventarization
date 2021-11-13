@@ -124,13 +124,6 @@
      <height>22</height>
     </rect>
    </property>
-   <widget class="QMenu" name="menu_2">
-    <property name="title">
-     <string> Найти</string>
-    </property>
-    <addaction name="findDeviceByNumber"/>
-    <addaction name="findDeviceByName"/>
-   </widget>
    <widget class="QMenu" name="menu_3">
     <property name="title">
      <string>Справка</string>
@@ -149,22 +142,12 @@
      <addaction name="mnuAddBuilding"/>
     </widget>
     <addaction name="menu_5"/>
+    <addaction name="mnuFindItem"/>
    </widget>
    <addaction name="menu_4"/>
-   <addaction name="menu_2"/>
    <addaction name="menu_3"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
-  <action name="findDeviceByNumber">
-   <property name="text">
-    <string>по инвентарному номеру...</string>
-   </property>
-  </action>
-  <action name="findDeviceByName">
-   <property name="text">
-    <string>по названию...</string>
-   </property>
-  </action>
   <action name="mnuAddItem">
    <property name="text">
     <string>Оборудование...</string>
@@ -178,6 +161,11 @@
   <action name="mnuAddBuilding">
    <property name="text">
     <string>Здание...</string>
+   </property>
+  </action>
+  <action name="mnuFindItem">
+   <property name="text">
+    <string>Найти оборудование...</string>
    </property>
   </action>
  </widget>

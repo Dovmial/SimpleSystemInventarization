@@ -22,8 +22,8 @@ Item* MonitorEditDialog::createItem()
 	auto item{ dataManager->createItem(
 		DataManager::typeITEquipment::typeMonitor,
 		number,
-		dataManager->getCurrentLocationInfo().second,
-		dataManager->getCurrentLocationInfo().first)
+		dataManager->getCurrentLocationInfo().first,
+		dataManager->getCurrentLocationInfo().second)
 	};
 	return item;
 }

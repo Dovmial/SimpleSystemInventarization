@@ -63,8 +63,8 @@ Item* PCeditDialog::createItem()
 		dataManager->createItem(
 			DataManager::typeITEquipment::typePC,
 			number,
-			dataManager->getCurrentLocationInfo().second,
-			dataManager->getCurrentLocationInfo().first)
+			dataManager->getCurrentLocationInfo().first,
+			dataManager->getCurrentLocationInfo().second)
 	) };
 	return item;
 }

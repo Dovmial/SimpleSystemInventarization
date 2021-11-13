@@ -76,6 +76,12 @@
     <ClCompile Include="DialogProblemSolutionInfo.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="DialogFindItem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TableFoundDevices.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="View.ui">
@@ -117,6 +123,12 @@
     <QtUic Include="DialogProblemSolutionInfo.ui">
       <Filter>Form Files</Filter>
     </QtUic>
+    <QtUic Include="DialogFindItem.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="TableFoundDevices.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="CreateItemDialog.hpp">
@@ -146,6 +158,9 @@
     <QtMoc Include="EditBuildingDialog.hpp">
       <Filter>Header Files</Filter>
     </QtMoc>
+    <QtMoc Include="TableFoundDevices.hpp">
+      <Filter>Header Files</Filter>
+    </QtMoc>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="IItemCreatable.hpp">
@@ -161,6 +176,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="DialogProblemSolutionInfo.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DialogFindItem.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

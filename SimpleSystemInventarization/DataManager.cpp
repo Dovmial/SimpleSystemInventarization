@@ -105,7 +105,6 @@ void DataManager::eraseItem(std::vector<DeviceLocation>::iterator&& iter) {
 	
 	getCurrentRoom()->eraseItem(iter->item.get());
 	devices.erase(iter);
-
 }
 
 void DataManager::update()
@@ -137,6 +136,30 @@ std::vector<DeviceLocation>::iterator DataManager::findItem(Item* item)
 			return obj.item.get() == item;
 		});
 	return iter;
+}
+
+std::vector<const DeviceLocation*>
+DataManager::findItemByName(const std::string& nameItem) const
+{
+	std::vector<const DeviceLocation*> resultFound;
+	const auto SIZE = devices.size();
+	for (size_t i{}; i < SIZE; ++i) {
+		if (devices[i].item->getName() == nameItem) {
+			resultFound.push_back(&devices[i]);
+		}
+	}
+	return resultFound;
+}
+std::vector<const DeviceLocation*>
+DataManager::findItemByNumber(int64_t numberItem) const
+{
+	std::vector<const DeviceLocation*> resultFound;
+	const auto SIZE = devices.size();
+	for (size_t i{}; i < SIZE; ++i) {
+		if (devices[i].item->getInventoryNumber() == numberItem)
+			resultFound.push_back(&devices[i]);
+	}
+	return resultFound;
 }
 
 void DataManager::setDataPC(const DataPC& data) {
@@ -196,14 +219,11 @@ Room* DataManager::getCurrentRoom() const
 
 Building* DataManager::getBuilding(const std::string& nameBuilding) const
 {
-	auto iter = find_if(begin(buildings), end(buildings),
-		[&](std::unique_ptr<Building> const& obj)-> bool {
-			return obj->getName() == nameBuilding;
-		});
-	if (iter == end(buildings))
-		return nullptr;
-	else
-		return iter->get();
+	for (const auto& building : buildings) {
+		if (building->getName() == nameBuilding)
+			return building.get();
+	}
+	return nullptr;//!!!!
 }
 
 Building* DataManager::getCurrentBuilding() const

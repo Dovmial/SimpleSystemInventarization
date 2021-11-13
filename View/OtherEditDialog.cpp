@@ -22,8 +22,8 @@ Item* OtherEditDialog::createItem()
 		dataManager->createItem(
 			DataManager::typeITEquipment::typeoOtherITEquipment,
 			number,
-			dataManager->getCurrentLocationInfo().second,
-			dataManager->getCurrentLocationInfo().first)
+			dataManager->getCurrentLocationInfo().first,
+			dataManager->getCurrentLocationInfo().second)
 	 };
 	return item;
 }

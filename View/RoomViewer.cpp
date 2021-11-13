@@ -10,7 +10,8 @@
 #include "OtherEditDialog.hpp"
 #include "DialogServiceInfo.hpp"
 #include "DialogProblemSolutionInfo.hpp"
-
+#include "DialogFindItem.hpp"
+#include "TableFoundDevices.hpp"
 #include <QMessageBox>
 
 RoomViewer::RoomViewer(std::unique_ptr<DataManager> dm, QWidget* parent)
@@ -67,6 +68,29 @@ void RoomViewer::on_mnuAddRoom_triggered()
     if (crRoomDialog->exec() == EditRoomDialog::Accepted) {
         crRoomDialog->addRoom();
        delete crRoomDialog;
+    }
+}
+
+void RoomViewer::on_mnuFindItem_triggered()
+{
+    auto dialog = new DialogFindItem(dataManager.get(), this);
+    if (dialog->exec() == QDialog::Accepted) {
+        auto devicesFound = dialog->findItem();
+        switch (devicesFound.size()) {
+        case 0:
+            QMessageBox::information(this, QString(QStringLiteral(u"Результат поиска")),
+                QString(QStringLiteral(u"Оборудование не найдено!")));
+            break;
+
+        case 1:
+            showFoundItem(devicesFound[0]);
+            break;
+
+        default:
+            auto tableFoundDevices{ new TableFoundDevices(this, devicesFound) };
+            tableFoundDevices->show();
+            break;
+        }
     }
 }
 
@@ -276,67 +300,6 @@ void RoomViewer::updateRoomContent()
     updateTableDevices();
     updateTableServices();
     updateTableProblemsSolutions();
-   /*
-    ui->pteInfoItems->clear();
-    if(!room->isEmpty())
-        ui->pteInfoItems->setPlainText(
-            QString::fromStdString(room->showItem(0)->getITequipment()->getInfo())
-        );
-
-    QList<QStandardItem*> itemStringList;
-    QList<QStandardItem*> serviceStringList;
-    QList<QStandardItem*> problemStringList;
-    Item* item; 
-
-    deviceTableModel->clear();
-    problemSolutionTableModel->clear();
-    serviceTableModel->clear();
-    setHeadersModels();
-
-    for (int i{}; i < room->size(); ++i) {
-        
-        item = room->showItem(i);
-       /* itemStringList.append(
-            new QStandardItem(QString::fromStdString(item->getName())));
-        itemStringList.append(
-            new QStandardItem(QString::number(item->getInventoryNumber())));
-        
-        deviceTableModel->insertRow(
-            deviceTableModel->rowCount(), itemStringList);
-        itemStringList.clear();
-
-       /* auto[serviceBeginIter, serviceEndIter] = item->getServiceInfoView();*/
-       /* auto[problemBeginIter, problemEndIter] = item->getProblemsSolutionsView();*/
-       /* while (serviceBeginIter != serviceEndIter) {
-            serviceStringList.append(
-                new QStandardItem(QString::fromStdString((*serviceBeginIter)->getDescription()))
-            );
-            serviceStringList.append(
-                new QStandardItem(QString::fromStdString((*serviceBeginIter)->getDate()))
-            );
-            if (serviceStringList.at(0)->text() != "")
-                serviceTableModel->insertRow(serviceTableModel->rowCount(), serviceStringList);
-            serviceStringList.clear();
-            ++serviceBeginIter;
-        }
-
-        while (problemBeginIter != problemEndIter) {
-            problemStringList.append(
-                new QStandardItem(QString::fromStdString((*problemBeginIter)->getDescription()))
-            );
-            problemStringList.append(
-                new QStandardItem(QString::fromStdString((*problemBeginIter)->getSolution()))
-            );
-            problemStringList.append(
-                new QStandardItem(QString::fromStdString((*problemBeginIter)->getDate()))
-            );
-            if (problemStringList.at(0)->text() == "")
-                problemSolutionTableModel->insertRow(problemSolutionTableModel->rowCount(),
-                    problemStringList);
-            problemStringList.clear();
-            ++problemBeginIter;
-        }
-    }*/
 }
 
 void RoomViewer::updateTableDevices() 
@@ -458,12 +421,31 @@ void RoomViewer::setHeadersProblemSolutionTable()
         << QStringLiteral(u"Дата")
     );
 }
+
+void RoomViewer::showFoundItem(const DeviceLocation*  devicesFound)
+{
+    auto roomLocation{ devicesFound->location.roomName };
+    auto buildingLocation{ devicesFound->location.buildingName };
+    dataManager->setCurrentLocationInfo({ buildingLocation, roomLocation });
+    if (room->getName() != roomLocation)
+        updateRoomViewer();
+    const size_t SIZE = room->size();
+    int index = 0;
+    for (; index < SIZE; ++index) {
+        if (devicesFound->item.get() == room->showItem(index))
+            break;
+    }
+
+    ui->tvItems->scrollTo(deviceTableModel->index(index, 0));
+    ui->tvItems->selectRow(index);
+}
+
 void RoomViewer::tablesModelsConfiguration()
 {
     deviceTableModel->setColumnCount(2);
     ui->tvItems->setModel(deviceTableModel);
     ui->tvItems->setSelectionBehavior(QAbstractItemView::SelectRows);
-    //ui->tvItems->setSelectionMode(QAbstractItemView::SingleSelection);
+    ui->tvItems->setSelectionMode(QAbstractItemView::SingleSelection);
     ui->tvItems->resizeColumnsToContents();
     ui->tvItems->horizontalHeader()->setStretchLastSection(true);
     ui->tvItems->setEditTriggers(QAbstractItemView::NoEditTriggers);
@@ -472,6 +454,7 @@ void RoomViewer::tablesModelsConfiguration()
     serviceTableModel->setColumnCount(4);
     ui->tvServiceItems->setModel(serviceTableModel);
     ui->tvServiceItems->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->tvServiceItems->setSelectionMode(QAbstractItemView::SingleSelection);
     ui->tvServiceItems->resizeColumnsToContents();
     ui->tvServiceItems->horizontalHeader()->setStretchLastSection(true);
     ui->tvServiceItems->setEditTriggers(QAbstractItemView::NoEditTriggers);
@@ -480,6 +463,7 @@ void RoomViewer::tablesModelsConfiguration()
     problemSolutionTableModel->setColumnCount(5);
     ui->tvProblemSolutionItems->setModel(problemSolutionTableModel);
     ui->tvProblemSolutionItems->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->tvProblemSolutionItems->setSelectionMode(QAbstractItemView::SingleSelection);
     ui->tvProblemSolutionItems->resizeColumnsToContents();
     ui->tvProblemSolutionItems->horizontalHeader()->setStretchLastSection(true);
     ui->tvProblemSolutionItems->setEditTriggers(QAbstractItemView::NoEditTriggers);

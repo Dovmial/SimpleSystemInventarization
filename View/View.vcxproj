@@ -114,6 +114,7 @@
     <QtRcc Include="View.qrc" />
     <QtMoc Include="View.h" />
     <ClCompile Include="AbstractEditDialog.cpp" />
+    <ClCompile Include="DialogFindItem.cpp" />
     <ClCompile Include="DialogProblemSolutionInfo.cpp" />
     <ClCompile Include="DialogServiceInfo.cpp" />
     <ClCompile Include="DialogTransitToBuilding.cpp" />
@@ -126,10 +127,12 @@
     <ClCompile Include="PCeditDialog.cpp" />
     <ClCompile Include="PrinterEditDialog.cpp" />
     <ClCompile Include="RoomViewer.cpp" />
+    <ClCompile Include="TableFoundDevices.cpp" />
     <ClCompile Include="View.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <QtUic Include="DialogFindItem.ui" />
     <QtUic Include="DialogProblemSolutionInfo.ui" />
     <QtUic Include="DialogServiceInfo.ui" />
     <QtUic Include="DialogTransitToBuilding.ui" />
@@ -142,6 +145,7 @@
     <QtUic Include="PCeditDialog.ui" />
     <QtUic Include="PrinterEditDialog.ui" />
     <QtUic Include="RoomViewer.ui" />
+    <QtUic Include="TableFoundDevices.ui" />
     <QtUic Include="View.ui" />
   </ItemGroup>
   <ItemGroup>
@@ -163,9 +167,11 @@
     <QtMoc Include="OtherEditDialog.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <QtMoc Include="TableFoundDevices.hpp" />
     <QtMoc Include="AbstractEditDialog.hpp" />
     <QtMoc Include="EditRoomDialog.hpp" />
     <QtMoc Include="EditBuildingDialog.hpp" />
+    <ClInclude Include="DialogFindItem.hpp" />
     <ClInclude Include="DialogProblemSolutionInfo.hpp" />
     <ClInclude Include="DialogServiceInfo.hpp" />
     <ClInclude Include="DialogTransitToBuilding.hpp" />
