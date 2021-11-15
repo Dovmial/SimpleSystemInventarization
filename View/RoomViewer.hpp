@@ -26,6 +26,8 @@ private slots:
 	void on_btnTransitRoom_clicked();
 	void on_btnTransitBuilding_clicked();
 
+	void on_btnSave_clicked();
+
 	void slotEditRecord(QModelIndex index);
 	void slotShowInfoSelectItem(QModelIndex index);
 	void slotAddProblemSolutionInfo();

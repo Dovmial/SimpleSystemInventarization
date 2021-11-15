@@ -12,7 +12,10 @@ void Building::addRoom(const std::string& nameRoom)
 {
 	auto room{ std::make_unique<Room>(nameRoom) };
 	rooms.push_back(std::move(room));
-	std::sort(begin(rooms)+1, end(rooms));
+	std::sort(begin(rooms)+1, end(rooms), 
+		[&](std::unique_ptr<Room> const & obj1, std::unique_ptr<Room>& obj2) -> bool {
+			return obj1->getName() < obj2->getName();
+		});
 }
 
 bool Building::removeRoom(const std::string& nameRoom)

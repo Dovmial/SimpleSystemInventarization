@@ -124,6 +124,12 @@ void RoomViewer::on_btnTransitBuilding_clicked()
     }
 }
 
+void RoomViewer::on_btnSave_clicked()
+{
+    dataManager->serialize();
+    QMessageBox::information(this, "", "Saved!!");
+}
+
 void RoomViewer::slotEditRecord(QModelIndex index)
 {
     Item* item = dataManager->getCurrentRoom()->showItem(index.row());

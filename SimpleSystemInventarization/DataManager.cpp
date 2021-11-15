@@ -1,6 +1,7 @@
 #include "DataManager.hpp"
 #include <memory>
 #include <algorithm>
+#include <fstream>
 
 DataManager::DataManager() :
 	pcFabric		{ std::make_unique<PCfabric>		()},
@@ -20,6 +21,7 @@ DataManager::DataManager() :
 		buildings[0]->getName(),
 		buildings[0]->getRoom(0)->getName()
 	);
+	load();
 }
 
 DataManager::~DataManager()
@@ -78,7 +80,7 @@ DataManager::createITequipment(typeITEquipment typeITE)
 Item* DataManager::createItem(
 	typeITEquipment type,
 	int64_t inventoryNumber_,
-	const std::string& nameBuilding, 
+	const std::string& nameBuilding,
 	const std::string& nameRoom
 	)
 {
@@ -127,6 +129,60 @@ void DataManager::update()
 			}
 		}
 	}
+}
+
+void DataManager::serialize()
+{
+	const size_t SIZE{ buildings.size() };
+	size_t countRooms{ };
+	std::ofstream file("data.ssi");
+	if (!file.is_open())
+		throw std::exception("File is not open!");
+	file << SIZE << '\n';
+
+	for (size_t i{ 1 }; i < SIZE; ++i) {
+		file << buildings[i]->getName() << "\n";
+		countRooms = buildings[i]->size();
+		file << countRooms - 1 << ' ';
+		for (size_t j{ 1 }; j < countRooms; ++j)
+			file<<buildings[i]->getRoom(j)->getName() << ';';
+		file << '\n';
+	}
+
+	file.close();
+}
+
+void DataManager::load()
+{
+	std::ifstream file("data.ssi");
+	if (!file.is_open())
+		throw std::exception("File is not open!");
+	size_t countBuildings{};
+	file >> countBuildings;
+	buildings.reserve(countBuildings);
+	file.get();
+
+	std::string buf;
+	for (size_t i{ 1 }; i < countBuildings; ++i) {
+		std::getline(file, buf);
+		addBuilding(buf);
+		buf.clear();
+
+		size_t countRooms{};
+
+		file >> countRooms;
+		file.get();
+		char ch;
+		for (size_t j{}; j < countRooms; ++j) {
+			while (file.get(ch) && ch != ';') {
+				buf += ch;
+			}
+			buildings[i]->addRoom(buf);
+			buf.clear();
+		}
+		file.get();
+	}
+	file.close();
 }
 
 std::vector<DeviceLocation>::iterator DataManager::findItem(Item* item)

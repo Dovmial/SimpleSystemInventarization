@@ -51,7 +51,8 @@ public:
 	std::vector<const DeviceLocation*> findItemByNumber(int64_t numberItem) const;
 	void eraseItem(std::vector<DeviceLocation>::iterator&& iter);
 	void update();
-
+	void serialize();
+	void load();
 
 	void setDataMonitor(const std::string& name, float diagonal);
 	void setDataPC(const DataPC& data);
@@ -72,6 +73,7 @@ public:
 	Building* getCurrentBuilding()const;
 	std::vector<std::string> getListBuildingNames() const;
 	std::vector<std::string> getListRoomNames() const;
+
 private:
 	std::shared_ptr<ITequipment> createITequipment(typeITEquipment typeITE);
 private:

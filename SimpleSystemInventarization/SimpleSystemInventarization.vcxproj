@@ -46,6 +46,7 @@
     <ClInclude Include="Item.hpp" />
     <ClInclude Include="Navigator.hpp" />
     <ClInclude Include="Room.hpp" />
+    <ClInclude Include="Serializer.hpp" />
     <ClInclude Include="ServiceInfo.hpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
