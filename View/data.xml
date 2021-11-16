@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root>
+    <Buildings count="2">
+        <Building name="12" count="2">
+            <Room name="101"/>
+            <Room name="102"/>
+        </Building>
+        <Building name="13" count="2">
+            <Room name="201"/>
+            <Room name="202"/>
+        </Building>
+    </Buildings>
+</Root>

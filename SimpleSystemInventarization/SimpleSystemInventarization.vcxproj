@@ -31,6 +31,7 @@
     <ClCompile Include="Navigator.cpp" />
     <ClCompile Include="Room.cpp" />
     <ClCompile Include="ServiceInfo.cpp" />
+    <ClCompile Include="tinyxml2.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BaseObject.hpp" />
@@ -48,6 +49,7 @@
     <ClInclude Include="Room.hpp" />
     <ClInclude Include="Serializer.hpp" />
     <ClInclude Include="ServiceInfo.hpp" />
+    <ClInclude Include="tinyxml2.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

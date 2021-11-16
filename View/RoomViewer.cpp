@@ -40,7 +40,7 @@ RoomViewer::RoomViewer(std::unique_ptr<DataManager> dm, QWidget* parent)
         this, &RoomViewer::slotContextMenuServices);
     QObject::connect(ui->tvProblemSolutionItems, &QTableView::customContextMenuRequested,
         this, &RoomViewer::slotContextMenuProblemsSolutions);
-
+   
 }
 
 RoomViewer::~RoomViewer()
@@ -126,7 +126,7 @@ void RoomViewer::on_btnTransitBuilding_clicked()
 
 void RoomViewer::on_btnSave_clicked()
 {
-    dataManager->serialize();
+    dataManager->save();
     QMessageBox::information(this, "", "Saved!!");
 }
 

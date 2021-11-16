@@ -51,8 +51,10 @@ public:
 	std::vector<const DeviceLocation*> findItemByNumber(int64_t numberItem) const;
 	void eraseItem(std::vector<DeviceLocation>::iterator&& iter);
 	void update();
-	void serialize();
-	void load();
+
+	int serialize();
+	int load();
+	int save();
 
 	void setDataMonitor(const std::string& name, float diagonal);
 	void setDataPC(const DataPC& data);
