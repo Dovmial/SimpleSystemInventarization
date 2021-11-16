@@ -8,6 +8,7 @@
 #include "GetDataEquipment.hpp"
 #include "Building.hpp"
 #include "Navigator.hpp"
+#include "Serializer.hpp"
 
 
 //$(SolutionDir)bin\$(Platform)\$(Configuration)\
@@ -52,7 +53,7 @@ public:
 	void eraseItem(std::vector<DeviceLocation>::iterator&& iter);
 	void update();
 
-	int serialize();
+	
 	int load();
 	int save();
 
@@ -70,6 +71,7 @@ public:
 	
 public:
 	void addBuilding(const std::string& nameBuilding);
+	std::vector <std::unique_ptr<Building>>& getRefBuildings();
 	Room* getCurrentRoom() const;
 	Building* getBuilding(const std::string& nameBuilding) const;
 	Building* getCurrentBuilding()const;
@@ -93,6 +95,6 @@ private:
 	std::unique_ptr<OtherGetData> otherGetData;
 private:
 	std::unique_ptr<INavigator> currentLocation;
-	
+	std::unique_ptr<Serializer> serializer;
 };
 #endif

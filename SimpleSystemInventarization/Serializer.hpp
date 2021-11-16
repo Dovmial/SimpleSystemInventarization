@@ -1,33 +1,21 @@
-#pragma once
-#include "DataManager.hpp"
-#include <fstream>
+#ifndef __SERIALIZER__HPP__
+#define __SERIALIZER__HPP__
 
-class Serialazer {
+#include "Building.hpp"
+#include <memory>
+#include "tinyxml2.h"
+using namespace tinyxml2;
+
+class Serializer {
 public:
-	Serialazer(DataManager* dm) { dataManager = dm; };
-	~Serialazer() {};
 
+	Serializer();
+	~Serializer();
 
-	void operator()(std::vector<Building*> buildings)
-	{
-		
-		const size_t SIZE{ buildings.size() };
-		size_t countRooms{1};
-		std::ofstream file(m_path);
-		file << SIZE << '\n';
+	int decodeBuilding(std::vector<std::unique_ptr<Building>>& buildings);
+	int encodeBuilding(std::vector<std::unique_ptr<Building>>& buildings);
 
-		for (size_t i{1}; i < SIZE; ++i) {
-			file << buildings[i]->getName()<<";\n";
-			countRooms = buildings[i]->size();
-			for (size_t j{ 1 }; j < countRooms; ++j)
-				file << countRooms-1<<' '<<buildings[i]->getRoom(j) << ';';
-			file << '\n';
-		}
-
-		file.close();
-	}
-	
 private:
-	std::string m_path = "data.ssi";
-	DataManager* dataManager;
+	std::string path;
 };
+#endif

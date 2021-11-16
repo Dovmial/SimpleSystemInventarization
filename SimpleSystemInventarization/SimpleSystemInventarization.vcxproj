@@ -30,6 +30,7 @@
     <ClCompile Include="Location.cpp" />
     <ClCompile Include="Navigator.cpp" />
     <ClCompile Include="Room.cpp" />
+    <ClCompile Include="Serializer.cpp" />
     <ClCompile Include="ServiceInfo.cpp" />
     <ClCompile Include="tinyxml2.cpp" />
   </ItemGroup>

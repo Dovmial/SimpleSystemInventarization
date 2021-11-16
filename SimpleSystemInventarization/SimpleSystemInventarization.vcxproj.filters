@@ -102,6 +102,9 @@
     <ClCompile Include="tinyxml2.cpp">
       <Filter>Managers\Исходные файлы</Filter>
     </ClCompile>
+    <ClCompile Include="Serializer.cpp">
+      <Filter>Managers\Исходные файлы</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Room.hpp">

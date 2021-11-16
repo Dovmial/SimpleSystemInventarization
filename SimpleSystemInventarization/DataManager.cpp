@@ -1,10 +1,7 @@
 #include "DataManager.hpp"
 #include <memory>
 #include <algorithm>
-#include <fstream>
-#include "tinyxml2.h"
 
-using namespace tinyxml2;
 
 DataManager::DataManager() :
 	pcFabric		{ std::make_unique<PCfabric>		()},
@@ -15,8 +12,9 @@ DataManager::DataManager() :
 	pcGetData		{ std::make_unique<PCgetData>		()},
 	monitorGetData	{ std::make_unique<MonitorGetData>	()},
 	printerGetData	{ std::make_unique<PrinterGetData>	()},
-	otherGetData	{ std::make_unique<OtherGetData>	()}
+	otherGetData	{ std::make_unique<OtherGetData>	()},
 
+	serializer		{ std::make_unique<Serializer>		()}
 	
 {
 	buildings.push_back(std::move(std::make_unique<Building>("Virtual building")));
@@ -134,94 +132,18 @@ void DataManager::update()
 	}
 }
 
-int DataManager::serialize()
-{
 
-}
 
 int DataManager::load()
 {
-	XMLDocument xmlDoc;
-	XMLError eResult{ xmlDoc.LoadFile("data.xml") };
-	if (eResult != XML_SUCCESS) {
-		return eResult;
-	}
-
-	XMLNode* pRoot{ xmlDoc.FirstChildElement("Root")};
-	if (!pRoot) return XML_ERROR_FILE_READ_ERROR;
-	
-	XMLElement* pBuildings{ pRoot->FirstChildElement("Buildings")};
-	if (!pBuildings) return XML_ERROR_PARSING_ELEMENT;
-
-	const char * strSIZE{ pBuildings->Attribute("count") };
-	if (!strSIZE) return XML_ERROR_PARSING_ATTRIBUTE;
-	size_t countBuildings{ static_cast<size_t>(atoi(strSIZE)) };
-	buildings.reserve(countBuildings);
-
-	XMLElement* pBuilding{ pBuildings->FirstChildElement("Building") };
-	if (!pBuilding) return XML_ERROR_PARSING_ELEMENT;
-	const char* nameBuilding;
-	const char* countRooms;
-	const char* nameRoom;
-	XMLElement* pRoom;
-	while(pBuilding != nullptr) {
-		nameBuilding = pBuilding->Attribute("name");
-		if (!nameBuilding) return XML_ERROR_PARSING_ATTRIBUTE;
-
-		countRooms = pBuilding->Attribute("count");
-		if (!countRooms) return XML_ERROR_PARSING_ATTRIBUTE;
-
-		addBuilding(std::string(nameBuilding));
-
-		pRoom = pBuilding->FirstChildElement("Room") ;
-		if (!pRoom) return XML_ERROR_PARSING_ELEMENT;
-
-		while (pRoom != nullptr) {
-
-			nameRoom = pRoom->Attribute("name");
-			if (!nameRoom) return XML_ERROR_PARSING_ATTRIBUTE;
-			buildings.back()->addRoom(std::string(nameRoom));
-
-			pRoom = pRoom->NextSiblingElement("Room");
-		}
-
-		pBuilding = pBuilding->NextSiblingElement("Building");
-	}
-	return 0;
+	return serializer->decodeBuilding(buildings);
 }
 
 
 
 int DataManager::save()
 {
-	XMLDocument xmlFile;
-	XMLDeclaration* pDeclaration{ xmlFile.NewDeclaration() };
-	xmlFile.InsertFirstChild(pDeclaration);
-
-	XMLNode* pRoot{ xmlFile.NewElement("Root") };
-	xmlFile.InsertEndChild(pRoot);
-
-	XMLElement* pBuildings{ xmlFile.NewElement("Buildings") };
-	pBuildings->SetAttribute("count", buildings.size());
-	pRoot->InsertEndChild(pBuildings);
-
-	for (size_t i{1}; i < buildings.size(); ++i) {
-
-		XMLElement* pBuilding{ xmlFile.NewElement("Building") };
-		pBuilding->SetAttribute("name", buildings[i]->getName().c_str());
-		pBuilding->SetAttribute("count", buildings[i]->size());
-		pBuildings->InsertEndChild(pBuilding);
-
-		for (size_t j{1}; j < buildings[i]->size(); ++j) {
-			XMLElement* pRoom{ xmlFile.NewElement("Room") };
-			pRoom->SetAttribute("name", buildings[i]->getRoom(j)->getName().c_str());
-			pBuilding->InsertEndChild(pRoom);
-		}
-	}
-	XMLError eResult{ xmlFile.SaveFile("data.xml") };
-	if (eResult != XML_SUCCESS) {
-		return static_cast<int>(eResult);
-	}
+	return serializer->encodeBuilding(buildings);
 }
 
 std::vector<DeviceLocation>::iterator DataManager::findItem(Item* item)
@@ -302,6 +224,11 @@ void DataManager::setCurrentBuildingLocationInfo(const std::string& building)
 void DataManager::addBuilding(const std::string& nameBuilding)
 {
 	buildings.push_back(std::make_unique<Building>(nameBuilding));
+}
+
+std::vector<std::unique_ptr<Building>>& DataManager::getRefBuildings()
+{
+	return std::ref(buildings);
 }
 
 Room* DataManager::getCurrentRoom() const
