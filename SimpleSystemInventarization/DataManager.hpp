@@ -55,12 +55,12 @@ public:
 
 	
 	int load();
-	int save();
+	void save();
 
 	void setDataMonitor(const std::string& name, float diagonal);
 	void setDataPC(const DataPC& data);
 	void setDataPrinter(
-		const std::string& name, const std::string& cartridge, Printer::PrinterType data);
+	const std::string& name, const std::string& cartridge, Printer::PrinterType data);
 	void setDataOther(const std::string& name, const std::string& otherInfo);
 
 public:

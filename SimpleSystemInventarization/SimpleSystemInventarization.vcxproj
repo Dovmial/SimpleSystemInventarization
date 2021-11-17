@@ -40,6 +40,7 @@
     <ClInclude Include="Components.hpp" />
     <ClInclude Include="DataManager.hpp" />
     <ClInclude Include="IInfoType.hpp" />
+    <ClInclude Include="ISerialize.hpp" />
     <ClInclude Include="Location.hpp" />
     <ClInclude Include="GetDataEquipment.hpp" />
     <ClInclude Include="Iinfo.hpp" />

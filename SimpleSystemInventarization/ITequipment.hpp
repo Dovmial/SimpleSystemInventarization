@@ -10,10 +10,10 @@
 #include "Iinfo.hpp"
 #include "IinfoType.hpp"
 #include <memory>
+#include "ISerialize.hpp"
 
 
-
-class ITequipment: public BaseObject, public Iinfo, public IInfoType {
+class ITequipment: public BaseObject, public Iinfo, public IInfoType, public ISerialize {
 public:
 	ITequipment() = delete;
 	ITequipment(const std::string& name_);
@@ -47,6 +47,7 @@ public:
 
 	virtual std::string getInfo()const override;
 	virtual typeDevice getType() const override;
+	virtual XMLElement* serialize(XMLDocument& xmlDoc) override;
 public:
 	void setComplectComponents(std::shared_ptr<ComplectComponents> complect);
 	void setMotherboard(const MotherBoard& mb);
@@ -77,6 +78,7 @@ public:
 	float getDiagonal() const;
 	virtual std::string getInfo()const override;
 	virtual typeDevice getType()const override;
+	virtual XMLElement* serialize(XMLDocument& xmlDoc) override;
 private:
 	float diagonal;
 };
@@ -99,6 +101,7 @@ public:
 	std::string printerTypeToStr() const;
 	virtual std::string getInfo()const override;
 	virtual typeDevice getType()const override;
+	virtual XMLElement* serialize(XMLDocument& xmlDoc) override;
 private:
 	Cartridge cartridge;
 	PrinterType type;
@@ -114,6 +117,7 @@ public:
 	std::string getSomeInfo() const;
 	virtual std::string getInfo()const override;
 	virtual typeDevice getType()const override;
+	virtual XMLElement* serialize(XMLDocument& xmlDoc) override;
 private:
 	std::string someInfo;
 };

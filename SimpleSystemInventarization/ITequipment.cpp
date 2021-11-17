@@ -46,6 +46,43 @@ typeDevice PC::getType() const
 	return typeDevice::PC_TYPE;
 }
 
+XMLElement* PC::serialize(XMLDocument& xmlDoc)
+{
+	XMLElement* pPC{ xmlDoc.NewElement("PC") };
+	pPC->SetAttribute("typePC", static_cast<int>(typePC));
+	pPC->SetAttribute("name", name.c_str());
+	XMLElement* pMotherboard{ xmlDoc.NewElement("Motherboard") };
+	pMotherboard->SetAttribute("name", motherboard.getName().c_str());
+	pPC->InsertEndChild(pMotherboard);
+
+	XMLElement* pCPU{ xmlDoc.NewElement("CPU") };
+	pCPU->SetAttribute("name", _cpu.getName().c_str());
+	pCPU->SetAttribute("frequency", _cpu.getFrequency());
+	pPC->InsertEndChild(pCPU);
+
+	XMLElement* pGraphicCard{ xmlDoc.NewElement("GraphicCard") };
+	pGraphicCard->SetAttribute("name", graphicCard.getName().c_str());
+	pGraphicCard->SetAttribute("volume", graphicCard.getVolume());
+	pPC->InsertEndChild(pGraphicCard);
+
+	XMLElement* pRAM{ xmlDoc.NewElement("RAM") };
+	pRAM->SetAttribute("name", ram.getName().c_str());
+	pRAM->SetAttribute("volume", ram.getVolume());
+	pPC->InsertEndChild(pRAM);
+
+	XMLElement* pStorageDevice{ xmlDoc.NewElement("StorageDevice") };
+	pStorageDevice->SetAttribute(
+		"typeStorageDevice",+
+		static_cast<int>(storageDevice.getStorageDeviceType())
+	);
+	pStorageDevice->SetAttribute("name", storageDevice.getName().c_str());
+	pStorageDevice->SetAttribute("volume", storageDevice.getVolume());
+	pPC->InsertEndChild(pStorageDevice);
+
+	XMLElement* pOperationSystem{ xmlDoc.NewElement("OperationSystem") };
+	pOperationSystem->SetText(operationSystem.c_str());
+}
+
 void PC::setTypePC(TypePC typePC_)
 {
 	typePC = typePC_;
@@ -143,6 +180,14 @@ typeDevice Monitor::getType() const
 	return typeDevice::MONITOR_TYPE;
 }
 
+XMLElement* Monitor::serialize(XMLDocument& xmlDoc)
+{
+	XMLElement* pMonitor{ xmlDoc.NewElement("Monitor") };
+	pMonitor->SetAttribute("name", getName().c_str());
+	pMonitor->SetAttribute("diagonal", getDiagonal());
+	return pMonitor;
+}
+
 Printer::Printer(const std::string& name_, Cartridge&& cartridge_, PrinterType type_):
 	cartridge(cartridge_), type(type_), ITequipment(name_)
 {
@@ -190,6 +235,18 @@ typeDevice Printer::getType()const {
 	return typeDevice::PRINTER_TYPE;
 }
 
+XMLElement* Printer::serialize(XMLDocument& xmlDoc)
+{
+	XMLElement* pPrinter{ xmlDoc.NewElement("Printer") };
+	pPrinter->SetAttribute("type", static_cast<int>(getType()));
+	pPrinter->SetAttribute("name", getName().c_str());
+
+	XMLElement* pCartridge{ xmlDoc.NewElement("Cartridge") };
+	pCartridge->SetText(getCartridge().getName().c_str());
+	pPrinter->InsertEndChild(pCartridge);
+	return pPrinter;
+}
+
 OtherEquipment::OtherEquipment(const std::string& name_, const std::string& someInfo_)
 : someInfo(someInfo_), ITequipment(name_)
 {
@@ -217,4 +274,14 @@ std::string OtherEquipment::getInfo() const
 
 typeDevice OtherEquipment::getType()const {
 	return typeDevice::OTHER_TYPE;
+}
+
+XMLElement* OtherEquipment::serialize(XMLDocument& xmlDoc)
+{
+	XMLElement* pOther{ xmlDoc.NewElement("Other") };
+	pOther->SetAttribute("name", getName().c_str());
+	XMLElement* pSomeInfo{ xmlDoc.NewElement("SomeInfo") };
+	pOther->SetText(getSomeInfo().c_str());
+	pOther->InsertEndChild(pSomeInfo);
+	return pOther;
 }

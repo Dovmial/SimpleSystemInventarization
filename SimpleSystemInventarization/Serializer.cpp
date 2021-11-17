@@ -92,3 +92,14 @@ int Serializer::encodeBuilding(std::vector<std::unique_ptr<Building>>& buildings
 	}
 }
 
+int Serializer::encode(DeviceLocation* device)
+{
+	XMLDocument xmlDoc;
+
+	auto type{ device->item->getITequipment()->getType() };
+	switch (type) {
+	case MONITOR_TYPE:
+
+	}
+}
+

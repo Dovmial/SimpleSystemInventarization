@@ -143,7 +143,8 @@ int DataManager::load()
 
 int DataManager::save()
 {
-	return serializer->encodeBuilding(buildings);
+
+	 serializer->encodeBuilding(buildings);
 }
 
 std::vector<DeviceLocation>::iterator DataManager::findItem(Item* item)
