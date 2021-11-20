@@ -7,7 +7,7 @@ DialogTransitToRoom::DialogTransitToRoom(DataManager* dm, QWidget* parent):
 {
 	ui->setupUi(this);
 	ui->lblNameBuilding->setText(
-		QString::fromStdString(dataManager->getCurrentLocationInfo().first));
+		QString::fromStdString(dataManager->getCurrentLocationNames().first));
 	
 	auto roomsList{ dataManager->getListRoomNames() };
 	QStringList list;

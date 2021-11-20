@@ -7,8 +7,7 @@
 class MonitorEditDialog: public AbstractEditDialog {
 	Q_OBJECT
 public:
-	MonitorEditDialog(DataManager* dm,
-		QWidget* parent = nullptr);
+	MonitorEditDialog(DataManager* dm, QWidget* parent = nullptr);
 	~MonitorEditDialog();
 	Item* createItem() override;
 private slots:

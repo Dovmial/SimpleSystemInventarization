@@ -39,6 +39,7 @@ Item* PCeditDialog::createItem()
 		ui->leVideocardVolumeRam->text().toFloat())
 	};
 	auto ram{ ui->leRAMvolume->text().toFloat() };
+
 	auto storageDevice{ std::make_tuple(
 		ui->leStorageDeviceVolume->text().toFloat(),
 		ui->leStorageDeviceName->text().toStdString(),
@@ -63,9 +64,8 @@ Item* PCeditDialog::createItem()
 		dataManager->createItem(
 			DataManager::typeITEquipment::typePC,
 			number,
-			dataManager->getCurrentLocationInfo().first,
-			dataManager->getCurrentLocationInfo().second)
-	) };
+			dataManager->getCurrentLocationIndexes()
+	)) };
 	return item;
 }
 

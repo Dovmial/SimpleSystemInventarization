@@ -5,8 +5,8 @@
 using namespace tinyxml2;
 
 struct ISerialize {
-	virtual XMLElement* serialize(XMLDocument& doc) = 0;
-	//void deserialize(DeviceLocation);
+	virtual XMLElement* serialize(XMLDocument& doc)const = 0;
+	//virtual int			deserialize(DeviceLocation);
 };
 
 #endif

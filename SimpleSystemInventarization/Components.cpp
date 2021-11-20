@@ -97,7 +97,7 @@ void StorageDevice::setVolume(float volume_)
 	volume = volume_;
 }
 
-StorageDevice::typeStorageDevice StorageDevice::getStorageDeviceType()
+StorageDevice::typeStorageDevice StorageDevice::getStorageDeviceType() const
 {
 	return sdType;
 }

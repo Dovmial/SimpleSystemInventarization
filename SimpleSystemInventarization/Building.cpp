@@ -62,7 +62,7 @@ Room* Building::findItem(int64_t inventoryNumber) const
 
 Room* Building::getRoom(int index) const
 {
-	return rooms[index].get();
+	return rooms.at(index).get();
 }
 
 bool Building::isExistRoom(const std::string& nameRoom) const

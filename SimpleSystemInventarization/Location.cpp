@@ -2,7 +2,6 @@
 
 bool Location::operator==(const Location& other) const
 {
-    return
-    buildingName == other.buildingName &&
-    roomName == other.roomName;
+    return building.first == other.building.first && room.first == other.room.first;
 }
+

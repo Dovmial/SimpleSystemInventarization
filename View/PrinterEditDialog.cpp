@@ -34,8 +34,7 @@ Item* PrinterEditDialog::createItem()
 	auto item{ std::move(dataManager->createItem(
 		DataManager::typeITEquipment::typePrinter,
 		number,
-		dataManager->getCurrentLocationInfo().first,
-		dataManager->getCurrentLocationInfo().second
+		dataManager->getCurrentLocationIndexes()
 		)
 	)};
 	return item;

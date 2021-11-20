@@ -7,7 +7,7 @@ class DialogFindItem : public QDialog {
 public:
 	DialogFindItem(DataManager* dm, QWidget* parent = nullptr);
 	~DialogFindItem();
-	QVector<const DeviceLocation*> findItem();
+	QVector<const DeviceLocation*> findItem() const;
 private:
 	Ui::DialogFindItem* ui;
 	DataManager* dataManager;

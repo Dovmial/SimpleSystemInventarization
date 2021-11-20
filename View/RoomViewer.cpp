@@ -99,11 +99,12 @@ void RoomViewer::on_btnTransitRoom_clicked()
     auto dialog{ new DialogTransitToRoom(dataManager.get(), this) };
     if (dialog->exec() == QDialog::Accepted) {
         std::string transitToRoom = dialog->getNameRoomTransit().toStdString();
-        if (dataManager->getCurrentBuilding()->isExistRoom(transitToRoom)) {
-            dataManager->setCurrentRoomLocationInfo(transitToRoom);
+        auto index{ dataManager->getCurrentBuilding()->findRoom(transitToRoom) };
+
+        if (index > -1) {
+            dataManager->setCurrentRoomLocationInfo(std::make_pair(index, transitToRoom));
             updateRoomViewer();
         }
-
         else
             QMessageBox::critical(this, "Error!", "Such a room does not exist");
     }
@@ -115,8 +116,9 @@ void RoomViewer::on_btnTransitBuilding_clicked()
     auto dialog{ new DialogTransitToBuilding(dataManager.get(), this) };
     if (dialog->exec() == QDialog::Accepted) {
         std::string transitToBuilding = dialog->getNameBuildingTransit().toStdString();
-        if (dataManager->getBuilding(transitToBuilding)) {
-            dataManager->setCurrentBuildingLocationInfo(transitToBuilding);
+        auto index{ dataManager->getBuildingIndex(transitToBuilding) };
+        if (index > -1) {
+            dataManager->setCurrentBuildingLocationInfo(std::make_pair(index, transitToBuilding));
             updateRoomViewer();
         }
         else
@@ -296,8 +298,8 @@ void RoomViewer::updateRoomViewer()
     updateRoomContent();
     ui->lblRoomName->setText(QString::fromStdString(room->getName()));
     setTextStatusBar(
-        dataManager->getCurrentLocationInfo().first,
-        dataManager->getCurrentLocationInfo().second);
+        dataManager->getCurrentLocationNames().first,
+        dataManager->getCurrentLocationNames().second);
     ui->statusbar->addWidget(currentLocationInfo);
 }
 
@@ -428,17 +430,24 @@ void RoomViewer::setHeadersProblemSolutionTable()
     );
 }
 
-void RoomViewer::showFoundItem(const DeviceLocation*  devicesFound)
+void RoomViewer::showFoundItem(const DeviceLocation* deviceFound)
 {
-    auto roomLocation{ devicesFound->location.roomName };
-    auto buildingLocation{ devicesFound->location.buildingName };
-    dataManager->setCurrentLocationInfo({ buildingLocation, roomLocation });
-    if (room->getName() != roomLocation)
+    auto indexBuilding  { deviceFound->getBuildingIndex                          () };
+    auto indexRoom      { deviceFound->getRoomIndex                              () };
+    auto nameBuilding   { dataManager->getBuildingByIndex(indexBuilding)->getName() };
+    auto nameRoom{ dataManager->getBuildingByIndex(indexBuilding)
+        ->getRoom(indexRoom)->getName() };
+   
+    dataManager->setCurrentLocationInfo(
+        std::make_pair(indexBuilding, nameBuilding),
+        std::make_pair(indexRoom    , nameRoom)
+    );
+    if (room->getName() != nameRoom)
         updateRoomViewer();
     const size_t SIZE = room->size();
     int index = 0;
     for (; index < SIZE; ++index) {
-        if (devicesFound->item.get() == room->showItem(index))
+        if (deviceFound->getItem() == room->showItem(index))
             break;
     }
 

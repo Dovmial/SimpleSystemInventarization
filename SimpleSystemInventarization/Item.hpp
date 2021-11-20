@@ -6,10 +6,12 @@
 #include <memory>
 #include "ITequipment.hpp"
 #include "ServiceInfo.hpp"
+#include "ISerialize.hpp"
 
 
 using ServiceInfoContainer = std::vector<std::shared_ptr<ServiceInfo>>;
 using ProblemSolutionContainer = std::vector<std::shared_ptr<ProblemSolutionInfo>>;
+
 using SIiterator = ServiceInfoContainer::iterator;
 using SIiteratorConst = ServiceInfoContainer::const_iterator;
 using PSiterator = ProblemSolutionContainer::iterator;
@@ -22,13 +24,13 @@ using PSiteratorConst = ProblemSolutionContainer::const_iterator;
 #endif // MODEL_EXPORTS
 
 /*Item - эквивалент реального оборудования*/
-class DECLSPEC Item {
+class DECLSPEC Item : public ISerialize{
 //maybe add ID
 public:
 	Item() = delete;
 	Item(std::shared_ptr<ITequipment> equipment_, int64_t inventoryNumber_);
 	//~Item();
-	std::string getName();
+	std::string getName() const;
 	void addSignService(std::string description, std::string date);
 	void addSignProblemsSolutions(
 		std::string problems,
@@ -48,6 +50,8 @@ public:
 	std::pair<SIiteratorConst, SIiteratorConst> getServiceInfoView() const;
 	std::pair<PSiteratorConst, PSiteratorConst> getProblemsSolutionsView() const;
 	//void getPrintInfoItem() const;
+
+	XMLElement* serialize(XMLDocument& xmlDoc)const  override;
 private:
 	std::shared_ptr<ITequipment> equipment;
 	int64_t inventoryNumber;

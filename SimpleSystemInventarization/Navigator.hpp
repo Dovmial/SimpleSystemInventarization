@@ -13,26 +13,38 @@
 
 struct INavigator {
 public:
-	virtual auto getCurrentLocation() const->std::pair < std::string, std::string > = 0;
-	virtual void setCurrentLocation(
-		const std::string& building, const std::string& room) = 0;
-	virtual void setCurrentRoom(const std::string& roomName) = 0;
-	virtual void setCurrentBuilding(const std::string& build) = 0;
+	virtual auto getCurrentLocationString	() const->std::pair < std::string, std::string >  = 0;
+	virtual auto getCurrentLocationIndexes	() const->std::pair < size_t, size_t >			  = 0;
+
+	virtual void setCurrentRoom				(const std::pair<size_t, std::string>& room_)	  = 0;
+	virtual void setCurrentBuilding			(const std::pair<size_t, std::string>& building_) = 0;
+	virtual void setCurrentLocation			(
+		std::pair<size_t,std::string> building_,
+		std::pair<size_t, std::string> room_) = 0;
 };
 
-class  Navigator: public INavigator
+class  Navigator : public INavigator
 {
 public:
-	Navigator(const std::string& building = "", const std::string& name ="");
-	auto getCurrentLocation() const
+	Navigator(
+		const std::pair<size_t, std::string>& building,
+		const std::pair<size_t, std::string>& room
+	);
+	auto getCurrentLocationString() const
 		->std::pair < std::string, std::string > override;
-	void setCurrentLocation(
-		const std::string& building, const std::string& room) override;
-	void setCurrentRoom(const std::string& room) override;
-	void setCurrentBuilding(const std::string& building) override;
-	Location getLocation() const;
-private:
+	auto getCurrentLocationIndexes() const->std::pair < size_t, size_t > override;
 
+	void setCurrentLocation(
+		std::pair<size_t, std::string> building,
+		std::pair<size_t, std::string> room
+	) override;
+
+	void setCurrentRoom		(const std::pair<size_t,std::string>& room_		) override;
+	void setCurrentBuilding (const std::pair<size_t, std::string>& building_) override;
+
+	Location getLocation() const;
+
+private:
 	Location location;
 };
 

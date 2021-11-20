@@ -1,19 +1,14 @@
-#ifndef __DEVICELOCATION__HPP__
-#define __DEVICELOCATION__HPP__
+#ifndef __LOCATION__HPP__
+#define __LOCATION__HPP__
 
 #include <string>
-#include "Item.hpp"
-#include <memory>
+#include <utility>
 
 struct Location {
-	std::string buildingName;
-	std::string roomName;
-	bool operator==(const Location& other) const;
-};
+	std::pair<size_t, std::string> building;
+	std::pair<size_t, std::string> room;
 
-struct  DeviceLocation {
-	std::unique_ptr<Item> item;
-	Location location;
+	bool operator==(const Location& other) const;
 };
 
 #endif

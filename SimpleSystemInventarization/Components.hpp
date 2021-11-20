@@ -59,7 +59,7 @@ public:
 public:
 	void setTypeStorDev(typeStorageDevice type);
 	void setVolume(float volume_);
-	typeStorageDevice getStorageDeviceType();
+	typeStorageDevice getStorageDeviceType() const;
 	float getVolume() const;
 
 private:

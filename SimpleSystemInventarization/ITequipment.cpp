@@ -46,7 +46,7 @@ typeDevice PC::getType() const
 	return typeDevice::PC_TYPE;
 }
 
-XMLElement* PC::serialize(XMLDocument& xmlDoc)
+XMLElement* PC::serialize(XMLDocument& xmlDoc) const
 {
 	XMLElement* pPC{ xmlDoc.NewElement("PC") };
 	pPC->SetAttribute("typePC", static_cast<int>(typePC));
@@ -81,6 +81,8 @@ XMLElement* PC::serialize(XMLDocument& xmlDoc)
 
 	XMLElement* pOperationSystem{ xmlDoc.NewElement("OperationSystem") };
 	pOperationSystem->SetText(operationSystem.c_str());
+	pPC->InsertEndChild(pOperationSystem);
+	return pPC;
 }
 
 void PC::setTypePC(TypePC typePC_)
@@ -180,7 +182,7 @@ typeDevice Monitor::getType() const
 	return typeDevice::MONITOR_TYPE;
 }
 
-XMLElement* Monitor::serialize(XMLDocument& xmlDoc)
+XMLElement* Monitor::serialize(XMLDocument& xmlDoc) const
 {
 	XMLElement* pMonitor{ xmlDoc.NewElement("Monitor") };
 	pMonitor->SetAttribute("name", getName().c_str());
@@ -235,7 +237,7 @@ typeDevice Printer::getType()const {
 	return typeDevice::PRINTER_TYPE;
 }
 
-XMLElement* Printer::serialize(XMLDocument& xmlDoc)
+XMLElement* Printer::serialize(XMLDocument& xmlDoc) const
 {
 	XMLElement* pPrinter{ xmlDoc.NewElement("Printer") };
 	pPrinter->SetAttribute("type", static_cast<int>(getType()));
@@ -276,7 +278,7 @@ typeDevice OtherEquipment::getType()const {
 	return typeDevice::OTHER_TYPE;
 }
 
-XMLElement* OtherEquipment::serialize(XMLDocument& xmlDoc)
+XMLElement* OtherEquipment::serialize(XMLDocument& xmlDoc) const
 {
 	XMLElement* pOther{ xmlDoc.NewElement("Other") };
 	pOther->SetAttribute("name", getName().c_str());

@@ -8,7 +8,8 @@ MonitorEditDialog::MonitorEditDialog(DataManager* dm,
 	ui->setupUi(this);
 }
 
-MonitorEditDialog::~MonitorEditDialog() {
+MonitorEditDialog::~MonitorEditDialog()
+{
 	delete ui;
 }
 
@@ -22,8 +23,7 @@ Item* MonitorEditDialog::createItem()
 	auto item{ dataManager->createItem(
 		DataManager::typeITEquipment::typeMonitor,
 		number,
-		dataManager->getCurrentLocationInfo().first,
-		dataManager->getCurrentLocationInfo().second)
-	};
+		dataManager->getCurrentLocationIndexes()
+	)};
 	return item;
 }

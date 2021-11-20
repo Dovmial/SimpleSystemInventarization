@@ -6,7 +6,7 @@ Item::Item(std::shared_ptr<ITequipment> equipment_, int64_t inventoryNumber_) :
 	equipment(equipment_),
 	inventoryNumber(inventoryNumber_)
 {}
-std::string Item::getName()
+std::string Item::getName() const
 {
 	return getITequipment()->getName();
 }
@@ -79,6 +79,52 @@ std::pair<PSiteratorConst, PSiteratorConst>
 Item::getProblemsSolutionsView() const
 {
 	return std::pair(cbegin(problemsSolutions), cend(problemsSolutions));
+}
+
+XMLElement* Item::serialize(XMLDocument& xmlDoc) const
+{
+	XMLElement* pItem{ xmlDoc.NewElement("Item") };
+	pItem->SetAttribute("inventoryNumber", inventoryNumber);
+
+	XMLElement* pITequipment{equipment->serialize(xmlDoc)};
+	pItem->InsertEndChild(pITequipment);
+
+	XMLElement* pServices{ xmlDoc.NewElement("Services") };
+	pItem->InsertEndChild(pServices);
+
+	for (auto& service : services) {
+		XMLElement* pService{ xmlDoc.NewElement("ServiceInfo") };
+		pService->SetAttribute("date", service->getDate().c_str());
+		pService->SetText(service->getDescription().c_str());
+		pServices->InsertEndChild(pService);
+	}
+
+	XMLElement* pProblemSolutions{ xmlDoc.NewElement("ProblemSolutions") };
+	pItem->InsertEndChild(pProblemSolutions);
+
+	for (auto& problemSolution : problemsSolutions) {
+		XMLElement* pProblemSolution{ xmlDoc.NewElement("ProblemSolution") };
+
+		XMLElement* pProblem{ xmlDoc.NewElement("Problem") };
+		pProblem->SetText(problemSolution->getDescription().c_str());
+		pProblemSolution->InsertEndChild(pProblem);
+
+		if (problemSolution->getSolution().length()) {
+			XMLElement* pSolution{ xmlDoc.NewElement("Solution") };
+			pSolution->SetText(problemSolution->getSolution().c_str());
+			pProblemSolution->InsertEndChild(pSolution);
+		}
+
+		if (problemSolution->getDate().length()) {
+			XMLElement* pDate{ xmlDoc.NewElement("Date") };
+			pDate->SetText(problemSolution->getDate().c_str());
+			pProblemSolution->InsertEndChild(pDate);
+		}
+
+		pProblemSolutions->InsertEndChild(pProblemSolution);
+	}
+
+	return pItem;
 }
 
 

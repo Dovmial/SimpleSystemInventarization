@@ -10,4 +10,5 @@
             <Room name="202"/>
         </Building>
     </Buildings>
+    <Devices/>
 </Root>

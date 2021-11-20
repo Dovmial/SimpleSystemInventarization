@@ -21,7 +21,7 @@ void Room::eraseItem(Item* item)
 	std::erase(items, item);
 }
 
-bool Room::isEmpty()
+bool Room::isEmpty() const
 {
 	return items.empty();
 }
@@ -51,12 +51,12 @@ void Room::clear()
 	items.clear();
 }
 
-size_t Room::size()
+size_t Room::size() const
 {
 	return  items.size();
 }
 
- bool Room::operator<(const Room& other)
+ bool Room::operator<(const Room& other) const
 {
 	 return  name < other.name;
 }

@@ -23,12 +23,12 @@ public:
 	DECLSPEC Item* showItem(size_t index) const ;
 	DECLSPEC void addItem(Item* item);
 	DECLSPEC void eraseItem(Item* item);
-	DECLSPEC bool isEmpty();
+	DECLSPEC bool isEmpty() const;
 	DECLSPEC Item* findItem(const std::string& name);
 	DECLSPEC Item* findItem(int64_t inventoryNumber);
 	DECLSPEC void clear();
-	DECLSPEC size_t size();
-	DECLSPEC bool operator<(const Room& other);
+	DECLSPEC size_t size() const;
+	DECLSPEC bool operator<(const Room& other) const;
 
 private:
 	std::vector<Item*> items; //TODO std::list<Item*>

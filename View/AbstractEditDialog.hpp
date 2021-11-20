@@ -9,7 +9,6 @@ class AbstractEditDialog : public QDialog, public IItemCreatable {
 public:
 	AbstractEditDialog(DataManager* dm,
 		QWidget* parent = nullptr);
-	virtual ~AbstractEditDialog();
 	
 protected:
 	DataManager* dataManager;

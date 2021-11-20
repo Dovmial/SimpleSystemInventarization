@@ -23,6 +23,7 @@
     <ClCompile Include="Building.cpp" />
     <ClCompile Include="Components.cpp" />
     <ClCompile Include="DataManager.cpp" />
+    <ClCompile Include="DeviceLocation.cpp" />
     <ClCompile Include="GetDataEquipment.cpp" />
     <ClCompile Include="IITequipmentFabric.cpp" />
     <ClCompile Include="ITequipment.cpp" />
@@ -39,6 +40,7 @@
     <ClInclude Include="Building.hpp" />
     <ClInclude Include="Components.hpp" />
     <ClInclude Include="DataManager.hpp" />
+    <ClInclude Include="DeviceLocation.hpp" />
     <ClInclude Include="IInfoType.hpp" />
     <ClInclude Include="ISerialize.hpp" />
     <ClInclude Include="Location.hpp" />
@@ -161,7 +163,7 @@
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
-      <AdditionalIncludeDirectories>C:\Users\nma91\source\repos\SSI\SimpleSystemInventarization\json\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -178,7 +180,7 @@
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
-      <AdditionalIncludeDirectories>C:\Users\nma91\source\repos\SSI\SimpleSystemInventarization\json\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

@@ -96,14 +96,17 @@
     <ClCompile Include="Navigator.cpp">
       <Filter>Managers\Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="Location.cpp">
-      <Filter>Building\Исходные файлы</Filter>
-    </ClCompile>
     <ClCompile Include="tinyxml2.cpp">
       <Filter>Managers\Исходные файлы</Filter>
     </ClCompile>
     <ClCompile Include="Serializer.cpp">
       <Filter>Managers\Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="Location.cpp">
+      <Filter>Managers\Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="DeviceLocation.cpp">
+      <Filter>Equipment\Исходные файлы</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -156,7 +159,10 @@
       <Filter>Managers\Файлы Заголовков</Filter>
     </ClInclude>
     <ClInclude Include="ISerialize.hpp">
-      <Filter>Managers</Filter>
+      <Filter>Managers\Файлы Заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="DeviceLocation.hpp">
+      <Filter>Equipment\Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

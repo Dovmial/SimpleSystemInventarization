@@ -14,7 +14,7 @@ DialogFindItem::~DialogFindItem()
 	delete ui;
 }
 
-QVector<const DeviceLocation*> DialogFindItem::findItem()
+QVector<const DeviceLocation*> DialogFindItem::findItem() const
 {
 	std::vector<const DeviceLocation*> resultFound;
 	if (ui->rbName->isChecked()) {

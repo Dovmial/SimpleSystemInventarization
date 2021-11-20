@@ -47,7 +47,7 @@ public:
 
 	virtual std::string getInfo()const override;
 	virtual typeDevice getType() const override;
-	virtual XMLElement* serialize(XMLDocument& xmlDoc) override;
+	virtual XMLElement* serialize(XMLDocument& xmlDoc) const override;
 public:
 	void setComplectComponents(std::shared_ptr<ComplectComponents> complect);
 	void setMotherboard(const MotherBoard& mb);
@@ -78,7 +78,7 @@ public:
 	float getDiagonal() const;
 	virtual std::string getInfo()const override;
 	virtual typeDevice getType()const override;
-	virtual XMLElement* serialize(XMLDocument& xmlDoc) override;
+	virtual XMLElement* serialize(XMLDocument& xmlDoc) const override;
 private:
 	float diagonal;
 };
@@ -101,7 +101,7 @@ public:
 	std::string printerTypeToStr() const;
 	virtual std::string getInfo()const override;
 	virtual typeDevice getType()const override;
-	virtual XMLElement* serialize(XMLDocument& xmlDoc) override;
+	virtual XMLElement* serialize(XMLDocument& xmlDoc)const override;
 private:
 	Cartridge cartridge;
 	PrinterType type;
@@ -117,7 +117,7 @@ public:
 	std::string getSomeInfo() const;
 	virtual std::string getInfo()const override;
 	virtual typeDevice getType()const override;
-	virtual XMLElement* serialize(XMLDocument& xmlDoc) override;
+	virtual XMLElement* serialize(XMLDocument& xmlDoc) const override;
 private:
 	std::string someInfo;
 };

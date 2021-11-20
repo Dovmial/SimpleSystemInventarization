@@ -4,7 +4,3 @@ AbstractEditDialog::AbstractEditDialog(DataManager* dm, QWidget* parent) :
 	dataManager(dm),
 	QDialog(parent)
 {}
-
-AbstractEditDialog::~AbstractEditDialog() {
-
-}

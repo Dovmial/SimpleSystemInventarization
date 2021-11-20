@@ -8,7 +8,7 @@ EditRoomDialog::EditRoomDialog(DataManager* dm, QWidget* parent):
 	ui = new Ui::EditRoomDialog;
 	ui->setupUi(this);
 	ui->lblNameBuilding->setText(
-		QString::fromStdString(dataManager->getCurrentLocationInfo().first)
+		QString::fromStdString(dataManager->getCurrentLocationNames().first)
 	);
 }
 

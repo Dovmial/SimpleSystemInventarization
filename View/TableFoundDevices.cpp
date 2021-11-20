@@ -30,8 +30,8 @@ void TableFoundDevices::configTableView()
 	foundDeviceTableModel->setColumnCount(4);
 	foundDeviceTableModel->setHorizontalHeaderLabels(
 		QStringList()
-		<< QStringLiteral(u"Здание")
-		<< QStringLiteral(u"Комната")
+		<< QStringLiteral(u"Здание ID")
+		<< QStringLiteral(u"Комната ID")
 		<< QStringLiteral(u"Оборудование")
 		<< QStringLiteral(u"Инвентарный №")
 	);
@@ -45,19 +45,19 @@ void TableFoundDevices::configTableView()
 	QList<QStandardItem*> deviceStringList;
 	for (const auto& device : foundDevices) {
 		deviceStringList.append(
-			new QStandardItem(QString::fromStdString(device->location.buildingName))
+			new QStandardItem(QString::number(device->getLocationIndexes().first))
 		);
 
 		deviceStringList.append(
-			new QStandardItem(QString::fromStdString(device->location.roomName))
+			new QStandardItem(QString::number(device->getLocationIndexes().second))
 		);
 
 		deviceStringList.append(
-			new QStandardItem(QString::fromStdString(device->item->getName()))
+			new QStandardItem(QString::fromStdString(device->getItem()->getName()))
 		);
 
 		deviceStringList.append(
-			new QStandardItem(QString::number(device->item->getInventoryNumber()))
+			new QStandardItem(QString::number(device->getItem()->getInventoryNumber()))
 		);
 
 		foundDeviceTableModel->insertRow(
