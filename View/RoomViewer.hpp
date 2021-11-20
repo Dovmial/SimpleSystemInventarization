@@ -4,6 +4,7 @@
 #include "ui_RoomViewer.h"
 #include "../SimpleSystemInventarization/DataManager.hpp"
 #include "../SimpleSystemInventarization/Room.hpp"
+#include "../SimpleSystemInventarization/Deserializer.hpp"
 #include <memory>
 #include <QStandardItemModel>
 
@@ -22,11 +23,10 @@ private slots:
 	void on_mnuAddBuilding_triggered();
 	void on_mnuAddRoom_triggered();
 	void on_mnuFindItem_triggered();
+	void on_mnuSave_triggered();
 
 	void on_btnTransitRoom_clicked();
 	void on_btnTransitBuilding_clicked();
-
-	void on_btnSave_clicked();
 
 	void slotEditRecord(QModelIndex index);
 	void slotShowInfoSelectItem(QModelIndex index);
@@ -55,7 +55,8 @@ private:
 	
 private:
 	Ui::RoomViewer* ui;
-	std::unique_ptr<DataManager> dataManager;
+	std::unique_ptr<DataManager > dataManager ;
+	std::unique_ptr<Deserializer> deserializer;
 	Room* room;
 	QLabel* currentLocationInfo;
 	QStandardItemModel* deviceTableModel;

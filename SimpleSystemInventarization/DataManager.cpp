@@ -15,21 +15,17 @@ DataManager::DataManager() :
 	otherGetData	{ std::make_unique<OtherGetData>	()},
 
 	serializer		{ std::make_unique<Serializer>		()}
-	
 {
 	buildings.push_back(std::move(std::make_unique<Building>("Virtual building")));
-
 
 	currentLocation = std::make_unique<Navigator>(
 		std::make_pair(0, buildings[0]->getName()),
 		std::make_pair(0, buildings[0]->getRoom(0)->getName())
-	);
-	load();
+		);
 }
 
 DataManager::~DataManager()
 {
-	save();
 }
 
 using ComplectComponents = std::tuple
@@ -130,10 +126,14 @@ void DataManager::update()
 }
 
 
-
-int DataManager::load()
+XMLDocument* DataManager::getXMLDocument() const
 {
-	return serializer->decodeBuilding(buildings);
+	return serializer->getXMLDocument();
+}
+
+fs::path DataManager::getPath() const
+{
+	return serializer->getPath();
 }
 
 int DataManager::save()
@@ -290,4 +290,9 @@ std::vector<std::string> DataManager::getListRoomNames() const
 		roomNames[i] = building->getRoom(i)->getName();
 	}
 	return roomNames;
+}
+
+std::vector<DeviceLocation>& DataManager::getDevices()
+{
+	return devices;
 }

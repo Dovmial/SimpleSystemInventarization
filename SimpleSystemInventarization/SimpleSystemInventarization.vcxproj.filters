@@ -108,6 +108,12 @@
     <ClCompile Include="DeviceLocation.cpp">
       <Filter>Equipment\Исходные файлы</Filter>
     </ClCompile>
+    <ClCompile Include="Deserializer.cpp">
+      <Filter>Managers\Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="IStrategyDeserialize.cpp">
+      <Filter>Managers\Исходные файлы</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Room.hpp">
@@ -163,6 +169,12 @@
     </ClInclude>
     <ClInclude Include="DeviceLocation.hpp">
       <Filter>Equipment\Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Deserializer.hpp">
+      <Filter>Managers\Файлы Заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="IStrategyDeserialize.hpp">
+      <Filter>Managers\Файлы Заголовков</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

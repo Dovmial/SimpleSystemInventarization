@@ -23,9 +23,11 @@
     <ClCompile Include="Building.cpp" />
     <ClCompile Include="Components.cpp" />
     <ClCompile Include="DataManager.cpp" />
+    <ClCompile Include="Deserializer.cpp" />
     <ClCompile Include="DeviceLocation.cpp" />
     <ClCompile Include="GetDataEquipment.cpp" />
     <ClCompile Include="IITequipmentFabric.cpp" />
+    <ClCompile Include="IStrategyDeserialize.cpp" />
     <ClCompile Include="ITequipment.cpp" />
     <ClCompile Include="Item.cpp" />
     <ClCompile Include="Location.cpp" />
@@ -40,6 +42,7 @@
     <ClInclude Include="Building.hpp" />
     <ClInclude Include="Components.hpp" />
     <ClInclude Include="DataManager.hpp" />
+    <ClInclude Include="Deserializer.hpp" />
     <ClInclude Include="DeviceLocation.hpp" />
     <ClInclude Include="IInfoType.hpp" />
     <ClInclude Include="ISerialize.hpp" />
@@ -53,6 +56,7 @@
     <ClInclude Include="Room.hpp" />
     <ClInclude Include="Serializer.hpp" />
     <ClInclude Include="ServiceInfo.hpp" />
+    <ClInclude Include="IStrategyDeserialize.hpp" />
     <ClInclude Include="tinyxml2.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

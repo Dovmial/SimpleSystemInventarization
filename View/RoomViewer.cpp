@@ -25,6 +25,14 @@ RoomViewer::RoomViewer(std::unique_ptr<DataManager> dm, QWidget* parent)
     QMainWindow(parent)
 {
     ui->setupUi(this);
+
+    deserializer = std::make_unique<Deserializer>(
+        dataManager.get(),
+        dataManager->getPath(),
+        dataManager->getXMLDocument()
+        );
+    deserializer->loadData();
+
     currentLocationInfo->setStyleSheet("QLabel {color: blue;}");
     
     tablesModelsConfiguration();
@@ -126,7 +134,7 @@ void RoomViewer::on_btnTransitBuilding_clicked()
     }
 }
 
-void RoomViewer::on_btnSave_clicked()
+void RoomViewer::on_mnuSave_triggered()
 {
     dataManager->save();
     QMessageBox::information(this, "", "Saved!!");
@@ -350,7 +358,7 @@ void RoomViewer::updateTableServices()
         auto [serviceBeginIter, serviceEndIter] = item->getServiceInfoView();
         indexSign = 0;
         while (serviceBeginIter != serviceEndIter) {
-            serviceStringList.append(new QStandardItem(QString::number(++i)));
+            serviceStringList.append(new QStandardItem(QString::number(i+1)));
             serviceStringList.append(new QStandardItem(QString::number(++indexSign)));
             serviceStringList.append(
                 new QStandardItem(QString::fromStdString((*serviceBeginIter)->getDescription()))

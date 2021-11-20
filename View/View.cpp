@@ -1,4 +1,4 @@
-#include "View.h"
+#include "View.hpp"
 
 View::View(QWidget* parent)
     : ui{new Ui::ViewClass()},

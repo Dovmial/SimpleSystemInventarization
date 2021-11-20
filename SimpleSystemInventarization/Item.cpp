@@ -84,8 +84,9 @@ Item::getProblemsSolutionsView() const
 XMLElement* Item::serialize(XMLDocument& xmlDoc) const
 {
 	XMLElement* pItem{ xmlDoc.NewElement("Item") };
+	pItem->SetAttribute("type", equipment->getType());
 	pItem->SetAttribute("inventoryNumber", inventoryNumber);
-
+	
 	XMLElement* pITequipment{equipment->serialize(xmlDoc)};
 	pItem->InsertEndChild(pITequipment);
 

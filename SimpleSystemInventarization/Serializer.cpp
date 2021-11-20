@@ -3,7 +3,7 @@
 
 
 Serializer::Serializer()
-	: path{ fs::current_path() / "../source/data.xml"},
+	: path{ "../source/data.xml"},
 	xmlDoc{ std::make_unique<XMLDocument>() }
 {
 }
@@ -12,56 +12,16 @@ Serializer::~Serializer()
 {
 }
 
-int Serializer::decodeBuilding(std::vector<std::unique_ptr<Building>>& buildings)
+fs::path Serializer::getPath() const
 {
-	XMLError eResult{ xmlDoc->LoadFile(path.string().c_str()) };
-	if (eResult != XML_SUCCESS) {
-		return eResult;
-	}
-
-	XMLNode* pRoot{ xmlDoc->FirstChildElement("Root") };
-	if (!pRoot) return XML_ERROR_FILE_READ_ERROR;
-
-	XMLElement* pBuildings{ pRoot->FirstChildElement("Buildings") };
-	if (!pBuildings) return XML_ERROR_PARSING_ELEMENT;
-
-	const char* strSIZE{ pBuildings->Attribute("count") };
-	if (!strSIZE) return XML_ERROR_PARSING_ATTRIBUTE;
-	size_t countBuildings{ static_cast<size_t>(atoi(strSIZE)) };
-
-	buildings.reserve(countBuildings);
-
-	XMLElement* pBuilding{ pBuildings->FirstChildElement("Building") };
-	if (!pBuilding) return XML_ERROR_PARSING_ELEMENT;
-	const char* nameBuilding;
-	const char* countRooms;
-	const char* nameRoom;
-	XMLElement* pRoom;
-	while (pBuilding != nullptr) {
-		nameBuilding = pBuilding->Attribute("name");
-		if (!nameBuilding) return XML_ERROR_PARSING_ATTRIBUTE;
-
-		countRooms = pBuilding->Attribute("count");
-		if (!countRooms) return XML_ERROR_PARSING_ATTRIBUTE;
-
-		buildings.push_back(std::move(std::make_unique<Building>(std::string(nameBuilding))));
-
-		pRoom = pBuilding->FirstChildElement("Room");
-		if (!pRoom) return XML_ERROR_PARSING_ELEMENT;
-
-		while (pRoom != nullptr) {
-
-			nameRoom = pRoom->Attribute("name");
-			if (!nameRoom) return XML_ERROR_PARSING_ATTRIBUTE;
-			buildings.back()->addRoom(std::string(nameRoom));
-
-			pRoom = pRoom->NextSiblingElement("Room");
-		}
-
-		pBuilding = pBuilding->NextSiblingElement("Building");
-	}
-	return 0;
+	return path;
 }
+
+XMLDocument* Serializer::getXMLDocument() const
+{
+	return xmlDoc.get();
+}
+
 
 XMLElement* Serializer::encodeBuildings(const std::vector<std::unique_ptr<Building>>& buildings)
 {
@@ -87,6 +47,7 @@ XMLElement* Serializer::encodeBuildings(const std::vector<std::unique_ptr<Buildi
 XMLElement* Serializer::encodeDevices(const std::vector<DeviceLocation>& devices)
 {
 	XMLElement* pDevices{ xmlDoc->NewElement("Devices") };
+	pDevices->SetAttribute("count", devices.size());
 	XMLElement* pDevice;
 	for (const auto& device : devices) {
 		pDevice = device.serialize(*xmlDoc);
@@ -110,10 +71,9 @@ void Serializer::createXMLDocument(
 
 int Serializer::saveXMLDocument() {
 	
-	
 	XMLError eResult{ xmlDoc->SaveFile(path.string().c_str()) };
 	if (eResult != XML_SUCCESS) {
-		return static_cast<int>(eResult);
+		return eResult;
 	}
 	return 0;
 }

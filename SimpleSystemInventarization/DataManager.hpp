@@ -53,7 +53,8 @@ public:
 	void eraseItem(std::vector<DeviceLocation>::iterator&& iter);
 	void update();
 
-	int  load();
+	XMLDocument* getXMLDocument() const;
+	fs::path getPath() const;
 	int  save();
 public:
 	void setDataMonitor(const std::string& name, float diagonal);
@@ -84,6 +85,7 @@ public:
 	std::vector<std::string> getListBuildingNames() const;
 	std::vector<std::string> getListRoomNames() const;
 
+	std::vector<DeviceLocation>& getDevices();
 private:
 	std::shared_ptr<ITequipment> createITequipment(typeITEquipment typeITE);
 private:

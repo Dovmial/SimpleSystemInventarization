@@ -1,4 +1,4 @@
-#include "View.h"
+#include "View.hpp"
 #include <QtWidgets/QApplication>
 
 int main(int argc, char *argv[])

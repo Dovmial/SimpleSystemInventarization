@@ -17,7 +17,8 @@ public:
 	Serializer();
 	~Serializer();
 
-	int decodeBuilding(std::vector<std::unique_ptr<Building>>& buildings);
+	fs::path getPath()const;
+	XMLDocument* getXMLDocument() const;
 
 	XMLElement* encodeBuildings(const std::vector<std::unique_ptr<Building>>& buildings);
 	XMLElement* encodeDevices(const std::vector<DeviceLocation>& devices);
@@ -27,6 +28,7 @@ public:
 		const std::vector<DeviceLocation>& devices
 	);
 	int	 saveXMLDocument();
+	
 	void clearXMLDocument();
 	bool isCompareXML();
 public:

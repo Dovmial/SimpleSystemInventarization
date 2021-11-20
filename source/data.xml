@@ -10,5 +10,67 @@
             <Room name="202"/>
         </Building>
     </Buildings>
-    <Devices/>
+    <Devices count="4">
+        <Device buildingIndex="2" roomIndex="0">
+            <Item type="1" inventoryNumber="4101564589">
+                <PC typePC="2" name="ПК-305">
+                    <Motherboard name=""/>
+                    <CPU name="intel-i7 5590" frequency="10.2"/>
+                    <GraphicCard name="nvidea RTX 5080" volume="156"/>
+                    <RAM name="" volume="12548"/>
+                    <StorageDevice typeStorageDevice="1" name="samsung b-550" volume="7800"/>
+                    <OperationSystem>РОС-2506</OperationSystem>
+                </PC>
+                <Services>
+                    <ServiceInfo date="21.11.2021">cfcfc gvgv</ServiceInfo>
+                </Services>
+                <ProblemSolutions/>
+            </Item>
+        </Device>
+        <Device buildingIndex="2" roomIndex="0">
+            <Item type="3" inventoryNumber="456789123">
+                <Printer type="3" name="маруся-1505">
+                    <Cartridge>тк-6789</Cartridge>
+                </Printer>
+                <Services/>
+                <ProblemSolutions/>
+            </Item>
+        </Device>
+        <Device buildingIndex="2" roomIndex="0">
+            <Item type="2" inventoryNumber="45689">
+                <Monitor name="дп-123" diagonal="156"/>
+                <Services>
+                    <ServiceInfo date="25.11.2021">xbcnrf</ServiceInfo>
+                </Services>
+                <ProblemSolutions>
+                    <ProblemSolution>
+                        <Problem>kkk</Problem>
+                        <Date>21.11.2021</Date>
+                    </ProblemSolution>
+                </ProblemSolutions>
+            </Item>
+        </Device>
+        <Device buildingIndex="2" roomIndex="1">
+            <Item type="4" inventoryNumber="0">
+                <Other name="микрофоны">
+                    <SomeInfo>5 штук</SomeInfo>
+                </Other>
+                <Services>
+                    <ServiceInfo date="21.11.2021">lll</ServiceInfo>
+                    <ServiceInfo date="21.11.2021">,l,l,</ServiceInfo>
+                </Services>
+                <ProblemSolutions>
+                    <ProblemSolution>
+                        <Problem>ckjvfys</Problem>
+                        <Date>21.11.2021</Date>
+                    </ProblemSolution>
+                    <ProblemSolution>
+                        <Problem></Problem>
+                        <Solution>;l</Solution>
+                        <Date>21.11.2021</Date>
+                    </ProblemSolution>
+                </ProblemSolutions>
+            </Item>
+        </Device>
+    </Devices>
 </Root>

@@ -283,7 +283,7 @@ XMLElement* OtherEquipment::serialize(XMLDocument& xmlDoc) const
 	XMLElement* pOther{ xmlDoc.NewElement("Other") };
 	pOther->SetAttribute("name", getName().c_str());
 	XMLElement* pSomeInfo{ xmlDoc.NewElement("SomeInfo") };
-	pOther->SetText(getSomeInfo().c_str());
+	pSomeInfo->SetText(getSomeInfo().c_str());
 	pOther->InsertEndChild(pSomeInfo);
 	return pOther;
 }

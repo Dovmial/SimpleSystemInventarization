@@ -112,7 +112,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <QtRcc Include="View.qrc" />
-    <QtMoc Include="View.h" />
+    <QtMoc Include="View.hpp" />
     <ClCompile Include="AbstractEditDialog.cpp" />
     <ClCompile Include="DialogFindItem.cpp" />
     <ClCompile Include="DialogProblemSolutionInfo.cpp" />
