@@ -96,15 +96,6 @@ Item* DataManager::createItem(
 	return newItem;
 }
 
-//unusable   (for edit)
-/*
-void DataManager::setItem(Item* item)
-{
-	auto iter = findItem(item);
-	if(iter != devices.end())
-		iter->item.reset(item);
-}
-*/
 void DataManager::eraseItem(std::vector<DeviceLocation>::iterator&& iter) {
 	
 	getCurrentRoom()->eraseItem(iter->getItem());

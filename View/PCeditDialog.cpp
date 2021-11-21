@@ -93,7 +93,7 @@ Item* PCeditDialog::createItem()
 		ui->leStorageDeviceVolume->text().toFloat(),
 		ui->leStorageDeviceName->text().toStdString(),
 		[&]()->StorageDevice::typeStorageDevice {
-			if (ui->rbHDDtype)
+			if (ui->rbHDDtype->isChecked())
 				return StorageDevice::typeStorageDevice::HDD;
 			else
 				return StorageDevice::typeStorageDevice::SSD;

@@ -166,9 +166,10 @@ void RoomViewer::on_btnTransitBuilding_clicked()
 
 void RoomViewer::on_mnuSave_triggered()
 {
-    if (int error{ dataManager->save() }; error != 0) {
+    if (int error{ dataManager->save() }; error != XML_SUCCESS) {
         QMessageBox::warning(this, QStringLiteral(u"Ошибка!"),
             QStringLiteral(u"Ошибка сохранения\nКод ошибки: ") + QString::number(error));
+        return;
     }
     QMessageBox::information(this, QStringLiteral(u"Сохранение"), QStringLiteral(u"Успешно!"));
 }

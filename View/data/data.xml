@@ -14,22 +14,6 @@
             </Item>
         </Device>
         <Device buildingIndex="1" roomIndex="0">
-            <Item type="1" inventoryNumber="456123789">
-                <PC typePC="2" name="Подставка для перекуса">
-                    <Motherboard name="Объект-310П"/>
-                    <CPU name="Байкал-14800" frequency="17.4"/>
-                    <GraphicCard name="Маруся-2660 лучевая" volume="320"/>
-                    <RAM name="" volume="1024"/>
-                    <StorageDevice typeStorageDevice="1" name="Иртыш" volume="12300"/>
-                    <OperationSystem>Перископ-домашняя</OperationSystem>
-                </PC>
-                <Services>
-                    <ServiceInfo date="03.11.2021">Полная сушка</ServiceInfo>
-                </Services>
-                <ProblemSolutions/>
-            </Item>
-        </Device>
-        <Device buildingIndex="1" roomIndex="0">
             <Item type="2" inventoryNumber="78912345">
                 <Monitor name="Большой монитор" diagonal="500"/>
                 <Services/>
@@ -39,6 +23,22 @@
                         <Date>21.11.2023</Date>
                     </ProblemSolution>
                 </ProblemSolutions>
+            </Item>
+        </Device>
+        <Device buildingIndex="1" roomIndex="0">
+            <Item type="1" inventoryNumber="456123789">
+                <PC typePC="2" name="Подставка для перекуса">
+                    <Motherboard name="Объект-310П"/>
+                    <CPU name="Байкал-14800" frequency="17.4"/>
+                    <GraphicCard name="Маруся-2660 лучевая" volume="320"/>
+                    <RAM name="" volume="1024"/>
+                    <StorageDevice typeStorageDevice="2" name="Иртыш" volume="12300"/>
+                    <OperationSystem>Перископ-домашняя</OperationSystem>
+                </PC>
+                <Services>
+                    <ServiceInfo date="03.11.2021">Полная сушка</ServiceInfo>
+                </Services>
+                <ProblemSolutions/>
             </Item>
         </Device>
     </Devices>
