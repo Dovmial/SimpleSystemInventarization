@@ -49,7 +49,12 @@ public:
 	std::pair<PSiterator, PSiterator> getProblemsSolutions();
 	std::pair<SIiteratorConst, SIiteratorConst> getServiceInfoView() const;
 	std::pair<PSiteratorConst, PSiteratorConst> getProblemsSolutionsView() const;
-	//void getPrintInfoItem() const;
+	
+public:
+	ServiceInfoContainer&& getServicesInformation();
+	ProblemSolutionContainer&& getProblemsSolutionsInformation();
+	void setServicesInformation(ServiceInfoContainer&& services_);
+	void setProblemsSolutionsInformation(ProblemSolutionContainer&& problemsSolutions_);
 
 	XMLElement* serialize(XMLDocument& xmlDoc)const  override;
 private:

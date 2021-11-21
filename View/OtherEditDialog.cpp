@@ -7,6 +7,18 @@ OtherEditDialog::OtherEditDialog(DataManager* dm, QWidget* parent) :
 	ui->setupUi(this);
 }
 
+OtherEditDialog::OtherEditDialog(DataManager* dm, Item* item, QWidget* parent)
+	:AbstractEditDialog(dm, parent),
+	ui{ new Ui::OtherEditDialog() }
+{
+	ui->setupUi(this);
+	ui->leName->setText(QString::fromStdString(item->getName()));
+	ui->leNumber->setText(QString::number(item->getInventoryNumber()));
+	auto pITEquipment{ item->getITequipment().get() };
+	OtherEquipment* pOtherEq = dynamic_cast<OtherEquipment*>(pITEquipment);
+	ui->teOtherInfo->setText(QString::fromStdString(pOtherEq->getSomeInfo()));
+}
+
 OtherEditDialog::~OtherEditDialog() {
 	delete ui;
 }

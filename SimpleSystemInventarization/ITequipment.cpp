@@ -31,13 +31,13 @@ PC::PC(const std::string& name_, TypePC type_,
 std::string PC::getInfo() const
 {
 	std::stringstream ssInfo;
-	ssInfo << std::setw(20) << typePCtoStr() << ": " << name << '\n';
-	ssInfo << std::setw(20) << motherboard.getInfo();
-	ssInfo << std::setw(20) << _cpu.getInfo();
-	ssInfo << std::setw(20) << ram.getInfo();
-	ssInfo << std::setw(20) << graphicCard.getInfo();
-	ssInfo << std::setw(20) << storageDevice.getInfo();
-	ssInfo << std::setw(20) << "Operation system: " << operationSystem << '\n';
+	ssInfo << std::setw(16) << typePCtoStr() << ": " << name << '\n';
+	ssInfo << motherboard.getInfo();
+	ssInfo << _cpu.getInfo();
+	ssInfo << ram.getInfo();
+	ssInfo << graphicCard.getInfo();
+	ssInfo << storageDevice.getInfo();
+	ssInfo << "Operation system: " << operationSystem << '\n';
 	return ssInfo.str();
 }
 
@@ -88,6 +88,18 @@ XMLElement* PC::serialize(XMLDocument& xmlDoc) const
 void PC::setTypePC(TypePC typePC_)
 {
 	typePC = typePC_;
+}
+
+std::shared_ptr<ComplectComponents> PC::getComplectComponents() const
+{
+	
+	auto components{ std::make_shared<ComplectComponents>(
+		std::make_tuple(
+			motherboard, _cpu, graphicCard,
+			ram, storageDevice, operationSystem)
+		)
+	};
+	return components;
 }
 
 void PC::setComplectComponents(std::shared_ptr<ComplectComponents> complect)
@@ -231,6 +243,11 @@ std::string Printer::printerTypeToStr() const
 	case Printer::PrinterType::PRINTER3D:
 		return std::string("3D-Printer");
 	}
+}
+
+Printer::PrinterType Printer::getPrinterType() const
+{
+	return type;
 }
 
 typeDevice Printer::getType()const {

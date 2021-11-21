@@ -8,6 +8,55 @@ PCeditDialog::PCeditDialog(DataManager* dm, QWidget* parent):
 	ui->setupUi(this);
 }
 
+PCeditDialog::PCeditDialog(DataManager* dm, Item* item, QWidget* parent)
+	:AbstractEditDialog(dm, parent),
+	ui{ new Ui::PCeditDialog() }
+{
+	ui->setupUi(this);
+	ui->leName->setText(QString::fromStdString(item->getName()));
+	ui->leNumber->setText(QString::number(item->getInventoryNumber()));
+	auto pITEquipment{ item->getITequipment().get() };
+	PC* pc = dynamic_cast<PC*>(pITEquipment);
+	
+	auto type{ pc->getTypePC() };
+	switch (type)
+	{
+	case PC::TypePC::SystemBlock:
+		ui->rbPCtype->setChecked(true);
+		break;
+	case PC::TypePC::Laptop:
+		ui->rbLaptopType->setChecked(true);
+		break;
+	case PC::TypePC::Monoblock:
+		ui->rbMonoblockType->setChecked(true);
+		break;
+	}
+
+	auto [motherboard, _cpu, grapicCard, ram, storageDevice, operSystem] 
+		=  *pc->getComplectComponents();
+
+	ui->leMotherboard  ->setText(QString::fromStdString(motherboard.getName()));
+	ui->leCPUname	   ->setText(QString::fromStdString(_cpu.getName()));
+	ui->leCPUfrequency ->setText(QString::number(_cpu.getFrequency()));
+	ui->leVideocardName->setText(QString::fromStdString(grapicCard.getName()));
+	ui->leVideocardVolumeRam->setText(QString::number(grapicCard.getVolume()));
+
+	switch (storageDevice.getStorageDeviceType())
+	{
+	case StorageDevice::typeStorageDevice::HDD:
+		ui->rbHDDtype->setChecked(true); 
+		break;
+	case StorageDevice::typeStorageDevice::SSD:
+		ui->rbSSDtype->setChecked(true);
+		break;
+	}
+	ui->leStorageDeviceName	 ->setText(QString::fromStdString(storageDevice.getName()));
+	ui->leStorageDeviceVolume->setText(QString::number(storageDevice.getVolume()));
+
+	ui->leRAMvolume->setText(QString::number(ram.getVolume()));
+	ui->leOperationSystem->setText(QString::fromStdString(operSystem));
+}
+
 PCeditDialog::~PCeditDialog() {
 	delete ui;
 }

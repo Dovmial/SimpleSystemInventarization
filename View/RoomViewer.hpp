@@ -35,10 +35,12 @@ private slots:
 	void slotRemoveDevice();
 	void slotRemoveServiceSign();
 	void slotRemoveProblemSolutiondSign();
+	void slotEditFont();
 
 	void slotContextMenuItem(QPoint pos);
 	void slotContextMenuServices(QPoint pos);
 	void slotContextMenuProblemsSolutions(QPoint pos);
+	void slotShowContextMenuInfoDevice(QPoint pos);
 
 private:
 	void setTextStatusBar(const std::string& str1, const std::string& str2);

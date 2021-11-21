@@ -81,6 +81,26 @@ Item::getProblemsSolutionsView() const
 	return std::pair(cbegin(problemsSolutions), cend(problemsSolutions));
 }
 
+ServiceInfoContainer&& Item::getServicesInformation()
+{
+	return std::move(services);
+}
+
+ProblemSolutionContainer&& Item::getProblemsSolutionsInformation()
+{
+	return std::move(problemsSolutions);
+}
+
+void Item::setServicesInformation(ServiceInfoContainer&& services_)
+{
+	services = std::move(services_);
+}
+
+void Item::setProblemsSolutionsInformation(ProblemSolutionContainer&& problemsSolutions_)
+{
+	problemsSolutions = std::move( problemsSolutions_);
+}
+
 XMLElement* Item::serialize(XMLDocument& xmlDoc) const
 {
 	XMLElement* pItem{ xmlDoc.NewElement("Item") };

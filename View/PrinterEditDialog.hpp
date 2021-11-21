@@ -9,6 +9,7 @@ class PrinterEditDialog : public AbstractEditDialog
 	Q_OBJECT
 public:
 	PrinterEditDialog(DataManager* dm, QWidget* parent = nullptr);
+	PrinterEditDialog(DataManager* dm, Item* item, QWidget* parent = nullptr);
 	~PrinterEditDialog();
 	Item* createItem() override;
 private:

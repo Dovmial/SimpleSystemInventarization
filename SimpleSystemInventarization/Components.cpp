@@ -12,7 +12,9 @@ MotherBoard::MotherBoard(const std::string& name) : Components(name)
 
 std::string MotherBoard::getInfo() const
 {
-	return std::string("MotherBoard: " + name + '\n');
+	std::stringstream sstr;
+	sstr << std::setw(18) << "MotherBoard: " << name << '\n';
+	return sstr.str();
 }
 
 CPU::CPU(const std::string& name, float frequency_) :
@@ -34,9 +36,9 @@ void CPU::setFrequency(float frequency_)
 std::string CPU::getInfo() const
 {
 	std::stringstream ss;
-	ss << std::fixed << std::setprecision(2) << frequency;
-	return std::string("CPU: " + name + " "
-		+ ss.str() + " GHz\n");
+	ss << std::setw(18) << "CPU: " << name << ' ';
+	ss << std::fixed << std::setprecision(2) << frequency<<"GHz\n";
+	return ss.str();
 }
 
 RAM::RAM(float volume_, const std::string& name) :
@@ -57,9 +59,9 @@ void RAM::setVolume(float volume_)
 std::string RAM::getInfo() const
 {
 	std::stringstream ss;
-	ss << std::fixed << std::setprecision(0) << volume;
-	return std::string("RAM: " + (!name.empty()?(name+" ") : "") 
-		+ ss.str() + " GB\n");
+	ss << std::setw(18) << "RAM: " << (!name.empty() ? (name + " ") : "");
+	ss << std::fixed << std::setprecision(0) << volume << " GB\n";
+	return ss.str();
 }
 
 StorageDevice::StorageDevice(
@@ -82,9 +84,10 @@ StorageDevice::StorageDevice(
 std::string StorageDevice::getInfo() const
 {
 	std::stringstream ss;
-	ss << std::fixed << std::setprecision(0) << volume;
-	return std::string("Storage device: " + (!name.empty() ? (name + " ") : "")
-		+ ss.str() + " GB\n");
+	ss << std::setw(16) << getStorageDeviceTypeStr() << ": "
+		<< (!name.empty() ? (name + " ") : "");
+	ss << std::fixed << std::setprecision(0) << volume << " GB\n";
+	return ss.str();
 }
 
 void StorageDevice::setTypeStorDev(typeStorageDevice type)
@@ -100,6 +103,17 @@ void StorageDevice::setVolume(float volume_)
 StorageDevice::typeStorageDevice StorageDevice::getStorageDeviceType() const
 {
 	return sdType;
+}
+
+std::string StorageDevice::getStorageDeviceTypeStr() const
+{
+	switch (sdType)
+	{
+	case typeStorageDevice::HDD:
+		return std::string("HDD");
+	case typeStorageDevice::SSD:
+		return std::string("SSD");
+	}
 }
 
 float StorageDevice::getVolume() const
@@ -125,9 +139,9 @@ void GraphicCard::setVolume(float volume_)
 std::string GraphicCard::getInfo() const
 {
 	std::stringstream ss;
-	ss << std::fixed << std::setprecision(0) << volume;
-	return std::string("Graphic card: " + name + " "
-		+ ss.str() + " GB\n");
+	ss << std::setw(18) << "Graphic card: " << name << ' ';
+	ss << std::fixed << std::setprecision(0) << volume << " GB\n";
+	return ss.str();
 }
 
 Cartridge::Cartridge(const std::string& name): Components(name)

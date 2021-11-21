@@ -13,6 +13,7 @@
 #include "DialogFindItem.hpp"
 #include "TableFoundDevices.hpp"
 #include <QMessageBox>
+#include <QFontDialog>
 
 RoomViewer::RoomViewer(std::unique_ptr<DataManager> dm, QWidget* parent)
     : ui{new Ui::RoomViewer()},
@@ -33,11 +34,15 @@ RoomViewer::RoomViewer(std::unique_ptr<DataManager> dm, QWidget* parent)
         );
     deserializer->loadData();
 
-    currentLocationInfo->setStyleSheet("QLabel {color: blue;}");
+    currentLocationInfo->setStyleSheet("QLabel {color: rgb(175, 119, 108);}");
+    ui->lblRoomName->setStyleSheet("QLabel{color: rgb(76, 57, 121);}");
     
     tablesModelsConfiguration();
     updateRoomViewer();
    
+    ui->pteInfoItems->setContextMenuPolicy(Qt::CustomContextMenu);
+    QObject::connect(ui->pteInfoItems, &QPlainTextEdit::customContextMenuRequested,
+        this, &RoomViewer::slotShowContextMenuInfoDevice);
     QObject::connect(ui->tvItems, &QTableView::doubleClicked,
         this, &RoomViewer::slotEditRecord);
     QObject::connect(ui->tvItems, &QTableView::clicked,
@@ -64,6 +69,7 @@ Room* RoomViewer::getRoom()const {
 }
 void RoomViewer::on_mnuAddBuilding_triggered()
 {
+    
     auto dialog{ new EditBuildingDialog(dataManager.get(), this) };
     if (dialog->exec() == QDialog::Accepted) {
         dialog->addBuilding();
@@ -72,6 +78,14 @@ void RoomViewer::on_mnuAddBuilding_triggered()
 }
 void RoomViewer::on_mnuAddRoom_triggered()
 {
+    if (dataManager->getCurrentBuilding() == dataManager->getBuildingByIndex(0)) {
+        QMessageBox::warning(
+            this,
+            QStringLiteral(u"Ошибка!"),
+            QStringLiteral(u"В вируальное здание запрещено добавлять комнаты!")
+        );
+        return;
+    }
     auto crRoomDialog{ new EditRoomDialog(dataManager.get(), this) };
     if (crRoomDialog->exec() == EditRoomDialog::Accepted) {
         crRoomDialog->addRoom();
@@ -121,6 +135,7 @@ void RoomViewer::on_btnTransitRoom_clicked()
 
 void RoomViewer::on_btnTransitBuilding_clicked()
 {
+    
     auto dialog{ new DialogTransitToBuilding(dataManager.get(), this) };
     if (dialog->exec() == QDialog::Accepted) {
         std::string transitToBuilding = dialog->getNameBuildingTransit().toStdString();
@@ -144,36 +159,32 @@ void RoomViewer::slotEditRecord(QModelIndex index)
 {
     Item* item = dataManager->getCurrentRoom()->showItem(index.row());
     typeDevice type = item->getITequipment()->getType();
- 
     AbstractEditDialog* dialog;
     switch (type)
     {
     case PC_TYPE:
-        dialog = new PCeditDialog(dataManager.get(), this);
+        dialog = new PCeditDialog      (dataManager.get(), item, this);
         break;
     case MONITOR_TYPE:
-        dialog = new MonitorEditDialog(dataManager.get(), this);
+        dialog = new MonitorEditDialog (dataManager.get(), item, this);
         break;
     case PRINTER_TYPE:
-        dialog = new PrinterEditDialog(dataManager.get(), this);
+        dialog = new PrinterEditDialog (dataManager.get(), item, this);
         break;
     case OTHER_TYPE:
-        dialog = new OtherEditDialog(dataManager.get(), this);
+        dialog = new OtherEditDialog   (dataManager.get(), item, this);
         break;
     default:
         return;
     }
-    /*TODO edit
-    std::string str = item->getITequipment()->getInfo();
-    dialog->setParams(str);
+    
     if (dialog->exec() == QDialog::Accepted) {
-        dialog->create...
-    }
-    */
-    if (dialog->exec() == QDialog::Accepted) {
-        dialog->createItem();
-        dataManager->eraseItem(dataManager->findItem(item));
+        auto newItem { dialog->createItem() };
+        
+        newItem->setServicesInformation         (item->getServicesInformation         ());
+        newItem->setProblemsSolutionsInformation(item->getProblemsSolutionsInformation());
 
+        dataManager->eraseItem(dataManager->findItem(item));
         updateRoomContent();
     }
 }
@@ -241,14 +252,22 @@ void RoomViewer::slotRemoveProblemSolutiondSign()
     updateTableProblemsSolutions();
 }
 
+void RoomViewer::slotEditFont()
+{
+    bool bOk;
+    QFont font = QFontDialog::getFont(&bOk);
+    if (!bOk) return;
+    ui->pteInfoItems->setFont(font);
+}
+
 void RoomViewer::slotContextMenuItem(QPoint pos)
 {
     QMenu* menu = new QMenu(this);
-    QAction* addProblemSoltionInfo = new QAction(QStringLiteral(u"Добавить проблему/решение..."));
+    QAction* addProblemSolutionInfo = new QAction(QStringLiteral(u"Добавить проблему/решение..."));
     QAction* addServiceInfo = new QAction(QStringLiteral(u"Добавить сервисную информацию..."));
     QAction* removeDevice = new QAction(QStringLiteral(u"Удалить элемент"));
 
-    QObject::connect(addProblemSoltionInfo, &QAction::triggered,
+    QObject::connect(addProblemSolutionInfo, &QAction::triggered,
         this, &RoomViewer::slotAddProblemSolutionInfo);
 
     QObject::connect(addServiceInfo, &QAction::triggered,
@@ -256,8 +275,9 @@ void RoomViewer::slotContextMenuItem(QPoint pos)
 
     QObject::connect(removeDevice, &QAction::triggered, this, &RoomViewer::slotRemoveDevice);
 
-    menu->addAction(addProblemSoltionInfo);
+    menu->addAction(addProblemSolutionInfo);
     menu->addAction(addServiceInfo);
+    menu->addSeparator();
     menu->addAction(removeDevice);
 
     menu->popup(ui->tvItems->viewport()->mapToGlobal(pos));
@@ -281,6 +301,27 @@ void RoomViewer::slotContextMenuProblemsSolutions(QPoint pos)
         this, &RoomViewer::slotRemoveProblemSolutiondSign);
     menu->addAction(removeSign);
     menu->popup(ui->tvProblemSolutionItems->viewport()->mapToGlobal(pos));
+}
+
+void RoomViewer::slotShowContextMenuInfoDevice(QPoint pos)
+{
+    /*
+    QMenu* menu = new QMenu(this);
+    QAction* removeSign = new QAction(QStringLiteral(u"Удалить запись"));
+    QObject::connect(removeSign, &QAction::triggered,
+        this, &RoomViewer::slotRemoveServiceSign);
+    menu->addAction(removeSign);
+    menu->popup(ui->tvServiceItems->viewport()->mapToGlobal(pos));
+    */
+
+    auto cMenuPlainText{ ui->pteInfoItems->createStandardContextMenu() };
+    QAction* editFont = new QAction(QStringLiteral(u"Выбрать шрифт.."));
+    QObject::connect(editFont, &QAction::triggered, this, &RoomViewer::slotEditFont);
+    cMenuPlainText->addSeparator();
+    cMenuPlainText->addAction(editFont);
+    cMenuPlainText->popup(ui->pteInfoItems->viewport()->mapToGlobal(pos));
+   /* cMenuPlainText->exec(ui->pteInfoItems->viewport()->mapToGlobal(pos));
+    delete cMenuPlainText;*/
 }
 
 void RoomViewer::on_mnuAddItem_triggered() {

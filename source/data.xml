@@ -28,15 +28,6 @@
             </Item>
         </Device>
         <Device buildingIndex="2" roomIndex="0">
-            <Item type="3" inventoryNumber="456789123">
-                <Printer type="3" name="маруся-1505">
-                    <Cartridge>тк-6789</Cartridge>
-                </Printer>
-                <Services/>
-                <ProblemSolutions/>
-            </Item>
-        </Device>
-        <Device buildingIndex="2" roomIndex="0">
             <Item type="2" inventoryNumber="45689">
                 <Monitor name="дп-123" diagonal="156"/>
                 <Services>
@@ -65,11 +56,19 @@
                         <Date>21.11.2021</Date>
                     </ProblemSolution>
                     <ProblemSolution>
-                        <Problem></Problem>
-                        <Solution>;l</Solution>
+                        <Problem>ckjvfys</Problem>
                         <Date>21.11.2021</Date>
                     </ProblemSolution>
                 </ProblemSolutions>
+            </Item>
+        </Device>
+        <Device buildingIndex="0" roomIndex="0">
+            <Item type="3" inventoryNumber="456789123">
+                <Printer type="3" name="маруся-1505">
+                    <Cartridge>тк-6789</Cartridge>
+                </Printer>
+                <Services/>
+                <ProblemSolutions/>
             </Item>
         </Device>
     </Devices>

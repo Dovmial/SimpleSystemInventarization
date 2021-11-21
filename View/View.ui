@@ -11,14 +11,14 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>SSI</string>
+   <string>Система инвентаризации</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout">
     <item row="0" column="0">
      <widget class="QPushButton" name="pushButtonStart">
       <property name="text">
-       <string>start</string>
+       <string>Запуск</string>
       </property>
      </widget>
     </item>
