@@ -98,7 +98,7 @@ void RoomViewer::on_mnuAddRoom_triggered()
         QMessageBox::warning(
             this,
             QStringLiteral(u"Ошибка!"),
-            QStringLiteral(u"В вируальное здание запрещено добавлять комнаты!")
+            QStringLiteral(u"В виртуальное здание запрещено добавлять комнаты!")
         );
         return;
     }
@@ -166,8 +166,11 @@ void RoomViewer::on_btnTransitBuilding_clicked()
 
 void RoomViewer::on_mnuSave_triggered()
 {
-    dataManager->save();
-    QMessageBox::information(this, "", "Saved!!");
+    if (int error{ dataManager->save() }; error != 0) {
+        QMessageBox::warning(this, QStringLiteral(u"Ошибка!"),
+            QStringLiteral(u"Ошибка сохранения\nКод ошибки: ") + QString::number(error));
+    }
+    QMessageBox::information(this, QStringLiteral(u"Сохранение"), QStringLiteral(u"Успешно!"));
 }
 
 void RoomViewer::on_mnuHelp_triggered()

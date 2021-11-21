@@ -7,6 +7,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SimpleSystemInventarization
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "View", "View\View.vcxproj", "{625A5ACB-2372-4522-9D71-221EFD6BEBCC}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Setup", "Setup\Setup.vdproj", "{AA1F1142-B4F4-438A-9C4F-4569C0CAFA90}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -29,6 +31,11 @@ Global
 		{625A5ACB-2372-4522-9D71-221EFD6BEBCC}.Release|x64.ActiveCfg = Release|x64
 		{625A5ACB-2372-4522-9D71-221EFD6BEBCC}.Release|x64.Build.0 = Release|x64
 		{625A5ACB-2372-4522-9D71-221EFD6BEBCC}.Release|x86.ActiveCfg = Release|x64
+		{AA1F1142-B4F4-438A-9C4F-4569C0CAFA90}.Debug|x64.ActiveCfg = Release
+		{AA1F1142-B4F4-438A-9C4F-4569C0CAFA90}.Debug|x64.Build.0 = Release
+		{AA1F1142-B4F4-438A-9C4F-4569C0CAFA90}.Debug|x86.ActiveCfg = Debug
+		{AA1F1142-B4F4-438A-9C4F-4569C0CAFA90}.Release|x64.ActiveCfg = Release
+		{AA1F1142-B4F4-438A-9C4F-4569C0CAFA90}.Release|x86.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

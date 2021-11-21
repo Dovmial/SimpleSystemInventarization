@@ -23,7 +23,9 @@
                     <StorageDevice typeStorageDevice="1" name="Иртыш" volume="12300"/>
                     <OperationSystem>Перископ-домашняя</OperationSystem>
                 </PC>
-                <Services/>
+                <Services>
+                    <ServiceInfo date="03.11.2021">Полная сушка</ServiceInfo>
+                </Services>
                 <ProblemSolutions/>
             </Item>
         </Device>
@@ -31,7 +33,12 @@
             <Item type="2" inventoryNumber="78912345">
                 <Monitor name="Большой монитор" diagonal="500"/>
                 <Services/>
-                <ProblemSolutions/>
+                <ProblemSolutions>
+                    <ProblemSolution>
+                        <Problem>Изогнут на 2 градуса меньше, чем нужно</Problem>
+                        <Date>21.11.2023</Date>
+                    </ProblemSolution>
+                </ProblemSolutions>
             </Item>
         </Device>
     </Devices>

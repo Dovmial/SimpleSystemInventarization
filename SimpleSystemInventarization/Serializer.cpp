@@ -3,7 +3,7 @@
 
 
 Serializer::Serializer()
-	: path{ "../source/data.xml"},
+	: path{ "./data/data.xml"},
 	xmlDoc{ std::make_unique<XMLDocument>() }
 {
 }
