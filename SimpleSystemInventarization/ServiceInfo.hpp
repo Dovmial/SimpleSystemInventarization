@@ -1,5 +1,5 @@
-#ifndef __SERVICEINFO_HPP__
-#define __SERVICEINFO_HPP__
+#ifndef __SERVICEINFO__HPP__
+#define __SERVICEINFO__HPP__
 
 #include <string>
 

@@ -1,4 +1,5 @@
-#pragma once
+#ifndef __PRINTEREDITDIALOG__HPP__
+#define __PRINTEREDITDIALOG__HPP__
 
 #include <QWidget>
 #include "ui_PrinterEditDialog.h"
@@ -15,4 +16,4 @@ public:
 private:
 	Ui::PrinterEditDialog* ui;
 };
-
+#endif

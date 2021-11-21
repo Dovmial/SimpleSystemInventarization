@@ -1,4 +1,5 @@
-#pragma once
+#ifndef __CREATEITEMDIALOG__HPP_
+#define __CREATEITEMDIALOG__HPP_
 #include <QWidget>
 #include "ui_CreateItemDialog.h"
 #include "../SimpleSystemInventarization/DataManager.hpp"
@@ -20,3 +21,4 @@ private:
 	Ui::CreateItemDialog *ui;
 	
 };
+#endif

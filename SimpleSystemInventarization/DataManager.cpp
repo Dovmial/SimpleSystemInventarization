@@ -26,6 +26,7 @@ DataManager::DataManager() :
 
 DataManager::~DataManager()
 {
+	save();
 }
 
 using ComplectComponents = std::tuple
@@ -90,7 +91,8 @@ Item* DataManager::createItem(
 			)
 	);
 	Item* newItem{ devices.back().getItem() };
-	getCurrentRoom()->addItem(newItem);
+	auto room{ getBuildingByIndex(locationIndexes.first)->getRoom(locationIndexes.second) };
+	room->addItem(newItem);
 	return newItem;
 }
 

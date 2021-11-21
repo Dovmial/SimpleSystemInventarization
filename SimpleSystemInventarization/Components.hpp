@@ -1,4 +1,5 @@
-#pragma once
+#ifndef __COMPONENTS__HPP__
+#define __COMPONENTS__HPP__
 #include "BaseObject.hpp"
 #include "Iinfo.hpp"
 
@@ -93,4 +94,4 @@ public:
 	virtual std::string getInfo() const override;
 	//add counter reloaded
 };
-
+#endif

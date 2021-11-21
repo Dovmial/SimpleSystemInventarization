@@ -90,9 +90,6 @@ int Deserializer::decodeDevices(std::vector<DeviceLocation>& devices)
 	XMLElement* pDevice{ pDevices->FirstChildElement("Device") };
 	if (!pDevice) return XML_ERROR_PARSING_ELEMENT;
 
-	const char* buildingIndexSTR;
-	const char* roomIndexSTR;
-
 	XMLElement* pItem;
 	size_t buildingIndex;
 	size_t roomIndex;

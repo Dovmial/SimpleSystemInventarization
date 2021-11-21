@@ -1,4 +1,5 @@
-#pragma once
+#ifndef __GETDATAEQUIPMENT__HPP__
+#define __GETDATAEQUIPMENT__HPP__
 
 #include <tuple>
 #include <string>
@@ -54,3 +55,4 @@ public:
 private:
 	std::pair<std::string, std::string> dataOther;
 };
+#endif

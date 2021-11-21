@@ -1,5 +1,9 @@
 <RCC>
-    <qresource prefix="/">
-        <file>sources/saveFile.png</file>
-    </qresource>
+  <qresource prefix="/">
+    <file>sources/Device.png</file>
+    <file>sources/office.png</file>
+    <file>sources/building.png</file>
+    <file>sources/Search-icon.png</file>
+    <file>sources/saveFile.png</file>
+  </qresource>
 </RCC>

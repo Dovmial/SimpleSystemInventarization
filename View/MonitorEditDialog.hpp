@@ -1,5 +1,5 @@
-#pragma once
-
+#ifndef __MONITOREDITDIALOG__HPP__
+#define __MONITOREDITDIALOG__HPP__
 #include <QWidget>
 #include "ui_MonitorEditDialog.h"
 #include "AbstractEditDialog.hpp" 
@@ -16,3 +16,4 @@ private slots:
 private:
 	Ui::MonitorEditDialog* ui;
 };
+#endif

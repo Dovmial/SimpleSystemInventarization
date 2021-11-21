@@ -185,7 +185,9 @@ float Monitor::getDiagonal() const
 std::string Monitor::getInfo() const
 {
 	std::stringstream ssInfo;
-	ssInfo << std::setw(15) << "Diagonal: " << diagonal << '\n';
+	ssInfo  << std::setw(15) <<"Name: "		 << getName()<< '\n'
+			<< std::setw(15) << "Diagonal: " << diagonal << '\n';
+			
 	return ssInfo.str();
 }
 
@@ -227,8 +229,9 @@ Cartridge Printer::getCartridge() const
 std::string Printer::getInfo() const
 {
 	std::stringstream ssInfo;
-	ssInfo << std::setw(15) << "Type: " << printerTypeToStr()<<'\n'
-		<< std::setw(15) << "Cartridge: " << cartridge.getName() << '\n';
+	ssInfo  << std::setw(15) << "Type: "	  << printerTypeToStr() << '\n'
+			<< std::setw(15) << "Name: "	  << getName() << '\n'
+			<< std::setw(15) << "Cartridge: " << cartridge.getName() << '\n';
 	return ssInfo.str();
 }
 
@@ -288,7 +291,7 @@ std::string OtherEquipment::getSomeInfo() const
 
 std::string OtherEquipment::getInfo() const
 {
-	return std::string(name + " " + someInfo + '\n');
+	return std::string(name + '\n' + someInfo + '\n');
 }
 
 typeDevice OtherEquipment::getType()const {

@@ -1,4 +1,5 @@
-#pragma once
+#ifndef __ROOMVIEWER__HPP__
+#define __ROOMVIEWER__HPP__
 
 #include <QtWidgets/QMainWindow>
 #include "ui_RoomViewer.h"
@@ -19,12 +20,15 @@ public:
 	Room* getRoom()const;
 	void showFoundItem(const DeviceLocation* devicesFound);
 private slots:
-	void on_mnuAddItem_triggered();
+	void on_mnuAddItem_triggered	();
 	void on_mnuAddBuilding_triggered();
-	void on_mnuAddRoom_triggered();
-	void on_mnuFindItem_triggered();
-	void on_mnuSave_triggered();
-
+	void on_mnuAddRoom_triggered	();
+	void on_mnuFindItem_triggered	();
+	void on_mnuSave_triggered		();
+	void on_mnuHelp_triggered		();
+	void on_mnuAbout_triggered		();
+	void on_mnuAbout_QT_triggered	();
+	
 	void on_btnTransitRoom_clicked();
 	void on_btnTransitBuilding_clicked();
 
@@ -65,3 +69,4 @@ private:
 	QStandardItemModel* serviceTableModel;
 	QStandardItemModel* problemSolutionTableModel;
 };
+#endif

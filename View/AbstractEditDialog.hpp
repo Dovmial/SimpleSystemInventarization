@@ -1,4 +1,5 @@
-#pragma once
+#ifndef __ABSTRACTEDITDIALOG__HPP__
+#define __ABSTRACTEDITDIALOG__HPP__
 
 #include <QDialog>
 #include "IItemCreatable.hpp"
@@ -13,3 +14,4 @@ public:
 protected:
 	DataManager* dataManager;
 };
+#endif

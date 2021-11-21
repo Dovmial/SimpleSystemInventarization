@@ -14,6 +14,8 @@
 #include "TableFoundDevices.hpp"
 #include <QMessageBox>
 #include <QFontDialog>
+#include <QFile>
+#include <QTextBrowser>
 
 RoomViewer::RoomViewer(std::unique_ptr<DataManager> dm, QWidget* parent)
     : ui{new Ui::RoomViewer()},
@@ -38,8 +40,22 @@ RoomViewer::RoomViewer(std::unique_ptr<DataManager> dm, QWidget* parent)
     ui->lblRoomName->setStyleSheet("QLabel{color: rgb(76, 57, 121);}");
     
     tablesModelsConfiguration();
+
+   if (dataManager->getRefBuildings().size() > 1) {
+        auto newCurrentBuilding{ dataManager->getBuildingByIndex(1) };
+        dataManager->setCurrentBuildingLocationInfo(
+            std::make_pair(1, newCurrentBuilding->getName())
+        );
+        if (newCurrentBuilding->size() > 1) {
+            room = newCurrentBuilding->getRoom(1);
+            dataManager->setCurrentRoomLocationInfo(
+                std::make_pair(1, room->getName())
+            );
+        }
+    }
     updateRoomViewer();
-   
+
+    ui->pteInfoItems->setFont(QFont("Consolas", 14));
     ui->pteInfoItems->setContextMenuPolicy(Qt::CustomContextMenu);
     QObject::connect(ui->pteInfoItems, &QPlainTextEdit::customContextMenuRequested,
         this, &RoomViewer::slotShowContextMenuInfoDevice);
@@ -130,7 +146,6 @@ void RoomViewer::on_btnTransitRoom_clicked()
         else
             QMessageBox::critical(this, "Error!", "Such a room does not exist");
     }
-
 }
 
 void RoomViewer::on_btnTransitBuilding_clicked()
@@ -153,6 +168,25 @@ void RoomViewer::on_mnuSave_triggered()
 {
     dataManager->save();
     QMessageBox::information(this, "", "Saved!!");
+}
+
+void RoomViewer::on_mnuHelp_triggered()
+{
+    QFile file("./sources/help.html");
+    file.open(QFile::ReadOnly);
+    QString strHelp{ file.readAll() };
+    QMessageBox::about(this, QStringLiteral(u"Помощь"), strHelp);
+}
+
+void RoomViewer::on_mnuAbout_triggered()
+{
+    QString str(QStringLiteral(u"Простая система инвентаризации IT оборудования.\nВерсия 0.8 (C++/Qt)"));
+    QMessageBox::about(this, QString(QStringLiteral(u"О программе")), str);
+}
+
+void RoomViewer::on_mnuAbout_QT_triggered()
+{
+    QMessageBox::aboutQt(this, "About QT Framework");
 }
 
 void RoomViewer::slotEditRecord(QModelIndex index)
@@ -305,23 +339,12 @@ void RoomViewer::slotContextMenuProblemsSolutions(QPoint pos)
 
 void RoomViewer::slotShowContextMenuInfoDevice(QPoint pos)
 {
-    /*
-    QMenu* menu = new QMenu(this);
-    QAction* removeSign = new QAction(QStringLiteral(u"Удалить запись"));
-    QObject::connect(removeSign, &QAction::triggered,
-        this, &RoomViewer::slotRemoveServiceSign);
-    menu->addAction(removeSign);
-    menu->popup(ui->tvServiceItems->viewport()->mapToGlobal(pos));
-    */
-
     auto cMenuPlainText{ ui->pteInfoItems->createStandardContextMenu() };
     QAction* editFont = new QAction(QStringLiteral(u"Выбрать шрифт.."));
     QObject::connect(editFont, &QAction::triggered, this, &RoomViewer::slotEditFont);
     cMenuPlainText->addSeparator();
     cMenuPlainText->addAction(editFont);
     cMenuPlainText->popup(ui->pteInfoItems->viewport()->mapToGlobal(pos));
-   /* cMenuPlainText->exec(ui->pteInfoItems->viewport()->mapToGlobal(pos));
-    delete cMenuPlainText;*/
 }
 
 void RoomViewer::on_mnuAddItem_triggered() {

@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>RoomViewer</string>
+   <string>Простая система инвентаризации</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout">
@@ -88,7 +88,6 @@
        <widget class="QPlainTextEdit" name="pteInfoItems">
         <property name="font">
          <font>
-          <family>Consolas</family>
           <pointsize>14</pointsize>
          </font>
         </property>
@@ -124,6 +123,10 @@
     <property name="title">
      <string>Справка</string>
     </property>
+    <addaction name="mnuHelp"/>
+    <addaction name="separator"/>
+    <addaction name="mnuAbout"/>
+    <addaction name="mnuAbout_QT"/>
    </widget>
    <widget class="QMenu" name="menu_4">
     <property name="title">
@@ -157,23 +160,52 @@
     <bool>false</bool>
    </attribute>
    <addaction name="mnuSave"/>
+   <addaction name="mnuFindItem"/>
+   <addaction name="mnuAddBuilding"/>
+   <addaction name="mnuAddRoom"/>
+   <addaction name="mnuAddItem"/>
   </widget>
   <action name="mnuAddItem">
+   <property name="icon">
+    <iconset resource="View.qrc">
+     <normaloff>:/sources/Device.png</normaloff>:/sources/Device.png</iconset>
+   </property>
    <property name="text">
     <string>Оборудование...</string>
    </property>
+   <property name="toolTip">
+    <string>Добавить оборудование</string>
+   </property>
   </action>
   <action name="mnuAddRoom">
+   <property name="icon">
+    <iconset resource="View.qrc">
+     <normaloff>:/sources/office.png</normaloff>:/sources/office.png</iconset>
+   </property>
    <property name="text">
     <string>Комнату...</string>
    </property>
+   <property name="toolTip">
+    <string>Добавить комнату</string>
+   </property>
   </action>
   <action name="mnuAddBuilding">
+   <property name="icon">
+    <iconset resource="View.qrc">
+     <normaloff>:/sources/building.png</normaloff>:/sources/building.png</iconset>
+   </property>
    <property name="text">
     <string>Здание...</string>
    </property>
+   <property name="toolTip">
+    <string>Добавить здание</string>
+   </property>
   </action>
   <action name="mnuFindItem">
+   <property name="icon">
+    <iconset resource="View.qrc">
+     <normaloff>:/sources/Search-icon.png</normaloff>:/sources/Search-icon.png</iconset>
+   </property>
    <property name="text">
     <string>Найти оборудование...</string>
    </property>
@@ -190,10 +222,28 @@
     <string>Сохранить</string>
    </property>
    <property name="toolTip">
-    <string>mnuSave</string>
+    <string>Сохранить</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+S</string>
+   </property>
+  </action>
+  <action name="mnuHelp">
+   <property name="text">
+    <string>Помощь</string>
+   </property>
+   <property name="shortcut">
+    <string>F1</string>
+   </property>
+  </action>
+  <action name="mnuAbout">
+   <property name="text">
+    <string>О программе</string>
+   </property>
+  </action>
+  <action name="mnuAbout_QT">
+   <property name="text">
+    <string>About QT</string>
    </property>
   </action>
  </widget>

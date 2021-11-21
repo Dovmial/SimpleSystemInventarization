@@ -1,4 +1,5 @@
-#pragma once
+#ifndef __PCEDITDIALOG__HPP__
+#define __PCEDITDIALOG__HPP__
 
 #include <QWidget>
 #include "ui_PCeditDialog.h"
@@ -14,3 +15,4 @@ public:
 private:
 	Ui::PCeditDialog* ui;
 };
+#endif

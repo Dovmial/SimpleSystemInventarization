@@ -1,5 +1,5 @@
-#pragma once
-
+#ifndef __VIEW__HPP__
+#define __VIEW__HPP__
 #include <QtWidgets/QMainWindow>
 #include "ui_View.h"
 #include "RoomViewer.hpp"
@@ -19,3 +19,4 @@ private:
     RoomViewer* roomViewer;
     std::unique_ptr<DataManager> dataManager;
 };
+#endif
